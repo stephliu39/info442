@@ -1,3 +1,82 @@
 body {
-    background-color: lightpink;
+    background-color: white;
+}
+
+#login {
+    display: flex;
+    flex-direction: row;
+}
+
+h1, #login-form input, button {
+    font-family: "Lexend", arial, serif;
+}
+
+.text {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#left-login {
+    width: 50%;
+    height: 100vh;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/021/527/053/original/abstract-yellow-and-white-polka-dots-on-blue-background-pattern-design-free-vector.jpg");
+    background-size: cover;
+}
+
+#right-login {
+    margin: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7%;
+}
+
+.logo {
+    width: 40%;
+}
+
+#login-title {
+    font-size: 30px;
+    color: #4C4B68;
+}
+
+#login-form {
+    width: 250px;
+}
+
+#login-form input {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: "Lexend", arial, serif;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-style: none;
+    border-bottom-style: solid;
+}
+
+#login-form input, button {
+    font-size: 15px;
+}
+
+#login-button, #back-btn {
+    width: 100px;
+    background-color: #4C4B68;
+    color: white;
+    padding: 7px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+#click-to-sign-up {
+    text-decoration: underline;
+}
+
+#click-to-sign-up:hover {
+    color: #5F5DAA;
+}
+
+.hidden {
+    display: none !important;
 }

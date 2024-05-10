@@ -12,11 +12,35 @@
   </head>
 
   <body>
-    <header>
-      
-    </header>
+    <header></header>
 
-    <main></main>
+    <main>
+      <section id="login">
+        <div id="left-login">
+          <!-- Add image and replace placeholder background -->
+        </div>
+
+        <div id="right-login">
+          <img src="../img/logo.png" alt="our logo" class="logo">
+          <h1 id="login-title">Campus Connect</h1>
+
+          <form id="login-form">
+            <input type="text" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+          </form>
+
+          <button id="login-button">Login</button>
+          
+          <p class="text">Don't have an account? <span id="click-to-sign-up">Sign up</span></p>
+
+        </div>
+      </section>
+
+      <section id="sign-up" class="hidden">
+        <button id="back-btn">Back</button>
+        <h1>Sign Up</h1>
+      </section>
+    </main>
 
     <footer></footer>
   </body>
