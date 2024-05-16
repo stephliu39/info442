@@ -1,0 +1,15 @@
+{
+  "name": "info442",
+  "version": "1.0.0",
+  "description": "info442 project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "info442"
+  },
+  "author": "",
+  "license": "ISC"
+}
