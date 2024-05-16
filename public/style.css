@@ -26,7 +26,7 @@ nav {
 
 .right-nav li {
     display: inline;
-    padding-right: 10px;
+    padding-right: 20px;
 }
 
 .left-nav p {
@@ -34,7 +34,12 @@ nav {
     padding-left: 10px;
 }
 
+.right-nav {
+    padding-right: 30px;
+}
+
 .left-nav {
+    padding-left: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +57,7 @@ nav {
 #left-login {
     width: 50%;
     height: 100vh;
-    background-image: url("https://static.vecteezy.com/system/resources/previews/021/527/053/original/abstract-yellow-and-white-polka-dots-on-blue-background-pattern-design-free-vector.jpg");
+    background-image: url("../img/login-bg.png");
     background-size: cover;
 }
 
