@@ -2,17 +2,49 @@ body {
     background-color: white;
 }
 
-#login {
-    display: flex;
-    flex-direction: row;
-}
-
-h1, #login-form input, button {
+h1, #login-form input, button, nav {
     font-family: "Lexend", arial, serif;
 }
 
 .text {
     font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+    width: 100%;
+    background-color: #5F5DAA;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.right-nav li, .left-nav p {
+    color: white;
+}
+
+.right-nav li {
+    display: inline;
+    padding-right: 10px;
+}
+
+.left-nav p {
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.left-nav {
+    display: flex;
+}
+
+.nav-logo {
+    height: 60px;
+}
+
+#login {
+    display: flex;
+    flex-direction: row;
 }
 
 #left-login {
