@@ -112,3 +112,7 @@ nav {
 .hidden {
     display: none !important;
 }
+
+.visible {
+    display: block;
+}
