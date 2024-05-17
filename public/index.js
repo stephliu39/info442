@@ -24,14 +24,17 @@
       loginPage.classList.remove("hidden");
       signUpPage.classList.add("hidden");
     });
+    document.getElementById('nav-profile').addEventListener('click', function() {
+      showSection('profile-page');
+    });
+  document.getElementById('logout-button').addEventListener('click', function() {
+    showSection('login');
+    });
   }
-  document.getElementById('nav-profile').addEventListener('click', function() {
-    showSection('profile-page');
-});
-function showSection(sectionId) {
+  function showSection(sectionId) {
     document.querySelectorAll('main > section').forEach(section => {
-        section.classList.add('hidden');
+      section.classList.add('hidden');
     });
     document.getElementById(sectionId).classList.remove('hidden');
-}
+  }
 })();
