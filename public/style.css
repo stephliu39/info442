@@ -2,7 +2,7 @@ body {
     background-color: white;
 }
 
-h1, #login-form input, button, nav {
+h1, #login-form input, button, nav, #create-event {
     font-family: "Lexend", arial, serif;
 }
 
@@ -122,4 +122,19 @@ nav {
 
 .visible {
     display: block;
+}
+
+.event-form {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    box-sizing: border-box;
 }
