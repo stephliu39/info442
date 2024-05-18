@@ -30,7 +30,7 @@
   document.getElementById('logout-button').addEventListener('click', function() {
     showSection('login');
     });
-    document.getElementById('create-event').addEventListener('click', function() {
+    document.getElementById('create-btn').addEventListener('click', function() {
       showSection('create-event');
     });
 

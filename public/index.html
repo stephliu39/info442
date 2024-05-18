@@ -60,6 +60,7 @@
       <!--Form for create event page!-->
       <section id="create-event" class="hidden">
         <div class="event-form">
+          <h1> Create Event </h1>
           <form>
             <label for="etitle">Event title</label><br>
             <input type="text" id="etitle" name="etitle"><br>
@@ -69,9 +70,17 @@
             <input type="time" id="time-end" name="time-end">
             <label for="time-end">Date</label>
             <input type="date" id="date" name="date"><br>
-            <label for="event-about">About this event</label>
-            <input type="text" id="event-about" name="event-about"><br>
+            <label for="venue">Event venue</label><br>
+            <input type="text" id="venue" name="venue"><br>
           </form>
+          <h1>Description</h1>
+            <form>
+              <label for="eventimg">Event image</label><br>
+              <input type="file" id="myfile" name="myfile">
+            </form>
+            <p> About this event</p>
+            <textarea>Type here...</textarea>
+            <input type="submit" value="Create event">
         </div>
       </section>
 
@@ -105,7 +114,7 @@
             <div class="posted-event"></div>
             <div class="posted-event"></div>
             <div class="posted-event"></div>
-            <div class="posted-event create-event" id="create-event">+ Create</div>
+            <div class="posted-event create-event" id="create-btn">+ Create</div>
           </div>
         </div>
         <button id="logout-button">Logout</button>

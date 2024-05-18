@@ -86,7 +86,7 @@ nav {
 
 #login-form input {
     display: block;
-    width: 100%;
+    width: 80%;
     margin-bottom: 20px;
     font-family: "Lexend", arial, serif;
     padding-top: 10px;
@@ -129,16 +129,43 @@ nav {
 .event-form {
     display: flex;
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 25px;
     justify-content: center;
 }
 
 input[type=text] {
     width: 100%;
-    padding: 12px 20px;
+    padding: 8px 20px;
     margin: 10px 0;
     box-sizing: border-box;
+}
+
+input[type=time] {
+    display: inline-flex;
+    flex-grow: 1;
+}
+
+input[type=submit]{
+    background-color: #7471CB;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 30px;
+    font-family: "Lexend", arial, serif;
+  }
+
+textarea {
+    height: 100px;
+    resize: none;
+    padding: 8px;
 }
 
 /*profile page*/
