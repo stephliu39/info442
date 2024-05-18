@@ -2,7 +2,7 @@ body {
     background-color: white;
 }
 
-h1, #login-form input, button, nav, #create-event {
+h1, #login-form input, button, nav, #create-event, #profile-page {
     font-family: "Lexend", arial, serif;
 }
 
@@ -123,6 +123,8 @@ nav {
 .visible {
     display: block;
 }
+
+/*event form*/
 
 .event-form {
     display: flex;

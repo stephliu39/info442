@@ -30,6 +30,10 @@
   document.getElementById('logout-button').addEventListener('click', function() {
     showSection('login');
     });
+    document.getElementById('create-event').addEventListener('click', function() {
+      showSection('create-event');
+    });
+
   }
   function showSection(sectionId) {
     document.querySelectorAll('main > section').forEach(section => {
