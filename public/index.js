@@ -33,7 +33,12 @@
     document.getElementById('create-btn').addEventListener('click', function() {
       showSection('create-event');
     });
-
+    document.getElementById('submit').addEventListener('click', function() {
+      showSection('profile-page');
+    });
+    document.getElementById('nav-notifications').addEventListener('click', function() {
+      showSection('notifications');
+    });
   }
   function showSection(sectionId) {
     document.querySelectorAll('main > section').forEach(section => {
