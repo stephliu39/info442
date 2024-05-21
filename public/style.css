@@ -20,6 +20,81 @@ nav {
     padding: 10px;
 }
 
+main #home {
+    padding: 20px;
+}
+
+main #home h1 {
+    font-size: 24px;
+    color: #4C4B68;
+}
+
+.schedule {
+    margin-top: 20px;
+}
+
+.schedule h2 {
+    font-size: 20px;
+    color: #4C4B68;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(7, auto);
+    gap: 10px;
+}
+
+.calendar-header {
+    grid-column: span 6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    color: #4C4B68;
+}
+
+.calendar-navigation span {
+    cursor: pointer;
+}
+
+.day, .time-slot {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.event {
+    background-color: #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    color: #333;
+}
+
+.upcoming-events {
+    width: 25%;
+}
+
+.upcoming-events h2 {
+    font-size: 20px;
+    color: #4C4B68;
+}
+
+.upcoming-events ul {
+    list-style: none;
+    padding: 0;
+}
+
+.upcoming-events li {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
 .right-nav li, .left-nav p {
     color: white;
 }
