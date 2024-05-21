@@ -2,7 +2,7 @@ body {
     background-color: white;
 }
 
-h1, #login-form input, button, nav, #create-event, #profile-page, #notifications {
+h1, h2, #login-form input, button, nav, #create-event, #profile-page, #notifications {
     font-family: "Lexend", arial, serif;
 }
 
@@ -321,4 +321,45 @@ h2, h3 {
     display: table;
     clear: both;
   }
+
+  .notif:hover {
+    color: gray;
+  }
+
+  /*home page*/
+  .column-left {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .column-right {
+    width: 65%;
+  }
+
+  input[type=text]#search{
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    font-size: 12px;
+    background-color: white;
+    background-image: url('img/search-icon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+  }
+
+  .buttons {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .button {
+    border-radius: 15px;
+    color: grey;
+    padding: 5px;
+  }
+  
   
