@@ -39,6 +39,9 @@
     document.getElementById('nav-notifications').addEventListener('click', function() {
       showSection('notifications');
     });
+    document.getElementById('nav-home').addEventListener('click', function() {
+      showSection('home');
+    });
   }
   function showSection(sectionId) {
     document.querySelectorAll('main > section').forEach(section => {
