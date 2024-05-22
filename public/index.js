@@ -1,13 +1,30 @@
 "use strict";
 
 (function(){
+
   window.addEventListener("load", init);
+
+  // https://medium.com/@aishakhan0925/firebase-authentication-with-html-css-javascript-step-by-step-guide-edaa5b0bf04f
+  const firebaseConfig = {
+    apiKey: "AIzaSyDtAnRrqgpvEq3xRO2mhFu95XXZh3kLuLA",
+    authDomain: "campus-db.firebaseapp.com",
+    projectId: "campus-db",
+    storageBucket: "campus-db.appspot.com",
+    messagingSenderId: "169573562349",
+    appId: "1:169573562349:web:9ea07e8e6604046a55d9e4"
+  };
+  
+  firebase.initializeApp(firebaseConfig);
+
+  let currentUser;
 
   /**
    * This function runs when the window loads, we can use this to add
    * even listeners and create new functions under this function
    */
   function init() {
+    document.getElementById("login-button").addEventListener("click", loginUser);
+
     console.log("hiiii");
     let loginPage = document.querySelector("#login");
     let signUpPage = document.querySelector("#sign-up");
@@ -24,29 +41,58 @@
       loginPage.classList.remove("hidden");
       signUpPage.classList.add("hidden");
     });
+    
     document.getElementById('nav-profile').addEventListener('click', function() {
       showSection('profile-page');
     });
-  document.getElementById('logout-button').addEventListener('click', function() {
+    
+    document.getElementById('logout-button').addEventListener('click', function() {
     showSection('login');
     });
+    
     document.getElementById('create-btn').addEventListener('click', function() {
       showSection('create-event');
     });
+    
     document.getElementById('submit').addEventListener('click', function() {
       showSection('profile-page');
     });
+    
     document.getElementById('nav-notifications').addEventListener('click', function() {
       showSection('notifications');
     });
+    
     document.getElementById('nav-home').addEventListener('click', function() {
       showSection('home');
     });
   }
+  
   function showSection(sectionId) {
     document.querySelectorAll('main > section').forEach(section => {
       section.classList.add('hidden');
     });
     document.getElementById(sectionId).classList.remove('hidden');
+  }
+
+  function loginUser() {
+
+    // I am not sure yet if this is the correct way to access the login-form
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    console.log(email, password);
+
+    if (email && password) {
+      firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((user) => {
+          currentUser = user.user;
+      })
+      .catch((error) => {
+          console.error(error.code, error.message);
+      });
+    } else {
+      console.log("please check your credentials");
+    }
+    
   }
 })();
