@@ -28,6 +28,7 @@
     console.log("hiiii");
     let loginPage = document.querySelector("#login");
     let signUpPage = document.querySelector("#sign-up");
+    document.querySelector(".error-msg").textContent = "";
 
     // When the user clicks to sign up, 
     document.getElementById("click-to-sign-up").addEventListener("click", () => {
@@ -80,19 +81,44 @@
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    console.log(email, password);
-
     if (email && password) {
       firebase.auth().signInWithEmailAndPassword(email, password)
       .then((user) => {
           currentUser = user.user;
+          console.log(currentUser);
+
+          // switch to home page
+
       })
       .catch((error) => {
-          console.error(error.code, error.message);
+          showError(error);
       });
     } else {
-      console.log("please check your credentials");
+      showError("error");
     }
+  }
+
+  function showError(error) {
+    const errorMsg = document.querySelector(".error-msg");
+    let err;
     
+    if (error === "error") {
+      err = "email and password fields are empty.";
+    } else if (error.code === "auth/internal-error") {
+      err = "Please double check your credentials and try again";
+    } else if (error.code === "auth/too-many-requests") {
+      err = "You have made too many attempts";
+    } else if (error.code.contains("many failed login attempts")) {
+      err = "Account temporarily disabled. Please try again later";
+    } else {
+      err = "Please try again" + error;
+    }
+
+    errorMsg.textContent = err;
+    
+    // Change the error back to empty after 10 seconds
+    setTimeout(() => {
+      errorMsg.textContent = "";
+    }, 10000);
   }
 })();
