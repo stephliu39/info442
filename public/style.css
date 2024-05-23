@@ -514,3 +514,12 @@ h2, h3 {
     font-size: 1rem;
     color: #000;
 }
+
+#searchInput, #timeFilter, #majorFilter, #eventTypeFilter {
+    padding: 10px;
+    font-size: 1rem;
+}
+
+#searchInput {
+    margin-top: 0;
+}
