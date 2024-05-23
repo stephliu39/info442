@@ -67,6 +67,10 @@
       showSection('home');
     });
 
+    document.getElementById('nav-logo').addEventListener('click', function() {
+      showSection('home');
+    });
+
     document.getElementById('nav-events').addEventListener('click', function() {
       showSection('events');
     });

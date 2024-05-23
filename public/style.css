@@ -2,22 +2,19 @@ body {
     background-color: white;
 }
 
-h1, h2, #login-form input, button, nav, #create-event, #profile-page, #notifications {
+h1,
+h2,
+#login-form input,
+button,
+nav,
+#create-event,
+#profile-page,
+#notifications {
     font-family: "Lexend", arial, serif;
 }
 
 .text {
     font-family: Arial, Helvetica, sans-serif;
-}
-
-nav {
-    width: 100%;
-    background-color: #4C4B68;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
 }
 
 main #home {
@@ -58,7 +55,8 @@ main #home h1 {
     cursor: pointer;
 }
 
-.day, .time-slot {
+.day,
+.time-slot {
     background-color: #f0f0f0;
     padding: 10px;
     text-align: center;
@@ -95,34 +93,62 @@ main #home h1 {
     font-size: 16px;
     color: #333;
 }
-.right-nav li, .left-nav p {
+
+
+
+
+/*Navigation Bar*/
+.navbar {
+    background-color: #4C4B68;
+    padding: 10px 20px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.navbar-brand p {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+
+.navbar-brand img {
+    height: 50px;
+}
+
+.navbar-nav .nav-link {
     color: white;
 }
 
-.right-nav li {
-    display: inline;
-    padding-right: 20px;
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #ffcc00;
 }
 
-.left-nav p {
-    font-size: 20px;
-    padding-left: 10px;
+.navbar-nav {
+    margin-right: 20px;
 }
 
-.right-nav {
-    padding-right: 30px;
+.navbar-collapse {
+    margin-left: 20px;
 }
 
-.left-nav {
-    padding-left: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.navbar-toggler {
+    margin-right: 20px;
 }
 
-.nav-logo {
-    height: 50px;
+.icon-bar {
+    color: white;
+    font-size: 1.5em;
 }
+
+
+
+
 
 #login {
     display: flex;
@@ -170,11 +196,13 @@ main #home h1 {
     border-bottom-style: solid;
 }
 
-#login-form input, button {
+#login-form input,
+button {
     font-size: 15px;
 }
 
-#login-button, #back-btn {
+#login-button,
+#back-btn {
     width: 100px;
     background-color: #4C4B68;
     color: white;
@@ -222,7 +250,7 @@ input[type=time] {
     flex-grow: 1;
 }
 
-input[type=submit]{
+input[type=submit] {
     background-color: #7471CB;
     border: none;
     color: white;
@@ -235,7 +263,7 @@ input[type=submit]{
     cursor: pointer;
     border-radius: 30px;
     font-family: "Lexend", arial, serif;
-  }
+}
 
 textarea {
     height: 100px;
@@ -249,7 +277,7 @@ textarea {
     flex-direction: column;
     align-items: center;
 }
-  
+
 .profile-picture {
     border-radius: 50%;
     height: 100px;
@@ -257,17 +285,22 @@ textarea {
     margin-bottom: 10px;
 }
 
-h2, h3 {
+h2,
+h3 {
     margin: 10px 0;
 }
 
-.organizations, .events, .posted-events {
+.organizations,
+.events,
+.posted-events {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
 }
 
-.organization, .event, .posted-event {
+.organization,
+.event,
+.posted-event {
     background-color: #ccc;
     border-radius: 5px;
     height: 100px;
@@ -278,7 +311,8 @@ h2, h3 {
     cursor: pointer;
 }
 
-.add-event, .create-event {
+.add-event,
+.create-event {
     background-color: #e0e0e0;
     color: #3b3f5c;
     font-size: 24px;
@@ -293,51 +327,55 @@ h2, h3 {
     margin-top: 20px;
     cursor: pointer;
     border-radius: 5px;
-  }
-  
-  #logout-button:hover {
+}
+
+#logout-button:hover {
     background-color: #c0c0c0;
-  }
+}
 
-  /*notifications page*/
-  .column {
+
+
+
+
+/*notifications page*/
+.column {
     float: left;
-  }
-  
-  .column.side {
-    width: 25%;
-  }
+}
 
-  .column.middle {
+.column.side {
+    width: 25%;
+}
+
+.column.middle {
     width: 50%;
     display: flex;
     flex-direction: row;
     text-align: center;
     justify-content: space-around;
-  }
+}
 
-  .row::after {
+.row::after {
     content: "";
     display: table;
     clear: both;
-  }
+}
 
-  .notif:hover {
+.notif:hover {
     color: gray;
-  }
+}
 
-  /*events page*/
-  .column-left {
+/*events page*/
+.column-left {
     width: 35%;
     display: flex;
     flex-direction: column;
-  }
+}
 
-  .column-right {
+.column-right {
     width: 65%;
-  }
+}
 
-  input[type=text]#search{
+input[type=text]#search {
     width: 100%;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -345,97 +383,44 @@ h2, h3 {
     font-size: 12px;
     background-color: white;
     background-image: url('img/search-icon.png');
-    background-position: 10px 10px; 
+    background-position: 10px 10px;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
-  }
+}
 
-  .buttons {
-    display:flex;
+.buttons {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
-  }
+}
 
-  .eventbtn {
+.eventbtn {
     border-radius: 100px;
     background-color: #D9D9D9;
     padding: 15px;
     color: black;
     border: none;
     display: inline-block;
-    width:fit-content;
-  }
+    width: fit-content;
+}
 
-  .morebtn {
+.morebtn {
     border-radius: 100px;
     background-color: #4C4B68;
     padding: 15px;
     color: white;
     border: none;
     display: inline-block;
-    width:fit-content;
-  }
-
-
-
-  /* Notifications Page */
-.notifications-wrapper {
-    display: flex;
-    flex-wrap: wrap;
+    width: fit-content;
 }
 
-.notifications-list {
-    flex: 0 0 30%;
-    max-width: 30%;
-    border-right: 1px solid #ddd;
-    padding-right: 20px;
-    overflow-y: auto;
-    height: calc(100vh - 120px);
-}
 
-.notification-detail {
-    flex: 1;
-    padding-left: 20px;
-}
 
-.accordion-button {
-    display: block;
-    width: 100%;
-    text-align: left;
-    padding: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
 
-.accordion-button.active {
-    background-color: #e9ecef;
-}
 
-.notification-time {
-    font-size: 0.8rem;
-    color: #6c757d;
-}
+/* Notifications Page */
 
-.notification-detail h4 {
-    margin-top: 0;
-}
 
-@media (max-width: 768px) {
-    .notifications-wrapper {
-        flex-direction: column;
-    }
-
-    .notifications-list {
-        border-right: none;
-        padding-right: 0;
-        max-width: 100%;
-    }
-
-    .notification-detail {
-        padding-left: 0;
-    }
-}
 
 
 
@@ -515,7 +500,10 @@ h2, h3 {
     color: #000;
 }
 
-#searchInput, #timeFilter, #majorFilter, #eventTypeFilter {
+#searchInput,
+#timeFilter,
+#majorFilter,
+#eventTypeFilter {
     padding: 10px;
     font-size: 1rem;
 }
