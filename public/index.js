@@ -94,8 +94,8 @@
       .then((user) => {
           currentUser = user.user;
           console.log(currentUser);
-
-          // switch to home page
+          showSection('home')
+        
 
       })
       .catch((error) => {

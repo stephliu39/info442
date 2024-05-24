@@ -16,7 +16,7 @@ nav,
 .text {
     font-family: Arial, Helvetica, sans-serif;
 }
-
+/*homepage*/
 main #home {
     padding: 20px;
 }
@@ -40,6 +40,10 @@ main #home h1 {
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(7, auto);
     gap: 10px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .calendar-header {
@@ -49,19 +53,20 @@ main #home h1 {
     align-items: center;
     font-size: 18px;
     color: #4C4B68;
+    margin-bottom: 10px;
 }
 
 .calendar-navigation span {
     cursor: pointer;
 }
 
-.day,
-.time-slot {
+.calendar-body .col {
     background-color: #f0f0f0;
     padding: 10px;
     text-align: center;
     border-radius: 5px;
 }
+
 
 .event {
     background-color: #ccc;
@@ -72,26 +77,51 @@ main #home h1 {
 }
 
 .upcoming-events {
-    width: 25%;
+    width: 100%;
 }
 
-.upcoming-events h2 {
-    font-size: 20px;
-    color: #4C4B68;
-}
-
-.upcoming-events ul {
-    list-style: none;
-    padding: 0;
-}
-
-.upcoming-events li {
+.card {
+    border: none;
     background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+}
+
+.card-title {
     font-size: 16px;
-    color: #333;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #4C4B68;
+    padding: 10px 20px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    height: 50px;
+}
+
+.navbar-brand p {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #ffcc00;
 }
 
 

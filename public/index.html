@@ -68,81 +68,102 @@
       </nav>
 
     </header>
+    <!-- login and sign up-->
+    <section id="login">
+      <div id="left-login">
+        <!-- Add image and replace placeholder background -->
+      </div>
+
+      <div id="right-login">
+        <img src="../img/logo.png" alt="our logo" class="logo">
+        <h1 id="login-title">Campus Connect</h1>
+
+        <form id="login-form">
+          <input type="text" id="email" placeholder="Email" required>
+          <input type="password" id="password" placeholder="Password" required>
+        </form>
+
+        <p class="error-msg"></p>
+
+        <button id="login-button">Login</button>
+
+        <p class="text">Don't have an account? <span id="click-to-sign-up">Sign up</span></p>
+
+      </div>
+    </section>
+    <section id="sign-up" class="hidden">
+      <button id="back-btn">Back</button>
+      <h1>Sign Up</h1>
+    </section>
 
     <!-- Homepage -->
-    <main>
+    <main class="container mt-5" id="home">
       <section id="home">
-        <h1>Hello, Bill</h1>
-        <h1>Welcome to Campus Connect</h1>
-        <div class="schedule">
-          <h2>My Schedule</h2>
-          <div class="calendar">
-            <div class="calendar-header">
-              <span>March</span>
-              <div class="calendar-navigation">
-                <span>&lt;</span>
-                <span>&gt;</span>
-              </div>
-            </div>
-            <div class="calendar-body">
-              <div class="day">Mon</div>
-              <div class="day">Tues</div>
-              <div class="day">Wed</div>
-              <div class="day">Thu</div>
-              <div class="day">Fri</div>
-              <div class="day">Sat</div>
-              <div class="time-slot">09:00</div>
-              <div class="time-slot event" style="grid-column: 2 / span 2; grid-row: 2;">UX Research Class<br>10:44 am
-              </div>
-              <div class="time-slot">11:00</div>
-              <div class="time-slot event" style="grid-column: 2 / span 2; grid-row: 3;">App Development Course<br>10:44
-                am</div>
-              <div class="time-slot">12:00</div>
-              <div class="time-slot">13:00</div>
-              <div class="time-slot event" style="grid-column: 2 / span 2; grid-row: 4;">Figma UX/UI Workshop<br>10:44
-                am</div>
-              <div class="time-slot">14:00</div>
-              <div class="time-slot">15:00</div>
-              <div class="time-slot event" style="grid-column: 6 / span 1; grid-row: 3;">Webinar<br>Zoom</div>
-            </div>
+        <div class="row">
+          <div class="col-12">
+            <h1>Hello, Bill</h1>
+            <h2>Welcome to Campus Connect</h2>
           </div>
         </div>
-        <div class="upcoming-events">
-          <h2>Upcoming Events</h2>
-          <ul>
-            <li>panel talk<br>Design - 10:00 am</li>
-            <li>Design<br>Design - 10:00 am</li>
-          </ul>
+        <div class="row mt-4">
+          <div class="col-lg-9">
+            <h3>My Schedule</h3>
+            <div class="calendar">
+              <div class="calendar-header d-flex justify-content-between align-items-center">
+                <span>March</span>
+                <div class="calendar-navigation">
+                  <span>&lt;</span>
+                  <span>&gt;</span>
+                </div>
+              </div>
+              <div class="calendar-body row">
+                <div class="col">Mon</div>
+                <div class="col">Tue</div>
+                <div class="col">Wed</div>
+                <div class="col">Thu</div>
+                <div class="col">Fri</div>
+                <div class="col">Sat</div>
+                <div class="col-2">09:00</div>
+                <div class="col-2 event" style="grid-column: 2 / span 2; grid-row: 2;">UX Research Class<br>10:44 am
+                </div>
+                <div class="col-2">11:00</div>
+                <div class="col-2 event" style="grid-column: 2 / span 2; grid-row: 3;">App Development Course<br>10:44
+                  am</div>
+                <div class="col-2">12:00</div>
+                <div class="col-2">13:00</div>
+                <div class="col-2 event" style="grid-column: 2 / span 2; grid-row: 4;">Figma UX/UI Workshop<br>10:44
+                  am</div>
+                <div class="col-2">14:00</div>
+                <div class="col-2">15:00</div>
+                <div class="col-2 event" style="grid-column: 6 / span 1; grid-row: 3;">Webinar<br>Zoom</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <h3>Upcoming Events</h3>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Typography in UX/UI</h5>
+                    <p class="card-text">Design - 10:00 am</p>
+                  </div>
+                </div>
+              </li>
+              <li class="mb-2">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Figma UI UX Design</h5>
+                    <p class="card-text">Design - 10:00 am</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
+    </main>
 
-      <section id="login">
-        <div id="left-login">
-          <!-- Add image and replace placeholder background -->
-        </div>
-
-        <div id="right-login">
-          <img src="../img/logo.png" alt="our logo" class="logo">
-          <h1 id="login-title">Campus Connect</h1>
-
-          <form id="login-form">
-            <input type="text" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-          </form>
-
-          <p class="error-msg"></p>
-
-          <button id="login-button">Login</button>
-
-          <p class="text">Don't have an account? <span id="click-to-sign-up">Sign up</span></p>
-
-        </div>
-      </section>
-
-      <section id="sign-up" class="hidden">
-        <button id="back-btn">Back</button>
-        <h1>Sign Up</h1>
-      </section>
 
       <!--Form for create event page!-->
       <section id="create-event" class="hidden">
