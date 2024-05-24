@@ -67,9 +67,9 @@
       showSection('homepage');
     });
 
-    // document.getElementById('nav-logo').addEventListener('click', function() {
-    //   showSection('homepage');
-    // });
+    document.getElementById('nav-logo').addEventListener('click', function() {
+      showSection('homepage');
+    });
 
     document.getElementById('nav-events').addEventListener('click', function() {
       showSection('events');
