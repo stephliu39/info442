@@ -64,12 +64,12 @@
     });
     
     document.getElementById('nav-home').addEventListener('click', function() {
-      showSection('home');
+      showSection('homepage');
     });
 
-    document.getElementById('nav-logo').addEventListener('click', function() {
-      showSection('home');
-    });
+    // document.getElementById('nav-logo').addEventListener('click', function() {
+    //   showSection('homepage');
+    // });
 
     document.getElementById('nav-events').addEventListener('click', function() {
       showSection('events');
