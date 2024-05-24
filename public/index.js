@@ -23,9 +23,6 @@
    * even listeners and create new functions under this function
    */
   function init() {
-    document.getElementById("login-button").addEventListener("click", loginUser);
-
-    console.log("hiiii");
     let loginPage = document.querySelector("#login");
     let signUpPage = document.querySelector("#signup");
     document.querySelector("#login-error-msg").textContent = "";
@@ -41,6 +38,7 @@
       signUpPage.classList.add("hidden");
     });
     
+    document.getElementById("login-button").addEventListener("click", loginUser);
     document.querySelector("#register").addEventListener("click", signupUser);
 
     document.getElementById('nav-profile').addEventListener('click', function() {
@@ -94,6 +92,7 @@
           currentUser = user.user;
           console.log(user.uid);
 
+          document.getElementById("login").classList.add("hidden");
           showSection('homepage');
       })
       .catch((error) => {
@@ -114,6 +113,7 @@
           currentUser = user.user;
           console.log(user.uid);
 
+          document.getElementById("signup").classList.add("hidden");
           hide("#login");
           showSection('homepage');
       })
@@ -123,10 +123,6 @@
     } else {
       showError("signup-error-msg, error");
     }
-  }
-
-  function hide(elem) {
-    document.querySelector(elem).classList.add("hidden");
   }
 
   function showError(errLocation, error) {
