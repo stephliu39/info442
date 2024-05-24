@@ -46,7 +46,10 @@
     });
     
     document.getElementById('logout-button').addEventListener('click', function() {
-    showSection('login');
+      showSection('login');
+      currentUser = null;
+      document.getElementById("login-form").reset();
+      document.getElementById("signup-form").reset();
     });
     
     document.getElementById('create-btn').addEventListener('click', function() {
