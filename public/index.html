@@ -27,19 +27,6 @@
   <body>
     <!-- Navigation Bar -->
     <header>
-      <!-- <nav>
-        <section class="left-nav">
-          <img src="../img/nav-logo.png" alt="logo" class="nav-logo">
-          <p>Campus Connect</p>
-        </section>
-        <ul class="right-nav">
-          <li id="nav-home">Home</li>
-          <li id="nav-events">Events</li>
-          <li id="nav-notifications">Notifications</li>
-          <li id="nav-profile">Profile</li>
-        </ul>
-      </nav> -->
-
       <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="#">
           <img src="../img/nav-logo.png" alt="logo" class="nav-logo" id="nav-logo">
@@ -66,8 +53,8 @@
           </ul>
         </div>
       </nav>
-
     </header>
+
     <!-- login and sign up-->
     <section id="login">
       <div id="left-login">
@@ -97,7 +84,7 @@
     </section>
 
     <!-- Homepage -->
-    <!-- <main class="container mt-5" id="home"> -->
+    <main class="container mt-5" id="home">
       <section id="homepage" class="hidden">
         <div class="row">
           <div class="col-12">
@@ -217,6 +204,8 @@
           </div>
       </div>
   </section>
+        </div>
+      </section>
 
 
       <!--Form for create event page!-->
@@ -288,8 +277,7 @@
         <div class="container my-5">
           <h3>Notifications</h3>
           <hr>
-          <!--Roshan will work on later-->
-          <!-- <div class="container-fluid">
+          <div class="container-fluid">
             <div class="row">
               <div class="col-md-3 col-12 notification-list">
                 <ul class="list-group">
@@ -313,7 +301,7 @@
                 <p id="notification-details">Full details about Notification 1.</p>
               </div>
             </div>
-          </div> -->
+          </div>
         </div>
       </section>
 
@@ -447,11 +435,58 @@
       </section>
 
 
-
-
-
-
-
+      
+      <!-- Event Registration Page -->
+      <!-- Right now just showing up on index.html default but will remove -->
+      <section id="eventRegistration" class="">
+        <div class="container my-5">
+          <h3>WINFO Annual Hackathon</h3>
+          <hr>
+          <div class="row">
+            <!-- Tags -->
+            <div class="d-flex gap-2 mb-2">
+              <span class="badge bg-secondary">#networking</span>
+              <span class="badge bg-secondary">#intern</span>
+              <span class="badge bg-secondary">#seminar</span>
+            </div>
+            <!-- Event Image -->
+            <div class="col-md-8">
+              <img src="../img/sample.jpeg" alt="Event Banner" class="img-fluid mb-4">
+            </div>
+            <!-- Event Description and Info -->
+            <div class="col-md-4">
+              <!-- About Event -->
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">About this event</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi
+                    bibendum sodales luctus, enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
+                </div>
+              </div>
+              <!-- More Details -->
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">Event Details</h5>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <h6 class="mb-0 card-text">Location</h6>
+                      <span class="badge bg-primary">HUB Ballroom, University of Washington</span>
+                      <br>
+                      <h6 class="mb-0 card-text">Attendees</h6>
+                      <span class="badge bg-primary">188 Attending</span>
+                      <br>
+                      <h6 class="mb-0 card-text">Cost</h6>
+                      <span class="badge bg-primary">Free</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-success btn-md">Register Now</button>
+              <button class="btn btn-primary btn-md">Save for later</button>
+            </div>
+          </div>
+        </div>
+      </section>
 
 
       <footer></footer>
