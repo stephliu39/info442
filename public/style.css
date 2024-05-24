@@ -326,8 +326,15 @@ border-color: #ffcc00 !important;
 #left-login, #left-signup {
     width: 50%;
     height: 100vh;
-    background-image: url("../img/login-bg.png");
     background-size: cover;
+}
+
+#left-login {
+    background-image: url("../img/login-bg.png");
+}
+
+#left-signup {
+    background-image: url("../img/signup-bg.png");
 }
 
 #right-login, #right-signup {
@@ -357,7 +364,7 @@ border-color: #ffcc00 !important;
     width: 100%;
     margin-bottom: 20px;
     font-family: "Lexend", arial, serif;
-    padding-left: 0;
+    padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
     border-style: none;
