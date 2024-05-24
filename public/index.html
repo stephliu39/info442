@@ -68,6 +68,7 @@
       </nav>
 
     </header>
+    
     <!-- login and sign up-->
     <section id="login">
       <div id="left-login">
@@ -79,21 +80,45 @@
         <h1 id="login-title">Campus Connect</h1>
 
         <form id="login-form">
-          <input type="text" id="email" placeholder="Email" required>
-          <input type="password" id="password" placeholder="Password" required>
+          <input type="text" id="login-email" placeholder="Email" required>
+          <input type="password" id="login-password" placeholder="Password" required>
         </form>
 
-        <p class="error-msg"></p>
+        <div class="error-div">
+          <p class="error-msg" id="login-error-msg"></p>
+        </div>
 
-        <button id="login-button">Login</button>
+        <button class="form-btn" id="login-button">Login</button>
 
-        <p class="text">Don't have an account? <span id="click-to-sign-up">Sign up</span></p>
+        <p class="text">Don't have an account? <span id="click-to-signup">Sign up</span></p>
 
       </div>
     </section>
-    <section id="sign-up" class="hidden">
-      <button id="back-btn">Back</button>
-      <h1>Sign Up</h1>
+
+    <section id="signup" class="hidden">
+          <div id="left-signup">
+            <!-- Add image and replace placeholder background -->
+          </div>
+  
+          <div id="right-signup">
+            <img src="../img/logo.png" alt="our logo" class="logo">
+            
+            <h1 id="signup-title">Become a member!</h1>
+
+            <form id="signup-form">
+              <input type="text" id="signup-email" placeholder="Email" required>
+              <input type="password" id="signup-password" placeholder="Password" required>
+            </form>
+  
+            <div class="error-div">
+              <p class="error-msg" id="signup-error-msg"></p>
+            </div>
+  
+            <button class="form-btn" id="register">Register</button>
+            
+            <p class="text">Already have an account? <span id="click-to-login">Log in</span></p>
+  
+          </div>
     </section>
 
     <!-- Homepage -->

@@ -27,22 +27,22 @@
 
     console.log("hiiii");
     let loginPage = document.querySelector("#login");
-    let signUpPage = document.querySelector("#sign-up");
-    document.querySelector(".error-msg").textContent = "";
+    let signUpPage = document.querySelector("#signup");
+    document.querySelector("#login-error-msg").textContent = "";
 
-    // When the user clicks to sign up, 
-    document.getElementById("click-to-sign-up").addEventListener("click", () => {
+    // When the user clicks to sign up
+    document.querySelector("#click-to-signup").addEventListener("click", () => {
       loginPage.classList.add("hidden");
       signUpPage.classList.remove("hidden");
     });
 
-    // When the user clicks the back button, the login page shows again
-    let backBtn = document.getElementById("back-btn");
-    backBtn.addEventListener("click", () => {
+    document.querySelector("#click-to-login").addEventListener("click", () => {
       loginPage.classList.remove("hidden");
       signUpPage.classList.add("hidden");
     });
     
+    document.querySelector("#register").addEventListener("click", signupUser);
+
     document.getElementById('nav-profile').addEventListener('click', function() {
       showSection('profile-page');
     });
@@ -80,34 +80,57 @@
     document.querySelectorAll('main > section').forEach(section => {
       section.classList.add('hidden');
     });
+    
     document.getElementById(sectionId).classList.remove('hidden');
   }
 
   function loginUser() {
-
-    // I am not sure yet if this is the correct way to access the login-form
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
 
     if (email && password) {
       firebase.auth().signInWithEmailAndPassword(email, password)
       .then((user) => {
           currentUser = user.user;
-          console.log(currentUser);
-          showSection('home')
-        
+          console.log(user.uid);
 
+          showSection('homepage');
       })
       .catch((error) => {
-          showError(error);
+          showError("login-error-msg", error);
       });
     } else {
-      showError("error");
+      showError("login-error-msg, error");
     }
   }
 
-  function showError(error) {
-    const errorMsg = document.querySelector(".error-msg");
+  function signupUser() {
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+
+    if (email && password) {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+          currentUser = user.user;
+          console.log(user.uid);
+
+          hide("#login");
+          showSection('homepage');
+      })
+      .catch((error) => {
+        showError("signup-error-msg", error);
+      });
+    } else {
+      showError("signup-error-msg, error");
+    }
+  }
+
+  function hide(elem) {
+    document.querySelector(elem).classList.add("hidden");
+  }
+
+  function showError(errLocation, error) {
+    const errorMsg = document.getElementById(errLocation);
     let err;
     
     if (error === "error") {
@@ -116,10 +139,8 @@
       err = "Please double check your credentials and try again";
     } else if (error.code === "auth/too-many-requests") {
       err = "You have made too many attempts";
-    } else if (error.code.contains("many failed login attempts")) {
-      err = "Account temporarily disabled. Please try again later";
     } else {
-      err = "Please try again" + error;
+      err = error + " Please try again.";
     }
 
     errorMsg.textContent = err;
