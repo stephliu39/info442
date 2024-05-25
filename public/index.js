@@ -57,8 +57,12 @@
       document.getElementById("signup-form").reset();
     });
     
-    document.getElementById('create-btn').addEventListener('click', function() {
+    document.getElementById('create-event-button').addEventListener('click', function() {
       showSection('create-event');
+    });
+
+    document.getElementById('add-event-button').addEventListener('click', function() {
+      showSection('add-event'); //not have yet
     });
     
     document.getElementById('submit').addEventListener('click', function() {
@@ -158,50 +162,5 @@
   }
 
   //profile info edit
-  function saveProfile() {
-    const profilePictureInput = document.getElementById('edit-profile-picture');
-    const usernameInput = document.getElementById('edit-username');
-    const emailInput = document.getElementById('edit-email');
-    const locationInput = document.getElementById('edit-location');
-    const bioInput = document.getElementById('edit-bio');
-  
-    const profilePicture = profilePictureInput.files[0] ? URL.createObjectURL(profilePictureInput.files[0]) : document.getElementById('profile-picture').src;
-    const username = usernameInput.value.trim();
-    const email = emailInput.value.trim();
-    const location = locationInput.value.trim();
-    const bio = bioInput.value.trim();
-  
-    if (!username || !email || !location || !bio) {
-      alert('All fields must be filled out.');
-      return;
-    }
-  
-    // Assuming `currentUser` is set after login
-    if (currentUser) {
-      const userId = currentUser.uid;
-      firebase.firestore().collection('users').doc(userId).update({
-        profilePicture: profilePicture,
-        username: username,
-        email: email,
-        location: location,
-        bio: bio
-      }).then(() => {
-        document.getElementById('profile-picture').src = profilePicture;
-        document.getElementById('profile-username').textContent = username;
-        document.getElementById('profile-email').textContent = email;
-        document.getElementById('profile-location').textContent = location;
-        document.getElementById('profile-bio').textContent = bio;
-  
-        const modal = bootstrap.Modal.getInstance(document.getElementById('editProfileModal'));
-        modal.hide();
-        alert('Profile updated successfully.');
-      }).catch(error => {
-        console.error('Error updating profile: ', error);
-        alert('Failed to update profile. Please try again.');
-      });
-    } else {
-      alert('User is not logged in.');
-    }
-  }
   
 })();

@@ -5,7 +5,6 @@ body {
 h1,
 h2,
 #login-form input,
-button,
 nav,
 #create-event,
 #profile-page,
@@ -371,7 +370,7 @@ border-color: #ffcc00 !important;
     border-bottom-style: solid;
 }
 
-#login-form input, button {
+#login-form input{
     font-size: 15px;
 }
 
@@ -467,13 +466,6 @@ h2, h3 {
     margin: 10px 0;
 }
 
-.organizations,
-.events,
-.posted-events {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
 
 .organization,
 .event,
@@ -484,30 +476,28 @@ h2, h3 {
     width: 100px;
     display: flex;
     justify-content: center;
+}
+
+.event-btn {
+    background-color: #e0e0e0;
+    color: #3b3f5c;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
-}
-
-.add-event,
-.create-event {
-  background-color: #e0e0e0;
-  color: #3b3f5c;
-  font-size: 24px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border-radius: 5px;
-}
+    border-radius: 10px; 
+    border: none; /* Remove default button border */
+    margin: 10px;   /* Ensure spacing around buttons */
+    text-align: center;
+    transition: background-color 0.3s;
+  }
   
-
-.add-event span,
-.create-event span {
-  display: block;
-  text-align: center;
-}
-
+  .event-btn:hover {
+    background-color: #d0d0d0;
+  }
+  
 
 #logout-button {
     background-color: #e0e0e0;
@@ -577,11 +567,6 @@ input[type=text]#search {
     padding: 12px 20px 12px 40px;
 }
 
-.buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
 
 .eventbtn {
     border-radius: 100px;
