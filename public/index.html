@@ -260,41 +260,84 @@
       </section>
 
       <!-- Profile Page -->
-      <section id="profile-page" class="hidden">
-        <div class="profle">
-          <img src="../img/profile.jpg" alt="Profile Picture" class="profile-picture">
-          <h2 id="username">username</h2>
-          <p><strong>Email:</strong> <span id="email"></span></p>
-          <p><strong>Location:</strong> <span id="location"></span></p>
-          <p><strong>Bio:</strong> <span id="bio"></span></p>
-          <h3>Organizations</h3>
-          <div class="organizations">
-            <div class="organization"></div>
-            <div class="organization"></div>
-            <div class="organization"></div>
-            <div class="organization"></div>
-            <div class="organization"></div>
+    <section id="profile-page" class="container mt-5">
+      <div class="row">
+          <div class="col-md-3 text-center">
+              <img src="../img/profile default.jpg" alt="Profile Picture" class="img-fluid rounded-circle mb-3 profile-picture" id="profile-picture">
+              <h3 class="mb-0" id="username">username</h3>
+              <p class="text-muted mb-1">email: <span id="email">user@example.com</span></p>
+              <p class="text-muted mb-1">Location: <span id="location">Unknown</span></p>
+              <p class="text-muted mb-1">Bio: <span id="bio">No bio available.</span></p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
           </div>
+          <div class="col-md-9">
+              <h3>Organizations</h3>
+              <div class="d-flex flex-wrap gap-3 mb-4">
+                  <div class="organization rounded-circle"></div>
+                  <div class="organization rounded-circle"></div>
+                  <div class="organization rounded-circle"></div>
+                  <div class="organization rounded-circle"></div>
+                  <div class="organization rounded-circle"></div>
+              </div>
+              <h3>My Events</h3>
+              <div class="d-flex flex-wrap gap-3 mb-4">
+                  <div class="event"></div>
+                  <div class="event"></div>
+                  <div class="event"></div>
+                  <div class="event">
+                      <button id="add-event">+ Add</button>
+                  </div>
+              </div>
+              <h3>My Posted Events</h3>
+              <div class="d-flex flex-wrap gap-3 mb-4">
+                  <div class="posted-event"></div>
+                  <div class="posted-event "></div>
+                  <div class="posted-event "></div>
+                  <div class="posted-event" id="create">
+                      <button >+ Create<button>
+                  </div>
+              </div>
+              <button id="logout-button" class="btn btn-secondary mt-3">Logout</button>
+          </div>
+      </div>
+  </section>
 
-          <h3>My Events</h3>
-          <div class="events">
-            <div class="event"></div>
-            <div class="event"></div>
-            <div class="event"></div>
-            <div class="event add-event">+ Add</div>
+  <!-- Edit Profile Modal -->
+  <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <form id="edit-profile-form">
+                      <div class="mb-3">
+                          <label for="edit-profile-picture" class="form-label">Profile Picture</label>
+                          <input class="form-control" type="file" id="edit-profile-picture">
+                      </div>
+                      <div class="mb-3">
+                          <label for="edit-username" class="form-label">Username</label>
+                          <input type="text" class="form-control" id="edit-username" value="username">
+                      </div>
+                      <div class="mb-3">
+                          <label for="edit-email" class="form-label">Email</label>
+                          <input type="email" class="form-control" id="edit-email" value="user@example.com">
+                      </div>
+                      <div class="mb-3">
+                          <label for="edit-location" class="form-label">Location</label>
+                          <input type="text" class="form-control" id="edit-location" value="Unknown">
+                      </div>
+                      <div class="mb-3">
+                          <label for="edit-bio" class="form-label">Bio</label>
+                          <textarea class="form-control" id="edit-bio" rows="3">No bio available.</textarea>
+                      </div>
+                      <button type="button" class="btn btn-primary" id="save-profile">Save changes</button>
+                  </form>
+              </div>
           </div>
-
-          <h3>My Posted Events</h3>
-          <div class="posted-events">
-            <div class="posted-event"></div>
-            <div class="posted-event"></div>
-            <div class="posted-event"></div>
-            <div class="posted-event create-event" id="create-btn">+ Create</div>
-          </div>
-        </div>
-        <button id="logout-button">Logout</button>
-        </div>
-      </section>
+      </div>
+  </div>
 
       <!-- Notifications Page -->
       <section id="notifications" class="hidden">

@@ -460,10 +460,10 @@ textarea {
     height: 100px;
     width: 100px;
     margin-bottom: 10px;
+    object-fit: cover;
 }
 
-h2,
-h3 {
+h2, h3 {
     margin: 10px 0;
 }
 
@@ -490,11 +490,24 @@ h3 {
 
 .add-event,
 .create-event {
-    background-color: #e0e0e0;
-    color: #3b3f5c;
-    font-size: 24px;
-    font-weight: bold;
+  background-color: #e0e0e0;
+  color: #3b3f5c;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
 }
+  
+
+.add-event span,
+.create-event span {
+  display: block;
+  text-align: center;
+}
+
 
 #logout-button {
     background-color: #e0e0e0;
@@ -509,7 +522,6 @@ h3 {
 #logout-button:hover {
     background-color: #c0c0c0;
 }
-
 
 
 
