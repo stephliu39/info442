@@ -260,25 +260,25 @@
       </section>
 
       <!-- Profile Page -->
-    <section id="profile-page" class="hidden">
-      <div class="row">
+      <section id="profile-page" class="hidden">
+        <div class="row">
           <div class="col-md-3 text-center">
-              <img src="../img/profile default.jpg" alt="Profile Picture" class="img-fluid rounded-circle mb-3 profile-picture" id="profile-picture">
-              <h3 class="mb-0" id="username">username</h3>
-              <p class="text-muted mb-1">email: <span id="email">user@example.com</span></p>
-              <p class="text-muted mb-1">Location: <span id="location">Unknown</span></p>
-              <p class="text-muted mb-1">Bio: <span id="bio">No bio available.</span></p>
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
+            <img src="../img/profile default.jpg" alt="Profile Picture" class="img-fluid rounded-circle mb-3 profile-picture" id="profile-picture">
+            <h3 class="mb-0" id="username">username</h3>
+            <p class="text-muted mb-1">email: <span id="email">user@example.com</span></p>
+            <p class="text-muted mb-1">Location: <span id="location">Unknown</span></p>
+            <p class="text-muted mb-1">Bio: <span id="bio">No bio available.</span></p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
           </div>
           <div class="col-md-9">
-              <h3>Organizations</h3>
-              <div class="d-flex flex-wrap gap-3 mb-4">
-                  <div class="organization rounded-circle"></div>
-                  <div class="organization rounded-circle"></div>
-                  <div class="organization rounded-circle"></div>
-                  <div class="organization rounded-circle"></div>
-                  <div class="organization rounded-circle"></div>
-              </div>
+        <h3>Organizations</h3>
+        <div class="d-flex flex-wrap gap-3 mb-4">
+          <div class="organization rounded-circle" data-org-id="1">Organization 1</div>
+          <div class="organization rounded-circle" data-org-id="2">Organization 2</div>
+          <div class="organization rounded-circle" data-org-id="3"></div>
+          <div class="organization rounded-circle" data-org-id="4"></div>
+          <div class="organization rounded-circle" data-org-id="5"></div>
+        </div>
               <h3>My Events</h3>
               <div class="d-flex flex-wrap gap-3 mb-4">
                   <div class="event"></div>
@@ -556,7 +556,50 @@
       </section>
 
 
-      <footer></footer>
+      
+      <section id="organization-details" class="hidden">
+        <div class="row">
+          <div class="col-12">
+            <div class="org-bio">org bio?</div>
+            <div class="join-section">
+              <div class="org-details">
+                <div class="org-name">ORGANIZATION NAME <br /> (ABBR)</div>
+                <img src="../img/profile.jpg" alt="Profile Picture" class="org-logo">
+              </div>
+              <button class="btn btn-primary" id="join-organization-btn">Join Organization</button>
+            </div>
+          </div>
+            <h2>Upcoming Events</h2>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="event-card h-100 position-relative">
+            <img src="../img/sample.jpeg" alt="ImageAltText" class="img-fluid">
+            <button class="bookmark-btn">
+              <i class="bi bi-bookmark"></i>
+            </button>
+            <div class="event-card-body">
+              <div>
+                <span class="badge">New</span>
+                <h5 class="event-card-title">Sample Event Name</h5>
+                <div class="event-card-details">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales
+                    luctus,
+                    enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
+                  <p>Tue, Jun 3, 9:30 AM <br>UW Seattle, Red Square</p>
+                  <p class="followers">Foster School of Business • 22 followers</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+    <footer>
+
+    
+    </footer>
 
     </main>
     <!-- Bootstrap Script -->

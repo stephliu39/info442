@@ -18,7 +18,15 @@
   const db = firebase.firestore();
 
   function init() {
-
+    document.querySelectorAll('.organization').forEach(org => {
+      org.addEventListener('click', function() {
+        const orgId = this.dataset.orgId;
+        document.getElementById('profile-page').classList.add('hidden');
+        document.getElementById('organization-details').classList.remove('hidden');
+        loadOrganizationDetails(orgId);
+      });
+    });
+    
     document.querySelectorAll('.organization').forEach(org => {
       org.addEventListener('click', function() {
         const orgId = this.dataset.orgId;
