@@ -17,11 +17,17 @@
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
-  /**
-   * This function runs when the window loads, we can use this to add
-   * even listeners and create new functions under this function
-   */
   function init() {
+
+    document.querySelectorAll('.organization').forEach(org => {
+      org.addEventListener('click', function() {
+        const orgId = this.dataset.orgId;
+        document.getElementById('profile-page').classList.add('hidden');
+        document.getElementById('organization-details').classList.remove('hidden');
+        loadOrganizationDetails(orgId);
+      });
+    });
+
     let loginPage = document.querySelector("#login");
     let signUpPage = document.querySelector("#signup");
     document.querySelector("#login-error-msg").textContent = "";
@@ -103,7 +109,7 @@
           showError("login-error-msg", error);
       });
     } else {
-      showError("login-error-msg, error");
+      showError("login-error-msg", "error");
     }
   }
 
@@ -118,14 +124,14 @@
           console.log(user.uid);
 
           document.getElementById("signup").classList.add("hidden");
-          hide("#login");
+          document.getElementById("login").classList.add("hidden"); // Hide login page
           showSection('homepage');
       })
       .catch((error) => {
         showError("signup-error-msg", error);
       });
     } else {
-      showError("signup-error-msg, error");
+      showError("signup-error-msg", "error");
     }
   }
 
