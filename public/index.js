@@ -113,6 +113,11 @@ const orgDetails = document.getElementById("organization-details");
     document.getElementById('nav-profile').addEventListener('click', function() {
       showSection('profile-page');
     });
+    
+    document.getElementById('save-profile').addEventListener('click', saveProfile);
+    document.getElementById('create-event-btn').addEventListener('click', function() {
+      showSection('profile-page');
+    })
   }
   
   function showSection(sectionId) {
