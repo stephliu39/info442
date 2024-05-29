@@ -1,5 +1,16 @@
 "use strict";
 
+let currentUser;
+const loginPage = document.getElementById("login");
+const signUpPage = document.getElementById("signup");
+const home = document.getElementById("home");
+const createEventPage = document.getElementById("create-event");
+const profilePage = document.getElementById("profile-page");
+const notifPage = document.getElementById("notifications");
+const eventsPage = document.getElementById("events");
+const eventRegistration = document.getElementById("eventRegistration");
+const orgDetails = document.getElementById("organization-details");
+
 (function(){
 
   window.addEventListener("load", init);
@@ -15,9 +26,16 @@
   };
   
   firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+  let db = firebase.firestore();
 
   function init() {
+
+    // Adds event listeners / interactivity for the nav bar
+    routeNavBar();
+
+    // Adds functionaltiy to login and sign up pages
+    loginListeners();
+
     document.querySelectorAll('.organization').forEach(org => {
       org.addEventListener('click', function() {
         const orgId = this.dataset.orgId;
@@ -36,28 +54,6 @@
       });
     });
 
-    let loginPage = document.querySelector("#login");
-    let signUpPage = document.querySelector("#signup");
-    document.querySelector("#login-error-msg").textContent = "";
-
-    // When the user clicks to sign up
-    document.querySelector("#click-to-signup").addEventListener("click", () => {
-      loginPage.classList.add("hidden");
-      signUpPage.classList.remove("hidden");
-    });
-
-    document.querySelector("#click-to-login").addEventListener("click", () => {
-      loginPage.classList.remove("hidden");
-      signUpPage.classList.add("hidden");
-    });
-    
-    document.getElementById("login-button").addEventListener("click", loginUser);
-    document.querySelector("#register").addEventListener("click", signupUser);
-
-    document.getElementById('nav-profile').addEventListener('click', function() {
-      showSection('profile-page');
-    });
-    
     document.getElementById('logout-button').addEventListener('click', function() {
       showSection('login');
       currentUser = null;
@@ -77,23 +73,46 @@
       showSection('profile-page');
     });
 
-    document.getElementById('nav-notifications').addEventListener('click', function() {
-      showSection('notifications');
+    document.getElementById('save-profile').addEventListener('click', saveProfile);
+  }
+
+  function loginListeners() {
+    document.querySelector("#login-error-msg").textContent = "";
+
+    document.querySelector(".click-to-login").addEventListener("click", () => {
+      showSection('login');
+    });
+
+    // When the user clicks to sign up
+    document.querySelector("#click-to-signup").addEventListener("click", () => {
+      loginPage.classList.add("hidden");
+      signUpPage.classList.remove("hidden");
+    });
+
+    document.getElementById("login-button").addEventListener("click", loginUser);
+    document.querySelector("#register").addEventListener("click", signupUser);
+  }
+
+  function routeNavBar() {
+    document.getElementById('nav-home').addEventListener('click', function() {
+      showSection('home');
     });
     
-    document.getElementById('nav-home').addEventListener('click', function() {
-      showSection('homepage');
-    });
-
     document.getElementById('nav-logo').addEventListener('click', function() {
-      showSection('homepage');
+      showSection('home');
     });
-
+    
     document.getElementById('nav-events').addEventListener('click', function() {
       showSection('events');
     });
-    
-    document.getElementById('save-profile').addEventListener('click', saveProfile);
+
+    document.getElementById('nav-notifications').addEventListener('click', function() {
+      showSection('notifications');
+    });
+
+    document.getElementById('nav-profile').addEventListener('click', function() {
+      showSection('profile-page');
+    });
   }
   
   function showSection(sectionId) {
@@ -115,7 +134,8 @@
           console.log(user.uid);
 
           document.getElementById("login").classList.add("hidden");
-          showSection('homepage');
+          showSection('home');
+          document.querySelector("header").classList.remove("hidden");
       })
       .catch((error) => {
           showError("login-error-msg", error);
@@ -137,7 +157,8 @@
 
           document.getElementById("signup").classList.add("hidden");
           document.getElementById("login").classList.add("hidden"); // Hide login page
-          showSection('homepage');
+          showSection('home');
+          document.querySelector("header").classList.remove("hidden");
       })
       .catch((error) => {
         showError("signup-error-msg", error);
