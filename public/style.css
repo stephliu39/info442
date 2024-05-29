@@ -187,11 +187,11 @@ nav,
     width: 350px;
 }
 
-#click-to-signup, #click-to-login {
+#click-to-signup, .click-to-login {
     text-decoration: underline;
 }
 
-#click-to-signup:hover, #click-to-login:hover {
+#click-to-signup:hover, .click-to-login:hover {
     color: #5F5DAA;
 }
 
