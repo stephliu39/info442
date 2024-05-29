@@ -19,11 +19,11 @@ nav,
 /*homepage*/
 #homepage {
     padding: 20px;
-    font-style: oblique;
 }
 
-.header{
+.header h1{
     padding: 20px;
+    color: #3b3f5c;
 }
 .schedule-card-body{
     background-color: #7471cb;
