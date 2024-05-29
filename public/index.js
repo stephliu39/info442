@@ -26,7 +26,7 @@ const orgDetails = document.getElementById("organization-details");
   };
   
   firebase.initializeApp(firebaseConfig);
-  let db = firebase.firestore();
+  // let db = firebase.firestore();
 
   function init() {
 
@@ -35,6 +35,7 @@ const orgDetails = document.getElementById("organization-details");
 
     // Adds functionaltiy to login and sign up pages
     loginListeners();
+    document.getElementById("login-button").addEventListener("click", loginUser);
 
     document.querySelectorAll('.organization').forEach(org => {
       org.addEventListener('click', function() {
@@ -88,8 +89,6 @@ const orgDetails = document.getElementById("organization-details");
       loginPage.classList.add("hidden");
       signUpPage.classList.remove("hidden");
     });
-
-    document.getElementById("login-button").addEventListener("click", loginUser);
     document.querySelector("#register").addEventListener("click", signupUser);
   }
 
@@ -114,7 +113,6 @@ const orgDetails = document.getElementById("organization-details");
       showSection('profile-page');
     });
     
-    document.getElementById('save-profile').addEventListener('click', saveProfile);
     document.getElementById('create-event-btn').addEventListener('click', function() {
       showSection('profile-page');
     })
@@ -140,6 +138,8 @@ const orgDetails = document.getElementById("organization-details");
 
           document.getElementById("login").classList.add("hidden");
           showSection('home');
+          
+          // Show nav bar here
           document.querySelector("header").classList.remove("hidden");
       })
       .catch((error) => {
