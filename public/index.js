@@ -46,6 +46,8 @@ const orgDetailsPage = document.getElementById("organization-details");
     document.getElementById("login-button").addEventListener("click", loginUser);
     document.getElementById("register").addEventListener("click", signupUser);
 
+    createEventCard();
+
     document.querySelectorAll('.organization').forEach(org => {
       org.addEventListener('click', function() {
         const orgId = this.dataset.orgId;
@@ -95,8 +97,6 @@ const orgDetailsPage = document.getElementById("organization-details");
       }
       route(); // Route on initial load based on the current hash
     });
-
-    createEventCard();
   }
 
   function routeNavBar() {
@@ -139,11 +139,15 @@ const orgDetailsPage = document.getElementById("organization-details");
   }
 
   function createEventCard() {
-    let eventCardsContainer = document.getElementById('eventCardsContainer');
+    let eventCards = document.getElementById('eventCardsContainer');
 
     let div1 = document.createElement('div');
     div1.classList.add('col-md-6', 'col-lg-4', 'mb-4');
 
+    let test = document.createElement("p");
+    test.textContent = "hiii";
+    div1.appendChild(test);
+/*
     let div2 = document.createElement('div');
     div2.classList.add('event-card', 'h-100', 'position-relative');
 
@@ -160,40 +164,41 @@ const orgDetailsPage = document.getElementById("organization-details");
     bm.appendChild(iElem);
     div2.appendChild(bm);
 
-    let cardBody = document.createElement('div');
-    cardBody.classList.add('event-card-body');
-
     let div3 = document.createElement('div');
+    div3.classList.add('event-card-body');
+
+    let div4 = document.createElement('div');
     let badge = document.createElement('span');
     badge.textContent = "New";
-    div3.appendChild(badge);
+    div4.appendChild(badge);
 
     let title = document.createElement('h5');
     title.classList.add('event-card-title');
     title.textContent = 'Sample Name';
-    div3.appendChild(badge);
+    div4.appendChild(title);
 
-    let div4 = document.createElement('div');
-    div4.classList.add('event-card-details');
+    let div5 = document.createElement('div');
+    div5.classList.add('event-card-details');
 
     let desc = document.createElement('p');
     desc.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
-    div4.appendChild(desc);
+    div5.appendChild(desc);
 
     let dateTime = document.createElement('p');
     dateTime.innerHTML = 'Tue, Jun 3, 9:30 AM <br> UW Seattle, Red Square';
-    div4.appendChild(dateTime);
+    div5.appendChild(dateTime);
 
     let followers = document.createElement('p');
     followers.classList.add('followers');
     followers.textContent = 'Foster School of Business • 22 followers';
-    div4.appendChild(followers);
+    div5.appendChild(followers);
 
+    div4.appendChild(div5);
     div3.appendChild(div4);
-    cardBody.appendChild(div3);
-    div2.appendChild(cardBody);
+    div2.appendChild(div3);
     div1.appendChild(div2);
-    eventCardsContainer.appendChild(div1);
+*/
+    eventCards.appendChild(div1);
   }
 
   // Function to initialize the profile form with current values
