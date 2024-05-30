@@ -19,7 +19,7 @@ app.use(express.json());
 app.get('/api/organizations', async (req, res) => {
   try {
     // reads the json file and parses it
-    let contents = await fs.readFile("data/organizations.json", "utf8");
+    let contents = await fs.readFile("public/data/organizations.json", "utf8");
     contents = JSON.parse(contents);
 
     // sends data from the json file in a response
@@ -32,9 +32,9 @@ app.get('/api/organizations', async (req, res) => {
 // returns users in json format
 app.get('/api/users', async (req, res) => {
   try {
-    let contents = await fs.readFile("data/users.json", "utf8");
+    let contents = await fs.readFile("public/data/users.json", "utf8");
     contents = JSON.parse(contents);
-    
+
     res.type("json").send(contents);
   } catch (err) {
     console.log(err);
@@ -44,9 +44,9 @@ app.get('/api/users', async (req, res) => {
 // returns events in json format
 app.get('/api/events', async (req, res) => {
   try {
-    let contents = await fs.readFile("data/events.json", "utf8");
+    let contents = await fs.readFile("public/data/events.json", "utf8");
     contents = JSON.parse(contents);
-    
+
     res.type("json").send(contents);
   } catch (err) {
     console.log(err);
