@@ -10,6 +10,7 @@
  */
 
 const express = require("express");
+const path = require('path');
 const app = express();
 const multer = require('multer');
 const ERR_MSG = "Something went wrong";
@@ -73,6 +74,20 @@ app.post('/api/users', async (req, res) => {
 // When you run nodemon in the console, you can open the website
 // by visiting localhost:8000
 const portNum = 8000;
-app.use(express.static('public'));
-const PORT = process.env.PORT || portNum;
-app.listen(PORT);
+// app.use(express.static('public'));
+// const PORT = process.env.PORT || portNum;
+// app.listen(PORT);
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve images from the "img" directory
+app.use('/img', express.static(path.join(__dirname, 'img')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+const port = process.env.PORT || portNum;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
