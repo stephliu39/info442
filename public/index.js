@@ -59,7 +59,7 @@ const orgDetailsPage = document.getElementById("organization-details");
     });
 
     document.getElementById('add-event-button').addEventListener('click', function() {
-      showSection('add-event');
+      showSection('events');
     });
     
     document.getElementById('submit').addEventListener('click', function() {
