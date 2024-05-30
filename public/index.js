@@ -83,6 +83,8 @@ const orgDetailsPage = document.getElementById("organization-details");
       }
       route(); // Route on initial load based on the current hash
     });
+
+    createEventCard();
   }
 
   function routeNavBar() {
@@ -124,6 +126,64 @@ const orgDetailsPage = document.getElementById("organization-details");
     }
   }
 
+  function createEventCard() {
+    let eventCardsContainer = document.getElementById('eventCardsContainer');
+
+    let div1 = document.createElement('div');
+    div1.classList.add('col-md-6', 'col-lg-4', 'mb-4');
+
+    let div2 = document.createElement('div');
+    div2.classList.add('event-card', 'h-100', 'position-relative');
+
+    let eventImg = document.createElement('img');
+    eventImg.src = '../img/sample.jpeg';
+    eventImg.alt = 'an image of an event';
+    eventImg.classList.add('img-fluid');
+    div2.appendChild(eventImg);
+
+    let bm = document.createElement('button');
+    bm.classList.add('bookmark-btn');
+    let iElem = document.createElement('i');
+    iElem.classList.add('bi', 'bi-bookmark');
+    bm.appendChild(iElem);
+    div2.appendChild(bm);
+
+    let cardBody = document.createElement('div');
+    cardBody.classList.add('event-card-body');
+
+    let div3 = document.createElement('div');
+    let badge = document.createElement('span');
+    badge.textContent = "New";
+    div3.appendChild(badge);
+
+    let title = document.createElement('h5');
+    title.classList.add('event-card-title');
+    title.textContent = 'Sample Name';
+    div3.appendChild(badge);
+
+    let div4 = document.createElement('div');
+    div4.classList.add('event-card-details');
+
+    let desc = document.createElement('p');
+    desc.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+    div4.appendChild(desc);
+
+    let dateTime = document.createElement('p');
+    dateTime.innerHTML = 'Tue, Jun 3, 9:30 AM <br> UW Seattle, Red Square';
+    div4.appendChild(dateTime);
+
+    let followers = document.createElement('p');
+    followers.classList.add('followers');
+    followers.textContent = 'Foster School of Business • 22 followers';
+    div4.appendChild(followers);
+
+    div3.appendChild(div4);
+    cardBody.appendChild(div3);
+    div2.appendChild(cardBody);
+    div1.appendChild(div2);
+    eventCardsContainer.appendChild(div1);
+  }
+
   // Function to initialize the profile form with current values
   function initializeProfileForm() {
     document.getElementById('edit-username').value = document.getElementById('username').innerText;
@@ -158,7 +218,7 @@ const orgDetailsPage = document.getElementById("organization-details");
 
   // Event listener for the save changes button
   document.getElementById('saveProfileChanges').addEventListener('click', saveProfileChanges);
-});
+  });
 
   function showSection(sectionId) {
     document.querySelectorAll('main > section').forEach(section => {
