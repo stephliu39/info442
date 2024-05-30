@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-  
+
   <head>
     <title>Campus Connect</title>
-    <link href="style.css" rel="stylesheet"/>
+    <link href="style.css" rel="stylesheet" />
 
     <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
@@ -32,188 +32,188 @@
 
 
     <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#">
-      <img src="../img/nav-logo.png" alt="logo" class="nav-logo" id="nav-logo">
-      <p>Campus Connect</p>
-    </a>
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="#">
+        <img src="../img/nav-logo.png" alt="logo" class="nav-logo" id="nav-logo">
+        <p>Campus Connect</p>
+      </a>
 
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-label="Toggle navigation">
-      <i class="bi bi-list icon-bar"></i>
-    </button>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-label="Toggle navigation">
+        <i class="bi bi-list icon-bar"></i>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a id="nav-home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a id="nav-events">Events</a>
-        </li>
-        <li class="nav-item">
-          <a id="nav-notifications">Notifications</a>
-        </li>
-        <li class="nav-item">
-          <a id="nav-profile">Profile</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a id="nav-home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a id="nav-events">Events</a>
+          </li>
+          <li class="nav-item">
+            <a id="nav-notifications">Notifications</a>
+          </li>
+          <li class="nav-item">
+            <a id="nav-profile">Profile</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
 
     <main>
-    <!-- login page -->
-    <section id="login">
-      <div id="left-login"></div>
+      <!-- login page -->
+      <section id="login">
+        <div id="left-login"></div>
 
-      <div id="right-login">
-        <img src="../img/logo.png" alt="our logo" class="logo">
-        <h1 id="login-title">Campus Connect</h1>
+        <div id="right-login">
+          <img src="../img/logo.png" alt="our logo" class="logo">
+          <h1 id="login-title">Campus Connect</h1>
 
-        <form id="login-form">
-          <input type="text" id="login-email" placeholder="Email" required>
-          <input type="password" id="login-password" placeholder="Password" required>
-        </form>
+          <form id="login-form">
+            <input type="text" id="login-email" placeholder="Email" required>
+            <input type="password" id="login-password" placeholder="Password" required>
+          </form>
 
-        <div class="error-div">
-          <p class="error-msg" id="login-error-msg"></p>
+          <div class="error-div">
+            <p class="error-msg" id="login-error-msg"></p>
+          </div>
+
+          <button class="form-btn" id="login-button">Login</button>
+
+          <p class="text">Don't have an account? <span id="click-to-signup">Sign up</span></p>
+
         </div>
-
-        <button class="form-btn" id="login-button">Login</button>
-
-        <p class="text">Don't have an account? <span id="click-to-signup">Sign up</span></p>
-
-      </div>
-    </section>
+      </section>
 
 
 
-    <!-- Sign up page -->
-    <section id="signup" class="hidden">
-      <div id="left-signup"></div>
-  
-      <div id="right-signup">
-        <img src="../img/logo.png" alt="our logo" class="logo">
-        
-        <h1 id="signup-title">Become a member!</h1>
+      <!-- Sign up page -->
+      <section id="signup" class="hidden">
+        <div id="left-signup"></div>
 
-        <form id="signup-form">
-          <input type="text" id="signup-email" placeholder="Email" required>
-          <input type="password" id="signup-password" placeholder="Password" required>
-        </form>
+        <div id="right-signup">
+          <img src="../img/logo.png" alt="our logo" class="logo">
 
-        <div class="error-div">
-          <p class="error-msg" id="signup-error-msg"></p>
+          <h1 id="signup-title">Become a member!</h1>
+
+          <form id="signup-form">
+            <input type="text" id="signup-email" placeholder="Email" required>
+            <input type="password" id="signup-password" placeholder="Password" required>
+          </form>
+
+          <div class="error-div">
+            <p class="error-msg" id="signup-error-msg"></p>
+          </div>
+
+          <button class="form-btn" id="register">Register</button>
+
+          <p class="text">Already have an account? <span class="click-to-login">Log in</span></p>
+
         </div>
-
-        <button class="form-btn" id="register">Register</button>
-        
-        <p class="text">Already have an account? <span class="click-to-login">Log in</span></p>
-
-      </div>
-    </section>
+      </section>
 
 
 
-    <!-- Homepage -->
+      <!-- Homepage -->
       <section id="home" class="hidden">
-          <div class="row">
-              <div class="header col-12">
-                  <h1>Hello, Bill</h1>
-                  <h2>Welcome to Campus Connect!</h2>
-              </div>
+        <div class="row">
+          <div class="header col-12">
+            <h1>Hello, Bill</h1>
+            <h2>Welcome to Campus Connect!</h2>
           </div>
-          <div class="row mt-4">
-              <div class="col-lg-9">
-                  <h3>My Schedule</h3>
-                  <div class="card mb-4">
-                    <div class="schedule-card-body">
-                          <div class="d-flex flex-row justify-content-between align-items-center mb-3">
-                              <div class="p-2 text-center">
-                                  <h6 class="text-muted mb-0">Mon</h6>
-                                  <h5 class="mb-0">02</h5>
-                              </div>
-                              <div class="p-2 text-center">
-                                  <h6 class="text-muted mb-0">Tue</h6>
-                                  <h5 class="mb-0">03</h5>
-                              </div>
-                              <div class="p-2 text-center">
-                                  <h6 class="text-muted mb-0">Wed</h6>
-                                  <h5 class="mb-0">04</h5>
-                              </div>
-                              <div class="p-2 text-center">
-                                  <h6 class="text-muted mb-0">Thu</h6>
-                                  <h5 class="mb-0">05</h5>
-                              </div>
-                              <div class="p-2 text-center">
-                                  <h6 class="text-muted mb-0">Fri</h6>
-                                  <h5 class="mb-0">06</h5>
-                              </div>
-                              <div class="p-2 text-center">
-                                  <h6 class="text-muted mb-0">Sat</h6>
-                                  <h5 class="mb-0">07</h5>
-                              </div>
-                          </div>
-                          <div class="schedule-item bg-light mb-3 p-3">
-                              <div class="d-flex align-items-center">
-                                  <img src="../img/event1.jpg" class="me-3" alt="UX Research Class" style="width: 50px;">
-                                  <div>
-                                      <h5 class="mb-0">UX Research Class</h5>
-                                      <p class="text-muted mb-0">Mon - Thu</p>
-                                  </div>
-                                  <span class="ms-auto text-muted">10:44 am</span>
-                              </div>
-                          </div>
-                          <div class="schedule-item bg-light mb-3 p-3">
-                              <div class="d-flex align-items-center">
-                                  <img src="../img/event 2.jpg" class="me-3" alt="App Development Course" style="width: 50px;">
-                                  <div>
-                                      <h5 class="mb-0">App Development Course</h5>
-                                      <p class="text-muted mb-0">Mon - Thu</p>
-                                  </div>
-                                  <span class="ms-auto text-muted">12:00 pm</span>
-                              </div>
-                          </div>
-                          <div class="schedule-item bg-light mb-3 p-3">
-                              <div class="d-flex align-items-center">
-                                  <img src="../img/event.jpg" class="me-3" alt="Figma UI/UX Workshop" style="width: 50px;">
-                                  <div>
-                                      <h5 class="mb-0">Figma UI/UX Workshop</h5>
-                                      <p class="text-muted mb-0">Mon - Thu</p>
-                                  </div>
-                                  <span class="ms-auto text-muted">2:00 pm</span>
-                              </div>
-                          </div>
-                          <div class="schedule-item bg-light mb-3 p-3">
-                              <div class="d-flex align-items-center">
-                                  <img src="../img/event4.jpg" class="me-3" alt="WINFO Annual Hackthon" style="width: 50px;">
-                                  <div>
-                                      <h5 class="mb-0">WINFO Annual Hackthon</h5>
-                                      <p class="text-muted mb-0">Mon - Thu</p>
-                                  </div>
-                                  <span class="ms-auto text-muted">10:44 am</span>
-                              </div>
-                          </div>
-                      </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-lg-9">
+            <h3>My Schedule</h3>
+            <div class="card mb-4">
+              <div class="schedule-card-body">
+                <div class="d-flex flex-row justify-content-between align-items-center mb-3">
+                  <div class="p-2 text-center">
+                    <h6 class="text-muted mb-0">Mon</h6>
+                    <h5 class="mb-0">02</h5>
                   </div>
-              </div>
-              <div class="col-lg-3">
-                  <h3>Upcoming Events</h3>
-                  <div class="card mb-4">
-                      <div class="upcoming-card">
-                          <div class="upcoming-event-card mb-3">
-                              <h5>Typography in UX/UI</h5>
-                              <p class="text-muted">Design - 10:00 am</p>
-                          </div>
-                          <div class="upcoming-event-card mb-3">
-                              <h5>Figma UI/UX Design</h5>
-                              <p class="text-muted">Design - 10:00 am</p>
-                          </div>
-                      </div>
+                  <div class="p-2 text-center">
+                    <h6 class="text-muted mb-0">Tue</h6>
+                    <h5 class="mb-0">03</h5>
                   </div>
+                  <div class="p-2 text-center">
+                    <h6 class="text-muted mb-0">Wed</h6>
+                    <h5 class="mb-0">04</h5>
+                  </div>
+                  <div class="p-2 text-center">
+                    <h6 class="text-muted mb-0">Thu</h6>
+                    <h5 class="mb-0">05</h5>
+                  </div>
+                  <div class="p-2 text-center">
+                    <h6 class="text-muted mb-0">Fri</h6>
+                    <h5 class="mb-0">06</h5>
+                  </div>
+                  <div class="p-2 text-center">
+                    <h6 class="text-muted mb-0">Sat</h6>
+                    <h5 class="mb-0">07</h5>
+                  </div>
+                </div>
+                <div class="schedule-item bg-light mb-3 p-3">
+                  <div class="d-flex align-items-center">
+                    <img src="../img/event1.jpg" class="me-3" alt="UX Research Class" style="width: 50px;">
+                    <div>
+                      <h5 class="mb-0">UX Research Class</h5>
+                      <p class="text-muted mb-0">Mon - Thu</p>
+                    </div>
+                    <span class="ms-auto text-muted">10:44 am</span>
+                  </div>
+                </div>
+                <div class="schedule-item bg-light mb-3 p-3">
+                  <div class="d-flex align-items-center">
+                    <img src="../img/event 2.jpg" class="me-3" alt="App Development Course" style="width: 50px;">
+                    <div>
+                      <h5 class="mb-0">App Development Course</h5>
+                      <p class="text-muted mb-0">Mon - Thu</p>
+                    </div>
+                    <span class="ms-auto text-muted">12:00 pm</span>
+                  </div>
+                </div>
+                <div class="schedule-item bg-light mb-3 p-3">
+                  <div class="d-flex align-items-center">
+                    <img src="../img/event.jpg" class="me-3" alt="Figma UI/UX Workshop" style="width: 50px;">
+                    <div>
+                      <h5 class="mb-0">Figma UI/UX Workshop</h5>
+                      <p class="text-muted mb-0">Mon - Thu</p>
+                    </div>
+                    <span class="ms-auto text-muted">2:00 pm</span>
+                  </div>
+                </div>
+                <div class="schedule-item bg-light mb-3 p-3">
+                  <div class="d-flex align-items-center">
+                    <img src="../img/event4.jpg" class="me-3" alt="WINFO Annual Hackthon" style="width: 50px;">
+                    <div>
+                      <h5 class="mb-0">WINFO Annual Hackthon</h5>
+                      <p class="text-muted mb-0">Mon - Thu</p>
+                    </div>
+                    <span class="ms-auto text-muted">10:44 am</span>
+                  </div>
+                </div>
               </div>
+            </div>
           </div>
+          <div class="col-lg-3">
+            <h3>Upcoming Events</h3>
+            <div class="card mb-4">
+              <div class="upcoming-card">
+                <div class="upcoming-event-card mb-3">
+                  <h5>Typography in UX/UI</h5>
+                  <p class="text-muted">Design - 10:00 am</p>
+                </div>
+                <div class="upcoming-event-card mb-3">
+                  <h5>Figma UI/UX Design</h5>
+                  <p class="text-muted">Design - 10:00 am</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       <!--Form for create event page!-->
       <section id="create-event" class="hidden">
@@ -246,80 +246,83 @@
       <section id="profile-page" class="hidden">
         <div class="row">
           <div class="col-md-3 text-center">
-            <img src="../img/profile default.jpg" alt="Profile Picture" class="img-fluid rounded-circle mb-3 profile-picture" id="profile-picture">
+            <img src="../img/profile default.jpg" alt="Profile Picture"
+              class="img-fluid rounded-circle mb-3 profile-picture" id="profile-picture">
             <h3 class="mb-0" id="username">username</h3>
             <p class="text-muted mb-1">email: <span id="email">user@example.com</span></p>
             <p class="text-muted mb-1">Location: <span id="location">Unknown</span></p>
             <p class="text-muted mb-1">Bio: <span id="bio">No bio available.</span></p>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit
+              Profile</button>
           </div>
           <div class="col-md-9">
-        <h3>Organizations</h3>
-        <div class="d-flex flex-wrap gap-3 mb-4">
-          <div class="organization rounded-circle" data-org-id="1">Organization 1</div>
-          <div class="organization rounded-circle" data-org-id="2">Organization 2</div>
-          <div class="organization rounded-circle" data-org-id="3"></div>
-          <div class="organization rounded-circle" data-org-id="4"></div>
-          <div class="organization rounded-circle" data-org-id="5"></div>
+            <h3>Organizations</h3>
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <div class="organization rounded-circle" data-org-id="1">Organization 1</div>
+              <div class="organization rounded-circle" data-org-id="2">Organization 2</div>
+              <div class="organization rounded-circle" data-org-id="3"></div>
+              <div class="organization rounded-circle" data-org-id="4"></div>
+              <div class="organization rounded-circle" data-org-id="5"></div>
+            </div>
+            <h3>My Events</h3>
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <div class="event"></div>
+              <div class="event"></div>
+              <div class="event"></div>
+              <div class="add" id="add">
+                <button id="add-event" class="event-btn">+ Add</button>
+              </div>
+            </div>
+            <h3>My Posted Events</h3>
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <div class="posted-event"></div>
+              <div class="posted-event "></div>
+              <div class="posted-event "></div>
+              <div class="create" id="create">
+                <button id="create-event-button" class="event-btn">+ Create<button>
+              </div>
+            </div>
+            <button id="logout-button" class="btn btn-secondary mt-3">Logout</button>
+          </div>
         </div>
-              <h3>My Events</h3>
-              <div class="d-flex flex-wrap gap-3 mb-4">
-                  <div class="event"></div>
-                  <div class="event"></div>
-                  <div class="event"></div>
-                  <div class="add" id="add">
-                      <button id="add-event" class="event-btn">+ Add</button>
-                  </div>
-              </div>
-              <h3>My Posted Events</h3>
-              <div class="d-flex flex-wrap gap-3 mb-4">
-                  <div class="posted-event"></div>
-                  <div class="posted-event "></div>
-                  <div class="posted-event "></div>
-                  <div class="create"id="create">
-                      <button id="create-event-button" class="event-btn">+ Create<button>
-                  </div>
-              </div>
-              <button id="logout-button" class="btn btn-secondary mt-3">Logout</button>
-          </div>
-      </div>
-    </section>
+      </section>
 
 
 
-<!-- Edit Profile Modal -->
-<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <!-- Edit Profile Modal -->
+      <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="editProfileForm">
+                <div class="mb-3">
+                  <label for="edit-username" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="edit-username">
+                </div>
+                <div class="mb-3">
+                  <label for="edit-email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="edit-email">
+                </div>
+                <div class="mb-3">
+                  <label for="edit-location" class="form-label">Location</label>
+                  <input type="text" class="form-control" id="edit-location">
+                </div>
+                <div class="mb-3">
+                  <label for="edit-bio" class="form-label">Bio</label>
+                  <textarea class="form-control" id="edit-bio" rows="3"></textarea>
+                </div>
+                <button type="button" class="btn btn-primary" id="saveProfileChanges">Save changes</button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <form id="editProfileForm">
-          <div class="mb-3">
-            <label for="edit-username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="edit-username">
-          </div>
-          <div class="mb-3">
-            <label for="edit-email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="edit-email">
-          </div>
-          <div class="mb-3">
-            <label for="edit-location" class="form-label">Location</label>
-            <input type="text" class="form-control" id="edit-location">
-          </div>
-          <div class="mb-3">
-            <label for="edit-bio" class="form-label">Bio</label>
-            <textarea class="form-control" id="edit-bio" rows="3"></textarea>
-          </div>
-          <button type="button" class="btn btn-primary" id="saveProfileChanges">Save changes</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-          
+
 
 
       <!-- Notifications Page -->
@@ -353,140 +356,140 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
 
 
 
-    <!--Events Page-->
-    <section id="events" class="hidden">
-      <div class="container my-5">
-        <h3>Discover Events</h3>
-        <hr>
-        <!-- Search & Filter -->
-        <div class="row mb-4">
-          <div class="col-md-4 mb-2">
-            <input type="text" id="searchInput" class="form-control" placeholder="Search events">
+      <!--Events Page-->
+      <section id="events" class="hidden">
+        <div class="container my-5">
+          <h3>Discover Events</h3>
+          <hr>
+          <!-- Search & Filter -->
+          <div class="row mb-4">
+            <div class="col-md-4 mb-2">
+              <input type="text" id="searchInput" class="form-control" placeholder="Search events">
+            </div>
+            <div class="col-md-2 mb-2">
+              <select id="timeFilter" class="form-control">
+                <option value="">All Times</option>
+                <option value="today">Today</option>
+                <option value="this-week">This Week</option>
+                <option value="this-month">This Month</option>
+              </select>
+            </div>
+            <div class="col-md-2 mb-2">
+              <select id="majorFilter" class="form-control">
+                <option value="">All Majors</option>
+                <option value="business">Business</option>
+                <option value="engineering">Engineering</option>
+                <option value="arts">Arts</option>
+              </select>
+            </div>
+            <div class="col-md-2 mb-2">
+              <select id="eventTypeFilter" class="form-control">
+                <option value="">All Types</option>
+                <option value="seminar">Seminar</option>
+                <option value="workshop">Workshop</option>
+                <option value="networking">Networking</option>
+              </select>
+            </div>
           </div>
-          <div class="col-md-2 mb-2">
-            <select id="timeFilter" class="form-control">
-              <option value="">All Times</option>
-              <option value="today">Today</option>
-              <option value="this-week">This Week</option>
-              <option value="this-month">This Month</option>
-            </select>
-          </div>
-          <div class="col-md-2 mb-2">
-            <select id="majorFilter" class="form-control">
-              <option value="">All Majors</option>
-              <option value="business">Business</option>
-              <option value="engineering">Engineering</option>
-              <option value="arts">Arts</option>
-            </select>
-          </div>
-          <div class="col-md-2 mb-2">
-            <select id="eventTypeFilter" class="form-control">
-              <option value="">All Types</option>
-              <option value="seminar">Seminar</option>
-              <option value="workshop">Workshop</option>
-              <option value="networking">Networking</option>
-            </select>
+          <!-- Events Container -->
+          <div class="row gy-4" id="eventCardsContainer">
+            <!-- Card -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="event-card h-100 position-relative">
+                <img src="../img/sample.jpeg" alt="ImageAltText" class="img-fluid">
+                <button class="bookmark-btn">
+                  <i class="bi bi-bookmark"></i>
+                </button>
+                <div class="event-card-body">
+                  <div>
+                    <span class="badge">New</span>
+                    <h5 class="event-card-title">Sample Event Name</h5>
+                    <div class="event-card-details">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales
+                        luctus,
+                        enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
+                      <p>Tue, Jun 3, 9:30 AM <br>UW Seattle, Red Square</p>
+                      <p class="followers">Foster School of Business • 22 followers</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Card -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="event-card h-100 position-relative">
+                <img src="../img/sample.jpeg" alt="ImageAltText" class="img-fluid">
+                <button class="bookmark-btn">
+                  <i class="bi bi-bookmark"></i>
+                </button>
+                <div class="event-card-body">
+                  <div>
+                    <span class="badge">New</span>
+                    <h5 class="event-card-title">Sample Event Name</h5>
+                    <div class="event-card-details">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales
+                        luctus,
+                        enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
+                      <p>Tue, may 31, 9:30 AM <br>UW Seattle, Red Square</p>
+                      <p class="followers">Foster School of Business • 22 followers</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Card -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="event-card h-100 position-relative">
+                <img src="../img/sample.jpeg" alt="ImageAltText" class="img-fluid">
+                <button class="bookmark-btn">
+                  <i class="bi bi-bookmark"></i>
+                </button>
+                <div class="event-card-body">
+                  <div>
+                    <span class="badge">New</span>
+                    <h5 class="event-card-title">Sample Event Name</h5>
+                    <div class="event-card-details">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales
+                        luctus,
+                        enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
+                      <p>Tue, may 22, 9:30 AM <br>UW Seattle, Red Square</p>
+                      <p class="followers">Foster School of Business • 22 followers</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Card -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="event-card h-100 position-relative">
+                <img src="../img/sample.jpeg" alt="ImageAltText" class="img-fluid">
+                <button class="bookmark-btn">
+                  <i class="bi bi-bookmark"></i>
+                </button>
+                <div class="event-card-body">
+                  <div>
+                    <span class="badge">New</span>
+                    <h5 class="event-card-title">Sample Event Name</h5>
+                    <div class="event-card-details">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales
+                        luctus,
+                        enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
+                      <p>Tue, Jun 3, 9:30 AM <br>UW Seattle, Red Square</p>
+                      <p class="followers">Foster School of Business • 22 followers</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- Events Container -->
-        <div class="row gy-4" id="eventCardsContainer">
-          <!-- Card -->
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="event-card h-100 position-relative">
-              <img src="../img/sample.jpeg" alt="ImageAltText" class="img-fluid">
-              <button class="bookmark-btn">
-                <i class="bi bi-bookmark"></i>
-              </button>
-              <div class="event-card-body">
-                <div>
-                  <span class="badge">New</span>
-                  <h5 class="event-card-title">Sample Event Name</h5>
-                  <div class="event-card-details">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales
-                      luctus,
-                      enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
-                    <p>Tue, Jun 3, 9:30 AM <br>UW Seattle, Red Square</p>
-                    <p class="followers">Foster School of Business • 22 followers</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Card -->
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="event-card h-100 position-relative">
-              <img src="../img/sample.jpeg" alt="ImageAltText" class="img-fluid">
-              <button class="bookmark-btn">
-                <i class="bi bi-bookmark"></i>
-              </button>
-              <div class="event-card-body">
-                <div>
-                  <span class="badge">New</span>
-                  <h5 class="event-card-title">Sample Event Name</h5>
-                  <div class="event-card-details">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales
-                      luctus,
-                      enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
-                    <p>Tue, may 31, 9:30 AM <br>UW Seattle, Red Square</p>
-                    <p class="followers">Foster School of Business • 22 followers</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Card -->
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="event-card h-100 position-relative">
-              <img src="../img/sample.jpeg" alt="ImageAltText" class="img-fluid">
-              <button class="bookmark-btn">
-                <i class="bi bi-bookmark"></i>
-              </button>
-              <div class="event-card-body">
-                <div>
-                  <span class="badge">New</span>
-                  <h5 class="event-card-title">Sample Event Name</h5>
-                  <div class="event-card-details">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales
-                      luctus,
-                      enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
-                    <p>Tue, may 22, 9:30 AM <br>UW Seattle, Red Square</p>
-                    <p class="followers">Foster School of Business • 22 followers</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Card -->
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="event-card h-100 position-relative">
-              <img src="../img/sample.jpeg" alt="ImageAltText" class="img-fluid">
-              <button class="bookmark-btn">
-                <i class="bi bi-bookmark"></i>
-              </button>
-              <div class="event-card-body">
-                <div>
-                  <span class="badge">New</span>
-                  <h5 class="event-card-title">Sample Event Name</h5>
-                  <div class="event-card-details">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales
-                      luctus,
-                      enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
-                    <p>Tue, Jun 3, 9:30 AM <br>UW Seattle, Red Square</p>
-                    <p class="followers">Foster School of Business • 22 followers</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-      
+      </section>
+
 
 
       <!-- Event Registration Page -->
@@ -549,10 +552,14 @@
           <hr>
           <div class="d-flex gap-5 mb-2">
             <div class="org-bio col-md-6">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus, enim est
-                auctor nunc, nec finibus turpis quam blandit ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nullam congue, mi bibendum sodales luctus, enim est auctor nunc, nec finibus turpis quam blandit ipsum. Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus, enim est auctor
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus,
+                enim est
+                auctor nunc, nec finibus turpis quam blandit ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit.
+                Nullam congue, mi bibendum sodales luctus, enim est auctor nunc, nec finibus turpis quam blandit ipsum.
+                Lorem
+                ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus, enim est
+                auctor
                 nunc, nec finibus turpis quam blandit ipsum.</p> <button class="btn btn-primary btn-md">Become a
                 Member</button>
             </div>
@@ -568,7 +575,8 @@
                   <div> <span class="badge">New</span>
                     <h5 class="event-card-title">Sample Event Name</h5>
                     <div class="event-card-details">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus,
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales
+                        luctus,
                         enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
                       <p>Tue, Jun 3, 9:30 AM <br>UW Seattle, Red Square</p>
                       <p class="followers">Foster School of Business • 22 followers</p>
@@ -584,7 +592,8 @@
                   <div> <span class="badge">New</span>
                     <h5 class="event-card-title">Sample Event Name</h5>
                     <div class="event-card-details">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus,
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales
+                        luctus,
                         enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
                       <p>Tue, May 31, 9:30 AM <br>UW Seattle, Red Square</p>
                       <p class="followers">Foster School of Business • 22 followers</p>
@@ -600,7 +609,8 @@
                   <div> <span class="badge">New</span>
                     <h5 class="event-card-title">Sample Event Name</h5>
                     <div class="event-card-details">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus,
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales
+                        luctus,
                         enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
                       <p>Tue, May 22, 9:30 AM <br>UW Seattle, Red Square</p>
                       <p class="followers">Foster School of Business • 22 followers</p>
@@ -624,9 +634,10 @@
 
     </main>
 
-    
+
     <!-- Bootstrap Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   </body>
+
 </html>
