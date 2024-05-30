@@ -6,7 +6,8 @@
             "description": "Annual WINFO hackathon.",
             "date": "Saturday, May 18",
             "time": "9:00 am - 5:00 pm",
-            "orgID": 111
+            "orgID": 111,
+            "image": "../img/event4.jpg"
         },
         {
             "eventID": 456,
@@ -14,7 +15,8 @@
             "description": "Gain design skills with DubsTech!",
             "date": "Wednesday, May 8",
             "time": "5:00 pm - 7:00 pm",
-            "orgID": 222
+            "orgID": 222,
+            "image": "../img/event1.jpg"
         },
         {
             "eventID": 789,
@@ -22,7 +24,8 @@
             "description": "Annual MESH fashion show.",
             "date": "Friday, May 17",
             "time": "5:00 pm - 8:00 pm",
-            "orgID": 333
+            "orgID": 333,
+            "image": "../img/event5.jpg"
         }
     ]
 }
