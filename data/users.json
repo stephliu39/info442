@@ -1,0 +1,39 @@
+{
+    "users": [
+        {
+            "name": "Cammi",
+            "email": "cammip@uw.edu",
+            "registered": [123, 456],
+            "following": 111,
+            "uid": "bzVJiziSwrd9MUVfDx5eNF70Nnw2"
+        },
+        {
+            "name": "Roshan",
+            "email": "roshanm@uw.edu",
+            "registered": [456],
+            "following": 456,
+            "uid": "zj78Tvo8k0Muf2JIaPGfx72vlfx2"
+        },
+        {
+            "name": "Stephanie",
+            "email": "sliu39@uw.edu",
+            "registered": [123],
+            "following": 111,
+            "uid": "55ZDmG1HCrggIPM9WUZNp5IR1HP2"
+        },
+        {
+            "name": "Katherine",
+            "email": "jguo25@uw.edu",
+            "registered": [123],
+            "following": [111, 789],
+            "uid": "o8SjFKyhCXgr6aX9MzrWz4EzQg93"
+        },
+        {
+            "name": "Ethan",
+            "email": "ethank1121@gmail.com",
+            "registered": [456],
+            "following": 456,
+            "uid": "fms6b3HgA6O0SsCDEok3w2dVXWN2"
+        }
+    ]
+}
