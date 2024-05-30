@@ -1,8 +1,12 @@
 /**
  * This app.js file manages an api for the campus connect website
- * install packages by running "npm install {package name}"
- * you only need to install express and multer
- * then run "nodemon" in the console to start up the app
+ * install packages by running these lines in your terminal:
+ * npm install express
+ * npm install multer
+ * npm install -g nodemon
+ * if you push, do not push your node_modules folder. add files one by one
+ * using: git add filename
+ * in the directory, run "nodemon" in the console to start up the app
  */
 
 const express = require("express");
