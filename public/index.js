@@ -33,8 +33,6 @@ const orgDetailsPage = document.getElementById("organization-details");
     document.getElementById("login-button").addEventListener("click", loginUser);
     document.getElementById("register").addEventListener("click", signupUser);
 
-    createEventCard();
-
     document.querySelectorAll('.organization').forEach(org => {
       org.addEventListener('click', function() {
         const orgId = this.dataset.orgId;
@@ -125,7 +123,7 @@ const orgDetailsPage = document.getElementById("organization-details");
     }
   }
 
-  function createEventCard() {
+  function createEventCard(event) {
     let eventCards = document.getElementById('eventCardsContainer');
 
     let div1 = document.createElement('div');
@@ -158,7 +156,7 @@ const orgDetailsPage = document.getElementById("organization-details");
 
     let title = document.createElement('h5');
     title.classList.add('event-card-title');
-    title.textContent = 'Sample Name';
+    title.textContent = event.name;
     div4.appendChild(title);
 
     let div5 = document.createElement('div');
@@ -335,6 +333,28 @@ const orgDetailsPage = document.getElementById("organization-details");
   // change view based on user
   function changeView(user) {
     document.querySelector('#name-greeting').textContent = "Hello, " + user.name;
+    
+    fetchAllEvents();
+  }
+
+  async function fetchAllEvents() {
+    try {
+      let eventsJson = await fetch("api/events");
+      statusCheck(eventsJson);
+      let result = await eventsJson.json();
+
+      // changes the website to user view
+      displayEvents(result.events);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function displayEvents(events) {
+    events.forEach((event) => {
+      console.log(event);
+      // change createEventCard to use the data from the event object passed here
+    });
   }
 
   /**
