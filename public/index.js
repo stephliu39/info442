@@ -131,10 +131,6 @@ const orgDetailsPage = document.getElementById("organization-details");
     let div1 = document.createElement('div');
     div1.classList.add('col-md-6', 'col-lg-4', 'mb-4');
 
-    let test = document.createElement("p");
-    test.textContent = "hiii";
-    div1.appendChild(test);
-/*
     let div2 = document.createElement('div');
     div2.classList.add('event-card', 'h-100', 'position-relative');
 
@@ -157,6 +153,7 @@ const orgDetailsPage = document.getElementById("organization-details");
     let div4 = document.createElement('div');
     let badge = document.createElement('span');
     badge.textContent = "New";
+    badge.classList.add('badge');
     div4.appendChild(badge);
 
     let title = document.createElement('h5');
@@ -184,7 +181,6 @@ const orgDetailsPage = document.getElementById("organization-details");
     div3.appendChild(div4);
     div2.appendChild(div3);
     div1.appendChild(div2);
-*/
     eventCards.appendChild(div1);
   }
 
