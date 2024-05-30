@@ -4,19 +4,22 @@
             "orgID": 111,
             "name": "Winfo",
             "description": "Diversity organization dedicated to empowering women in informatics",
-            "eventID": 123
+            "eventID": 123,
+            "followers": 30
         },
         {
             "orgID": 222,
             "name": "Dubstech",
             "description": "UW's largest tech community. We host workshops, hackathons, and talks on design, data science, and software engineering.",
-            "eventID": 456
+            "eventID": 456,
+            "followers": 50
         },
         {
             "orgID": 333,
             "name": "Mesh",
             "description": "A collective of fashion designers and enthusiests based at UW.",
-            "eventID": 789
+            "eventID": 789,
+            "followers": 40
         }
     ]
 }
