@@ -1,21 +1,22 @@
+
 "use strict";
+
 
 let currentUser;
 const loginPage = document.getElementById("login");
 const signUpPage = document.getElementById("signup");
-const home = document.getElementById("home");
+const homePage = document.getElementById("home");
 const createEventPage = document.getElementById("create-event");
 const profilePage = document.getElementById("profile-page");
 const notifPage = document.getElementById("notifications");
 const eventsPage = document.getElementById("events");
-const eventRegistration = document.getElementById("eventRegistration");
-const orgDetails = document.getElementById("organization-details");
+const eventRegistrationPage = document.getElementById("eventRegistration");
+const orgDetailsPage = document.getElementById("organization-details");
 
 (function(){
-
   window.addEventListener("load", init);
+  window.addEventListener("hashchange", route);
 
-  // https://medium.com/@aishakhan0925/firebase-authentication-with-html-css-javascript-step-by-step-guide-edaa5b0bf04f
   const firebaseConfig = {
     apiKey: "AIzaSyDtAnRrqgpvEq3xRO2mhFu95XXZh3kLuLA",
     authDomain: "campus-db.firebaseapp.com",
@@ -26,32 +27,23 @@ const orgDetails = document.getElementById("organization-details");
   };
   
   firebase.initializeApp(firebaseConfig);
-  // let db = firebase.firestore();
 
   function init() {
-
-    // Adds event listeners / interactivity for the nav bar
     routeNavBar();
-
-    // Adds functionaltiy to login and sign up pages
     loginListeners();
     document.getElementById("login-button").addEventListener("click", loginUser);
+    document.getElementById("register").addEventListener("click", signupUser);
 
     document.querySelectorAll('.organization').forEach(org => {
       org.addEventListener('click', function() {
         const orgId = this.dataset.orgId;
-        document.getElementById('profile-page').classList.add('hidden');
-        document.getElementById('organization-details').classList.remove('hidden');
-        loadOrganizationDetails(orgId);
-      });
-    });
-    
-    document.querySelectorAll('.organization').forEach(org => {
-      org.addEventListener('click', function() {
-        const orgId = this.dataset.orgId;
-        document.getElementById('profile-page').classList.add('hidden');
-        document.getElementById('organization-details').classList.remove('hidden');
-        loadOrganizationDetails(orgId);
+        const profilePage = document.getElementById('profile-page');
+        const orgDetailsPage = document.getElementById('organization-details');
+        if (profilePage && orgDetailsPage) {
+          profilePage.classList.add('hidden');
+          orgDetailsPage.classList.remove('hidden');
+          loadOrganizationDetails(orgId);
+        }
       });
     });
 
@@ -67,7 +59,7 @@ const orgDetails = document.getElementById("organization-details");
     });
 
     document.getElementById('add-event-button').addEventListener('click', function() {
-      showSection('add-event'); //not have yet
+      showSection('add-event');
     });
     
     document.getElementById('submit').addEventListener('click', function() {
@@ -79,6 +71,79 @@ const orgDetails = document.getElementById("organization-details");
     document.getElementById('create-event-btn').addEventListener('click', function() {
       showSection('profile-page');
     });
+
+    // Check if the user is already authenticated on page load
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        currentUser = user;
+        showSection('home');
+        document.querySelector("header").classList.remove("hidden");
+      } else {
+        showSection('login');
+      }
+      route(); // Route on initial load based on the current hash
+    });
+  }
+
+  function routeNavBar() {
+    const homeNav = document.getElementById('nav-home');
+    const eventsNav = document.getElementById('nav-events');
+    const notificationsNav = document.getElementById('nav-notifications');
+    const profileNav = document.getElementById('nav-profile');
+
+    if (homeNav) {
+      homeNav.addEventListener('click', () => {
+        window.location.hash = 'home';
+      });
+    } else {
+      console.error('Navigation element "nav-home" not found');
+    }
+
+    if (eventsNav) {
+      eventsNav.addEventListener('click', () => {
+        window.location.hash = 'events';
+      });
+    } else {
+      console.error('Navigation element "nav-events" not found');
+    }
+
+    if (notificationsNav) {
+      notificationsNav.addEventListener('click', () => {
+        window.location.hash = 'notifications';
+      });
+    } else {
+      console.error('Navigation element "nav-notifications" not found');
+    }
+
+    if (profileNav) {
+      profileNav.addEventListener('click', () => {
+        window.location.hash = 'profile-page';
+      });
+    } else {
+      console.error('Navigation element "nav-profile" not found');
+    }
+  }
+
+  function showSection(sectionId) {
+    document.querySelectorAll('main > section').forEach(section => {
+      section.classList.add('hidden');
+    });
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.classList.remove('hidden');
+    } else {
+      console.error(`Section with ID '${sectionId}' not found.`);
+    }
+  }
+
+  function route() {
+    const hash = window.location.hash.replace('#', '') || 'login';
+    // Only show the section if the user is authenticated or if it's the login/signup page
+    if (currentUser || hash === 'login' || hash === 'signup') {
+      showSection(hash);
+    } else {
+      showSection('login');
+    }
   }
 
   function loginListeners() {
@@ -88,42 +153,13 @@ const orgDetails = document.getElementById("organization-details");
       showSection('login');
     });
 
-    // When the user clicks to sign up
     document.querySelector("#click-to-signup").addEventListener("click", () => {
-      loginPage.classList.add("hidden");
-      signUpPage.classList.remove("hidden");
-    });
-    document.querySelector("#register").addEventListener("click", signupUser);
-  }
-
-  function routeNavBar() {
-    document.getElementById('nav-home').addEventListener('click', function() {
-      showSection('home');
-    });
-    
-    document.getElementById('nav-logo').addEventListener('click', function() {
-      showSection('home');
-    });
-    
-    document.getElementById('nav-events').addEventListener('click', function() {
-      showSection('events');
+      showSection('signup');
     });
 
-    document.getElementById('nav-notifications').addEventListener('click', function() {
-      showSection('notifications');
+    document.querySelector(".click-to-login").addEventListener("click", () => {
+      showSection('login');
     });
-
-    document.getElementById('nav-profile').addEventListener('click', function() {
-      showSection('profile-page');
-    });
-  }
-  
-  function showSection(sectionId) {
-    document.querySelectorAll('main > section').forEach(section => {
-      section.classList.add('hidden');
-    });
-    
-    document.getElementById(sectionId).classList.remove('hidden');
   }
 
   function loginUser() {
@@ -138,8 +174,6 @@ const orgDetails = document.getElementById("organization-details");
 
           document.getElementById("login").classList.add("hidden");
           showSection('home');
-          
-          // Show nav bar here
           document.querySelector("header").classList.remove("hidden");
       })
       .catch((error) => {
@@ -158,10 +192,6 @@ const orgDetails = document.getElementById("organization-details");
       firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((user) => {
           currentUser = user.user;
-          console.log(user.uid);
-
-          document.getElementById("signup").classList.add("hidden");
-          document.getElementById("login").classList.add("hidden"); // Hide login page
           showSection('home');
           document.querySelector("header").classList.remove("hidden");
       })
@@ -188,13 +218,8 @@ const orgDetails = document.getElementById("organization-details");
     }
 
     errorMsg.textContent = err;
-    
-    // Change the error back to empty after 10 seconds
     setTimeout(() => {
       errorMsg.textContent = "";
     }, 10000);
   }
-
-  //profile info edit
-  
 })();

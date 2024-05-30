@@ -17,7 +17,7 @@ nav,
 }
 
 /*homepage*/
-#homepage {
+#home {
     padding: 20px;
 }
 
@@ -102,6 +102,11 @@ nav,
 
 .navbar-toggler {
     margin-right: 20px;
+}
+
+.nav-item{
+    color: white;
+    padding: 15px;
 }
 
 .icon-bar {
