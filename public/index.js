@@ -163,11 +163,11 @@ const orgDetailsPage = document.getElementById("organization-details");
     div5.classList.add('event-card-details');
 
     let desc = document.createElement('p');
-    desc.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+    desc.textContent = event.description;
     div5.appendChild(desc);
 
     let dateTime = document.createElement('p');
-    dateTime.innerHTML = 'Tue, Jun 3, 9:30 AM <br> UW Seattle, Red Square';
+    dateTime.innerHTML = event.date + ' ' + event.time + '<br>' + event.location;
     div5.appendChild(dateTime);
 
     let followers = document.createElement('p');
@@ -354,6 +354,7 @@ const orgDetailsPage = document.getElementById("organization-details");
     events.forEach((event) => {
       console.log(event);
       // change createEventCard to use the data from the event object passed here
+      createEventCard(event)
     });
   }
 
