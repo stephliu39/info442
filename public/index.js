@@ -268,6 +268,10 @@ const orgDetailsPage = document.getElementById("organization-details");
           currentUser = user.user;
           console.log(user.uid);
 
+          // fetches all user data then matches the user from firebase with
+          // the one in the users.json and changes the website view based on user
+          fetchUsers();
+
           document.getElementById("login").classList.add("hidden");
           showSection('home');
           document.querySelector("header").classList.remove("hidden");
@@ -297,6 +301,52 @@ const orgDetailsPage = document.getElementById("organization-details");
     } else {
       showError("signup-error-msg", "error");
     }
+  }
+  
+  /**
+   * Fetches user data. We can use this data to get data of the currentUser
+   */
+  async function fetchUsers() {
+    try {
+      let usersJson = await fetch("api/users");
+      statusCheck(usersJson);
+      let result = await usersJson.json();
+
+      // changes the website to user view
+      checkUser(result.users);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  // finds the logged in user in the json
+  function checkUser(user) {
+    console.log(currentUser.uid);
+
+    user.forEach((user) => {
+      console.log(user.uid);
+      if (user.uid === currentUser.uid) {
+        console.log(user.uid + ", successfully logged in!");
+        changeView(user);
+      }
+    });
+  }
+
+  // change view based on user
+  function changeView(user) {
+    document.querySelector('#name-greeting').textContent = "Hello, " + user.name;
+  }
+
+  /**
+   * Checks if the response is valid
+   * @param {response} response - a response from a fetch call
+   * @returns {response} another response
+   */
+  async function statusCheck(response) {
+    if (!response.ok) {
+      throw new Error(await response.text());
+    }
+    return response;
   }
 
   function showError(errLocation, error) {
