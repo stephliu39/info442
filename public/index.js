@@ -170,6 +170,27 @@ const orgDetailsPage = document.getElementById("organization-details");
     dateTime.innerHTML = event.date + ' ' + event.time + '<br>' + event.location;
     div5.appendChild(dateTime);
 
+    let currOrg;
+    let orgsArray;
+
+    // array of all organizations
+    fetchAllOrgs().then(orgs => {
+      orgsArray.push(orgs);
+    }).catch(err => {
+      console.log(err);
+    });
+
+    console.log(orgsArray);
+
+    /*
+    orgsArray.forEach((org) => {
+      console.log(org.orgId);
+      if (org.orgId === event.orgId) {
+        currOrg = org;
+      }
+    });
+    */
+
     let followers = document.createElement('p');
     followers.classList.add('followers');
     followers.textContent = 'Foster School of Business • 22 followers';
@@ -322,7 +343,6 @@ const orgDetailsPage = document.getElementById("organization-details");
     console.log(currentUser.uid);
 
     user.forEach((user) => {
-      console.log(user.uid);
       if (user.uid === currentUser.uid) {
         console.log(user.uid + ", successfully logged in!");
         changeView(user);
@@ -352,10 +372,21 @@ const orgDetailsPage = document.getElementById("organization-details");
 
   function displayEvents(events) {
     events.forEach((event) => {
-      console.log(event);
       // change createEventCard to use the data from the event object passed here
       createEventCard(event)
     });
+  }
+
+  async function fetchAllOrgs() {
+    try {
+      let orgsJson = await fetch("api/organizations");
+      statusCheck(orgsJson);
+      let result = await orgsJson.json();
+
+      return result.organizations;
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   /**

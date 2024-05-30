@@ -60,8 +60,9 @@ app.get('/api/events', async (req, res) => {
 
 // makes a post request to post a new user into the users.json
 app.post('/api/users', async (req, res) => {
+  const name = req.body.name;
   const email = req.body.email;
-  const __ = req.body.__;
+  const userId = req.body.uid;  
 
   try {
     // idk yet
