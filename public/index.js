@@ -218,16 +218,15 @@ const orgDetailsPage = document.getElementById("organization-details");
 
   
   document.addEventListener('DOMContentLoaded', (event) => {
+  
   // Function to save profile changes
   function saveProfileChanges() {
     const username = document.getElementById('edit-username').value;
-    const email = document.getElementById('edit-email').value;
     const location = document.getElementById('edit-location').value;
     const bio = document.getElementById('edit-bio').value;
 
     // Update the profile display with new values
     document.getElementById('username').innerText = username;
-    document.getElementById('email').innerText = email;
     document.getElementById('location').innerText = location;
     document.getElementById('bio').innerText = bio;
 
