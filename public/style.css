@@ -294,12 +294,39 @@ textarea {
     display: block;
 }
 
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
 
 h2, h3 {
     margin: 10px 0;
 }
 
+.organization-card, .event-card, .posted-event-card {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
 
+.organization-card .card-body, .event-card .card-body, .posted-event-card .card-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: #4C4B68;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #373656;
+}
 .organization,
 .event,
 .posted-event {
