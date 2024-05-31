@@ -411,9 +411,18 @@ const orgDetailsPage = document.getElementById("organization-details");
 
   // change view based on user
   function changeView(user) {
-    document.querySelector('#name-greeting').textContent = "Hello, " + user.name;
-    
-    
+
+    let isOrg = user.org;
+
+    if (isOrg) {
+      // hide nav bar
+      // only show org details
+      // allow create event page
+    } else {
+      document.querySelector('#name-greeting').textContent = "Hello, " + user.name;
+      // should not see the create event
+      // 
+    }
 
     fetchAllEvents();
   }
