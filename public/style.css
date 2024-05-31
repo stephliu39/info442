@@ -303,7 +303,7 @@ h2, h3 {
     margin: 10px 0;
 }
 
-.organization-card, .event-card, .posted-event-card {
+.organize-card, .event-card-2, .posted-event-card-2 {
     width: 150px;
     height: 150px;
     display: flex;
@@ -313,11 +313,6 @@ h2, h3 {
     border-radius: 10px;
 }
 
-.organization-card .card-body, .event-card .card-body, .posted-event-card .card-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .btn-primary {
     background-color: #4C4B68;
