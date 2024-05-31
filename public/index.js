@@ -1,7 +1,8 @@
 
 "use strict";
 
-let currentUser;
+let currentUser = null;
+let allOrgs = [];
 const loginPage = document.getElementById("login");
 const signUpPage = document.getElementById("signup");
 const homePage = document.getElementById("home");
@@ -28,6 +29,8 @@ const orgDetailsPage = document.getElementById("organization-details");
   firebase.initializeApp(firebaseConfig);
 
   function init() {
+    fetchAllOrgs();
+
     routeNavBar();
     loginListeners();
     document.getElementById("login-button").addEventListener("click", loginUser);
@@ -51,6 +54,7 @@ const orgDetailsPage = document.getElementById("organization-details");
       currentUser = null;
       document.getElementById("login-form").reset();
       document.getElementById("signup-form").reset();
+      document.querySelector('nav').classList.add('hidden');
     });
     
     document.getElementById('create-event-button').addEventListener('click', function() {
@@ -172,29 +176,17 @@ const orgDetailsPage = document.getElementById("organization-details");
     div5.appendChild(dateTime);
 
     let currOrg;
-    let orgsArray;
-
-    // array of all organizations
-    fetchAllOrgs().then(orgs => {
-      orgsArray.push(orgs);
-    }).catch(err => {
-      console.log(err);
-    });
-
-    console.log(orgsArray);
-
-    /*
-    orgsArray.forEach((org) => {
-      console.log(org.orgId);
-      if (org.orgId === event.orgId) {
+    
+    allOrgs.forEach((org) => {
+      if (org.orgID === event.orgID) {
         currOrg = org;
       }
     });
-    */
+
 
     let followers = document.createElement('p');
     followers.classList.add('followers');
-    followers.textContent = 'Foster School of Business • 22 followers';
+    followers.textContent = currOrg.name + ' • ' + currOrg.followers;
     div5.appendChild(followers);
 
     div4.appendChild(div5);
@@ -285,7 +277,6 @@ const orgDetailsPage = document.getElementById("organization-details");
       firebase.auth().signInWithEmailAndPassword(email, password)
       .then((user) => {
           currentUser = user.user;
-          console.log(user.uid);
 
           // fetches all user data then matches the user from firebase with
           // the one in the users.json and changes the website view based on user
@@ -293,7 +284,7 @@ const orgDetailsPage = document.getElementById("organization-details");
 
           document.getElementById("login").classList.add("hidden");
           showSection('home');
-          document.querySelector("header").classList.remove("hidden");
+          document.querySelector("nav").classList.remove("hidden");
       })
       .catch((error) => {
           showError("login-error-msg", error);
@@ -312,7 +303,7 @@ const orgDetailsPage = document.getElementById("organization-details");
       .then((user) => {
           currentUser = user.user;
           showSection('home');
-          document.querySelector("header").classList.remove("hidden");
+          document.querySelector("nav").classList.remove("hidden");
       })
       .catch((error) => {
         showError("signup-error-msg", error);
@@ -339,10 +330,10 @@ const orgDetailsPage = document.getElementById("organization-details");
   }
 
   // finds the logged in user in the json
-  function checkUser(user) {
+  function checkUser(allUsers) {
     console.log(currentUser.uid);
 
-    user.forEach((user) => {
+    allUsers.forEach((user) => {
       if (user.uid === currentUser.uid) {
         console.log(user.uid + ", successfully logged in!");
         changeView(user);
@@ -352,8 +343,19 @@ const orgDetailsPage = document.getElementById("organization-details");
 
   // change view based on user
   function changeView(user) {
-    document.querySelector('#name-greeting').textContent = "Hello, " + user.name;
-    
+
+    let isOrg = user.org;
+
+    if (isOrg) {
+      // hide nav bar
+      // only show org details
+      // allow create event page
+    } else {
+      document.querySelector('#name-greeting').textContent = "Hello, " + user.name;
+      // should not see the create event
+      // 
+    }
+
     fetchAllEvents();
   }
 
@@ -383,11 +385,22 @@ const orgDetailsPage = document.getElementById("organization-details");
       statusCheck(orgsJson);
       let result = await orgsJson.json();
 
-      return result.organizations;
+      pushOrgs(result.organizations);
     } catch (err) {
       console.log(err);
     }
   }
+
+
+  // pushs all organizations into an array allOrgs
+  function pushOrgs(orgs) {
+    orgs.forEach((org) => {
+      allOrgs.push(org);
+    });
+
+    console.log(allOrgs);
+  }
+
 
   /**
    * Checks if the response is valid
