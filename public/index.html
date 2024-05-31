@@ -114,104 +114,157 @@
 
 
       <!-- Homepage -->
+      <!-- Homepage -->
       <section id="home" class="hidden">
-        <div class="row">
-          <div class="header col-12">
-            <h1 id="name-greeting">Hello, Bill</h1>
-            <h2>Welcome to Campus Connect!</h2>
-          </div>
-        </div>
-        <div class="row mt-4">
-          <div class="col-lg-9">
-            <h3>My Schedule</h3>
-            <div class="card mb-4">
-              <div class="schedule-card-body">
-                <div class="d-flex flex-row justify-content-between align-items-center mb-3">
-                  <div class="p-2 text-center">
-                    <h6 class="text-muted mb-0">Mon</h6>
-                    <h5 class="mb-0">02</h5>
-                  </div>
-                  <div class="p-2 text-center">
-                    <h6 class="text-muted mb-0">Tue</h6>
-                    <h5 class="mb-0">03</h5>
-                  </div>
-                  <div class="p-2 text-center">
-                    <h6 class="text-muted mb-0">Wed</h6>
-                    <h5 class="mb-0">04</h5>
-                  </div>
-                  <div class="p-2 text-center">
-                    <h6 class="text-muted mb-0">Thu</h6>
-                    <h5 class="mb-0">05</h5>
-                  </div>
-                  <div class="p-2 text-center">
-                    <h6 class="text-muted mb-0">Fri</h6>
-                    <h5 class="mb-0">06</h5>
-                  </div>
-                  <div class="p-2 text-center">
-                    <h6 class="text-muted mb-0">Sat</h6>
-                    <h5 class="mb-0">07</h5>
+        <!-- <div class="row mt-4"> <div class="col-lg-9"> <h3>My Schedule</h3> <div class="card mb-4"> <div class="schedule-card-body"> <div class="d-flex flex-row justify-content-between align-items-center mb-3"> <div class="p-2 text-center"> <h6 class="text-muted mb-0">Mon</h6> <h5 class="mb-0">02</h5> </div> <div class="p-2 text-center"> <h6 class="text-muted mb-0">Tue</h6> <h5 class="mb-0">03</h5> </div> <div class="p-2 text-center"> <h6 class="text-muted mb-0">Wed</h6> <h5 class="mb-0">04</h5> </div> <div class="p-2 text-center"> <h6 class="text-muted mb-0">Thu</h6> <h5 class="mb-0">05</h5> </div> <div class="p-2 text-center"> <h6 class="text-muted mb-0">Fri</h6> <h5 class="mb-0">06</h5> </div> <div class="p-2 text-center"> <h6 class="text-muted mb-0">Sat</h6> <h5 class="mb-0">07</h5> </div> </div> <div class="schedule-item bg-light mb-3 p-3"> <div class="d-flex align-items-center"> <img src="../img/event1.jpg" class="me-3" alt="UX Research Class" style="width: 50px;"> <div> <h5 class="mb-0">UX Research Class</h5> <p class="text-muted mb-0">Mon - Thu</p> </div> <span class="ms-auto text-muted">10:44 am</span> </div> </div> <div class="schedule-item bg-light mb-3 p-3"> <div class="d-flex align-items-center"> <img src="../img/event 2.jpg" class="me-3" alt="App Development Course" style="width: 50px;"> <div> <h5 class="mb-0">App Development Course</h5> <p class="text-muted mb-0">Mon - Thu</p> </div> <span class="ms-auto text-muted">12:00 pm</span> </div> </div> <div class="schedule-item bg-light mb-3 p-3"> <div class="d-flex align-items-center"> <img src="../img/event.jpg" class="me-3" alt="Figma UI/UX Workshop" style="width: 50px;"> <div> <h5 class="mb-0">Figma UI/UX Workshop</h5> <p class="text-muted mb-0">Mon - Thu</p> </div> <span class="ms-auto text-muted">2:00 pm</span> </div> </div> <div class="schedule-item bg-light mb-3 p-3"> <div class="d-flex align-items-center"> <img src="../img/event4.jpg" class="me-3" alt="WINFO Annual Hackthon" style="width: 50px;"> <div> <h5 class="mb-0">WINFO Annual Hackthon</h5> <p class="text-muted mb-0">Mon - Thu</p> </div> <span class="ms-auto text-muted">10:44 am</span> </div> </div> </div> </div> </div> <div class="col-lg-3"> <h3>Upcoming Events</h3> <div class="card mb-4"> <div class="upcoming-card"> <div class="upcoming-event-card mb-3"> <h5>Typography in UX/UI</h5> <p class="text-muted">Design - 10:00 am</p> </div> <div class="upcoming-event-card mb-3"> <h5>Figma UI/UX Design</h5> <p class="text-muted">Design - 10:00 am</p> </div> </div> </div> </div> </div> -->
+        <div class="container my-3">
+          <h1>Hi, Bill</h1> <br> <!-- Upcoming Events -->
+          <h3>Upcoming Events</h3>
+          <hr>
+          <div class="row gy-4" id="upcomingEvents"> <!-- Card -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="event-card h-55 position-relative">
+                <div class="event-card-body">
+                  <div>
+                    <h5 class="event-card-title">Sample Event Name</h5>
+                    <div class="event-card-details">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus,
+                        enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
+                      <p>Tue, Jun 3, 9:30 AM <br>UW Seattle, Red Square</p>
+                      <p class="followers">Foster School of Business • 22 followers</p>
+                    </div>
                   </div>
                 </div>
-                <div class="schedule-item bg-light mb-3 p-3">
-                  <div class="d-flex align-items-center">
-                    <img src="../img/event1.jpg" class="me-3" alt="UX Research Class" style="width: 50px;">
-                    <div>
-                      <h5 class="mb-0">UX Research Class</h5>
-                      <p class="text-muted mb-0">Mon - Thu</p>
+              </div>
+            </div> <!-- Card -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="event-card h-55 position-relative">
+                <div class="event-card-body">
+                  <div>
+                    <h5 class="event-card-title">Sample Event Name</h5>
+                    <div class="event-card-details">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus,
+                        enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
+                      <p>Tue, Jun 3, 9:30 AM <br>UW Seattle, Red Square</p>
+                      <p class="followers">Foster School of Business • 22 followers</p>
                     </div>
-                    <span class="ms-auto text-muted">10:44 am</span>
                   </div>
                 </div>
-                <div class="schedule-item bg-light mb-3 p-3">
-                  <div class="d-flex align-items-center">
-                    <img src="../img/event 2.jpg" class="me-3" alt="App Development Course" style="width: 50px;">
-                    <div>
-                      <h5 class="mb-0">App Development Course</h5>
-                      <p class="text-muted mb-0">Mon - Thu</p>
+              </div>
+            </div> <!-- Card -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="event-card h-55 position-relative">
+                <div class="event-card-body">
+                  <div>
+                    <h5 class="event-card-title">Sample Event Name</h5>
+                    <div class="event-card-details">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus,
+                        enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
+                      <p>Tue, Jun 3, 9:30 AM <br>UW Seattle, Red Square</p>
+                      <p class="followers">Foster School of Business • 22 followers</p>
                     </div>
-                    <span class="ms-auto text-muted">12:00 pm</span>
-                  </div>
-                </div>
-                <div class="schedule-item bg-light mb-3 p-3">
-                  <div class="d-flex align-items-center">
-                    <img src="../img/event.jpg" class="me-3" alt="Figma UI/UX Workshop" style="width: 50px;">
-                    <div>
-                      <h5 class="mb-0">Figma UI/UX Workshop</h5>
-                      <p class="text-muted mb-0">Mon - Thu</p>
-                    </div>
-                    <span class="ms-auto text-muted">2:00 pm</span>
-                  </div>
-                </div>
-                <div class="schedule-item bg-light mb-3 p-3">
-                  <div class="d-flex align-items-center">
-                    <img src="../img/event4.jpg" class="me-3" alt="WINFO Annual Hackthon" style="width: 50px;">
-                    <div>
-                      <h5 class="mb-0">WINFO Annual Hackthon</h5>
-                      <p class="text-muted mb-0">Mon - Thu</p>
-                    </div>
-                    <span class="ms-auto text-muted">10:44 am</span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-3">
-            <h3>Upcoming Events</h3>
-            <div class="card mb-4">
-              <div class="upcoming-card">
-                <div class="upcoming-event-card mb-3">
-                  <h5>Typography in UX/UI</h5>
-                  <p class="text-muted">Design - 10:00 am</p>
+          </div> <!-- Discover Events -->
+          <h3>Discover Events</h3>
+          <hr> <!-- Search/Filter -->
+          <div class="row mb-4">
+            <div class="col-md-4 mb-2"> <input type="text" id="searchInput" class="form-control" placeholder="Search events">
+            </div>
+            <div class="col-md-2 mb-2"> <select id="timeFilter" class="form-control">
+                <option value="">All Times</option>
+                <option value="today">Today</option>
+                <option value="this-week">This Week</option>
+                <option value="this-month">This Month</option>
+              </select> </div>
+            <div class="col-md-2 mb-2"> <select id="majorFilter" class="form-control">
+                <option value="">All Majors</option>
+                <option value="business">Business</option>
+                <option value="engineering">Engineering</option>
+                <option value="arts">Arts</option>
+              </select> </div>
+            <div class="col-md-2 mb-2"> <select id="eventTypeFilter" class="form-control">
+                <option value="">All Types</option>
+                <option value="seminar">Seminar</option>
+                <option value="workshop">Workshop</option>
+                <option value="networking">Networking</option>
+              </select> </div>
+          </div> <!-- Events Container -->
+          <div class="row gy-4" id="eventCardsContainer"> <!-- Card -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="event-card h-100 position-relative"> <img src="../img/sample.jpeg" alt="ImageAltText"
+                  class="img-fluid"> <button class="bookmark-btn"> <i class="bi bi-bookmark"></i> </button>
+                <div class="event-card-body">
+                  <div> <span class="badge">New</span>
+                    <h5 class="event-card-title">Sample Event Name</h5>
+                    <div class="event-card-details">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus,
+                        enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
+                      <p>Tue, Jun 3, 9:30 AM <br>UW Seattle, Red Square</p>
+                      <p class="followers">Foster School of Business • 22 followers</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="upcoming-event-card mb-3">
-                  <h5>Figma UI/UX Design</h5>
-                  <p class="text-muted">Design - 10:00 am</p>
+              </div>
+            </div> <!-- Card -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="event-card h-100 position-relative"> <img src="../img/sample.jpeg" alt="ImageAltText"
+                  class="img-fluid"> <button class="bookmark-btn"> <i class="bi bi-bookmark"></i> </button>
+                <div class="event-card-body">
+                  <div> <span class="badge">New</span>
+                    <h5 class="event-card-title">Sample Event Name</h5>
+                    <div class="event-card-details">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus,
+                        enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
+                      <p>Tue, may 31, 9:30 AM <br>UW Seattle, Red Square</p>
+                      <p class="followers">Foster School of Business • 22 followers</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- Card -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="event-card h-100 position-relative"> <img src="../img/sample.jpeg" alt="ImageAltText"
+                  class="img-fluid"> <button class="bookmark-btn"> <i class="bi bi-bookmark"></i> </button>
+                <div class="event-card-body">
+                  <div> <span class="badge">New</span>
+                    <h5 class="event-card-title">Sample Event Name</h5>
+                    <div class="event-card-details">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus,
+                        enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
+                      <p>Tue, may 22, 9:30 AM <br>UW Seattle, Red Square</p>
+                      <p class="followers">Foster School of Business • 22 followers</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- Card -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="event-card h-100 position-relative"> <img src="../img/sample.jpeg" alt="ImageAltText"
+                  class="img-fluid"> <button class="bookmark-btn"> <i class="bi bi-bookmark"></i> </button>
+                <div class="event-card-body">
+                  <div> <span class="badge">New</span>
+                    <h5 class="event-card-title">Sample Event Name</h5>
+                    <div class="event-card-details">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue, mi bibendum sodales luctus,
+                        enim est auctor nunc, nec finibus turpis quam blandit ipsum.</p>
+                      <p>Tue, Jun 3, 9:30 AM <br>UW Seattle, Red Square</p>
+                      <p class="followers">Foster School of Business • 22 followers</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+
+
+
+      
       <!--Form for create event page!-->
       <section id="create-event" class="hidden">
         <div class="event-form">
