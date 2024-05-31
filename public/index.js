@@ -123,6 +123,7 @@ const orgDetailsPage = document.getElementById("organization-details");
     }
   }
 
+
   function createEventCard(event) {
     let eventCards = document.getElementById('eventCardsContainer');
 
