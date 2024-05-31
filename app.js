@@ -59,14 +59,29 @@ app.get('/api/events', async (req, res) => {
 });
 
 // makes a post request to post a new user into the users.json
+
 app.post('/api/users', async (req, res) => {
+  const name = req.body.name;
   const email = req.body.email;
-  const __ = req.body.__;
+  const userId = req.body.uid;  
+
+  if (!name || !email || !userId) {
+    return res.status(400).send('Missing required fields');
+  }
 
   try {
-    // idk yet
+    const filePath = path.join(__dirname, 'users.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const users = JSON.parse(data);
+    const newUser = {name: name, email: email, registered:[], following: [], uid: userId};
+    users.push(newUser);
+    const updatedData = JSON.stringify(users, null, 2);
+    await fs.writeFile(filePath, updatedData, 'utf8');
+
+    res.status(201).send('User added successfully');
   } catch (err) {
     console.log(err);
+    res.status(500).send('Internal server error');
   }
 });
 

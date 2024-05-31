@@ -6,6 +6,7 @@
             "description": "Annual WINFO hackathon.",
             "date": "Saturday, May 18",
             "time": "9:00 am - 5:00 pm",
+            "location": "HUB 150",
             "orgID": 111,
             "image": "../img/event4.jpg"
         },
@@ -15,6 +16,7 @@
             "description": "Gain design skills with DubsTech!",
             "date": "Wednesday, May 8",
             "time": "5:00 pm - 7:00 pm",
+            "location": "HUB 204",
             "orgID": 222,
             "image": "../img/event1.jpg"
         },
@@ -24,6 +26,7 @@
             "description": "Annual MESH fashion show.",
             "date": "Friday, May 17",
             "time": "5:00 pm - 8:00 pm",
+            "location": "Red Square",
             "orgID": 333,
             "image": "../img/event5.jpg"
         }
