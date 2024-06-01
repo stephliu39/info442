@@ -196,41 +196,7 @@ const orgDetailsPage = document.getElementById("organization-details");
     eventCards.appendChild(div1);
   }
 
-  // Function to initialize the profile form with current values
-  function initializeProfileForm() {
-    document.getElementById('edit-username').value = document.getElementById('username').innerText;
-    document.getElementById('edit-email').value = document.getElementById('email').innerText;
-    document.getElementById('edit-location').value = document.getElementById('location').innerText;
-    document.getElementById('edit-bio').value = document.getElementById('bio').innerText;
-  }
-
-  // Event listener to initialize the form when the modal is shown
-  const editProfileModal = document.getElementById('editProfileModal');
-  editProfileModal.addEventListener('show.bs.modal', initializeProfileForm);
-
   
-  document.addEventListener('DOMContentLoaded', (event) => {
-  
-  // Function to save profile changes
-  function saveProfileChanges() {
-    const username = document.getElementById('edit-username').value;
-    const location = document.getElementById('edit-location').value;
-    const bio = document.getElementById('edit-bio').value;
-
-    // Update the profile display with new values
-    document.getElementById('username').innerText = username;
-    document.getElementById('location').innerText = location;
-    document.getElementById('bio').innerText = bio;
-
-    // Hide the modal
-    const modal = bootstrap.Modal.getInstance(editProfileModal);
-    modal.hide();
-  }
-
-  // Event listener for the save changes button
-  document.getElementById('saveProfileChanges').addEventListener('click', saveProfileChanges);
-  });
-
   function showSection(sectionId) {
     document.querySelectorAll('main > section').forEach(section => {
       section.classList.add('hidden');

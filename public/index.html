@@ -198,24 +198,34 @@
       </section>
 
       <!-- Profile Page -->
-      <section id="profile-page" class="container my-5 hidden">
-        <div class="card">
-            <div class="card-body text-center">
-                <div class="profile-pic mx-auto mb-3">
-                    <label class="-label" for="file">
-                        <span class="glyphicon glyphicon-camera"></span>
-                        <span>Change Image</span>
-                    </label>
-                    <input id="file" type="file" onchange="loadFile(event)" style="display: none;"/>
-                    <img src="../img/profile_default.jpg" id="output" width="200" />
-                </div>
-                <h3 class="mb-0" id="username">Name</h3>
-                <p class="text-muted mb-1">Location: <span id="location">Unknown</span></p>
-                <p class="text-muted mb-1">Bio: <span id="bio">No bio available.</span></p>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
-            </div>
+    <section id="profile-page" class="container my-5 hidden">
+      <div class="profile-container">
+        <div class="profile-picture">
+          <img id="profile-image" src="../img/profile default.jpg" alt="Profile Picture">
+          <input type="file" id="profile-image-input" style="display:none;">
+          <button id="change-picture-btn">Change Picture</button>
         </div>
-        <div class="card mb-4">
+        <div class="profile-info">
+          <label for="profile-name">Name:</label>
+          <input type="text" id="profile-name" disabled value="John Doe">
+        </div>
+        <div class="profile-info">
+          <label for="profile-email">Location:</label>
+          <input type="email" id="profile-email" disabled value="Seattle,WA">
+        </div>
+        <div class="profile-info">
+          <label for="profile-contact">Contact:</label>
+          <input type="tel" id="profile-contact" disabled value="123-456-7890">
+        </div>
+        <div class="profile-info">
+          <label for="profile-bio">Bio:</label>
+          <input type="text" id="profile-bio" disabled value="Lorem ipsum dolor sit amet.">
+        </div>
+        <button id="edit-btn">Edit</button>
+        <button id="save-btn" style="display:none;">Save</button>
+      </div>
+        <div class="card my-5">
+          <div class="card mb-4">
           <div class="card-body">
               <h3 class="mb-3">Organizations</h3>
               <div class="d-flex flex-wrap gap-3">
@@ -245,6 +255,7 @@
                       </div>
                   </div>
               </div>
+          </div>
           </div>
       </div>
   
@@ -316,41 +327,6 @@
             }
         };
     </script>
-
-
-      <!-- Edit Profile Modal -->
-      <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form id="editProfileForm">
-                <div class="mb-3">
-                  <label for="edit-username" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="edit-username">
-                </div>
-                <div class="mb-3">
-                  <label for="edit-email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="edit-email">
-                </div>
-                <div class="mb-3">
-                  <label for="edit-location" class="form-label">Location</label>
-                  <input type="text" class="form-control" id="edit-location">
-                </div>
-                <div class="mb-3">
-                  <label for="edit-bio" class="form-label">Bio</label>
-                  <textarea class="form-control" id="edit-bio" rows="3"></textarea>
-                </div>
-                <button type="button" class="btn btn-primary" id="saveProfileChanges">Save changes</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
 
 
 
@@ -576,7 +552,7 @@
       <!-- Orginization Details -->
       <!-- Name, Description, My Events, Add Events-->
       <!-- Function that dynamically does the thing-->
-      <section id="organization-details" class="">
+      <section id="organization-details" class="hidden">
         <div class="container my-5">
           <h3>Orginization Name</h3>
           <hr>
@@ -734,6 +710,56 @@
         majorFilter.addEventListener('change', filterEvents);
         eventTypeFilter.addEventListener('change', filterEvents);
       });
+      </script>
+      <script>
+        document.getElementById('edit-btn').addEventListener('click', function() {
+          let inputs = document.querySelectorAll('#profile-page input');
+          inputs.forEach(input => input.disabled = false);
+          document.getElementById('edit-btn').style.display = 'none';
+          document.getElementById('save-btn').style.display = 'inline-block';
+        });
+  
+        document.getElementById('save-btn').addEventListener('click', function() {
+          let inputs = document.querySelectorAll('#profile-page input');
+          inputs.forEach(input => input.disabled = true);
+          document.getElementById('edit-btn').style.display = 'inline-block';
+          document.getElementById('save-btn').style.display = 'none';
+          // Add your save logic here, e.g., send data to server
+        });
+        document.getElementById('change-picture-btn').addEventListener('click', function() {
+        document.getElementById('profile-image-input').click();
+      });
+
+      document.getElementById('profile-image-input').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            document.getElementById('profile-image').src = e.target.result;
+            // Add your logic to save the profile picture to the server here
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+      document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.organization-card').forEach(org => {
+        org.addEventListener('click', function() {
+          const orgId = this.dataset.orgId;
+          window.location.hash = 'organization-details';
+          loadOrganizationDetails(orgId);
+        });
+      });
+
+      function loadOrganizationDetails(orgId) {
+        // logic to load organization details based on orgId
+        console.log("Loading organization details for: " + orgId);
+        // Show the organization details section and hide others
+        document.querySelectorAll('main > section').forEach(section => {
+          section.classList.add('hidden');
+        });
+        document.getElementById('organization-details').classList.remove('hidden');
+      }
+    });
       </script>
       
   </body>
