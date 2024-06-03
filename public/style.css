@@ -589,3 +589,18 @@ input[type=text]#search {
 #searchInput {
     margin-top: 0;
 }
+
+/*footer*/
+footer {
+    text-align: center;
+    padding: 1px;
+    background-color: #4C4B68;
+    color: white;
+}
+footer a {
+    color: lightgray;
+    text-decoration: none;
+}
+footer a:not(:last-child)::after {
+    content: " | ";
+}
