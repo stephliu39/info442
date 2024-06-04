@@ -65,7 +65,6 @@ app.get('/api/events', async (req, res) => {
   try {
     let contents = await fs.readFile("public/data/events.json", "utf8");
     contents = JSON.parse(contents);
-
     res.type("json").send(contents);
   } catch (err) {
     console.log(err);
