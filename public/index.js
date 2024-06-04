@@ -87,7 +87,90 @@ const orgDetailsPage = document.getElementById("organization-details");
       }
       route(); // Route on initial load based on the current hash
     });
+    loadEvents();
+    const registerButton = document.querySelector('.btn-success');
+    if (registerButton) {
+      registerButton.addEventListener('click', function() {
+        registerForEvent(currentEventId);
+      });
+    }
   }
+
+
+let currentEventId = null;
+let events = [];
+
+// Load events from the JSON file
+function loadEvents() {
+  fetch('events.json')
+    .then(response => response.json())
+    .then(data => {
+      events = data.events;
+    })
+    .catch(error => console.error('Error loading events:', error));
+}
+
+// Fetch event details by ID from the loaded events
+function getEventDetailsById(eventId) {
+  return events.find(event => event.eventID === eventId) || { eventID: eventId, name: 'Event not found' };
+}
+
+function loadEventDetails(eventId) {
+  currentEventId = eventId;
+  const eventDetails = getEventDetailsById(eventId);
+  console.log(`Loading event details for event ID: ${eventId}`, eventDetails);
+  // Display event details on the registration page
+  // Here you can update the DOM elements with the event details
+}
+
+function registerForEvent(eventId) {
+  let registeredEvents = JSON.parse(localStorage.getItem('registeredEvents')) || [];
+  registeredEvents.push(eventId);
+  localStorage.setItem('registeredEvents', JSON.stringify(registeredEvents));
+
+  showConfirmationPopup('You have successfully registered for the event.');
+
+  updateNotifications(eventId);
+}
+
+function showConfirmationPopup(message) {
+  const popup = document.createElement('div');
+  popup.classList.add('popup');
+  popup.textContent = message;
+
+  document.body.appendChild(popup);
+
+  setTimeout(() => {
+    popup.remove();
+  }, 3000);
+}
+
+function updateNotifications(eventId) {
+  const eventDetails = getEventDetailsById(eventId);
+  const notificationsList = document.querySelector('.notification-list ul');
+  const notificationItem = document.createElement('li');
+  notificationItem.classList.add('list-group-item');
+  notificationItem.textContent = `You have registered for ${eventDetails.name}`;
+
+  notificationsList.appendChild(notificationItem);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  loadEvents(); // Load events on page load
+
+  const registerButton = document.querySelector('.btn-success');
+  if (registerButton) {
+    registerButton.addEventListener('click', function() {
+      registerForEvent(currentEventId);
+    });
+  }
+  const backButton = document.getElementById('back-button');
+  if (backButton) {
+    backButton.addEventListener('click', function() {
+      window.location.hash = 'home';
+    });
+  }
+});
 
   function routeNavBar() {
     const homeNav = document.getElementById('nav-home');

@@ -2,33 +2,36 @@
     "events": [
         {
             "eventID": 123,
-            "name": "Hackathon",
+            "title": "Hackathon",
             "description": "Annual WINFO hackathon.",
             "date": "Saturday, May 18",
-            "time": "9:00 am - 5:00 pm",
-            "location": "HUB 150",
+            "startTime": "9:00 am",
+            "endTime": "5:00 pm",
+            "venue": "HUB 150",
             "orgID": 111,
-            "image": "../img/event4.jpg"
+            "eventImage": "../img/event4.jpg"
         },
         {
             "eventID": 456,
-            "name": "Design Workshop",
+            "title": "Design Workshop",
             "description": "Gain design skills with DubsTech!",
             "date": "Wednesday, May 8",
-            "time": "5:00 pm - 7:00 pm",
-            "location": "HUB 204",
+            "startTime": "5:00 pm",
+            "endTime": "7:00 pm",
+            "venue": "HUB 204",
             "orgID": 222,
-            "image": "../img/event1.jpg"
+            "eventImage": "../img/event1.jpg"
         },
         {
             "eventID": 789,
-            "name": "Fashion Show",
+            "title": "Fashion Show",
             "description": "Annual MESH fashion show.",
             "date": "Friday, May 17",
-            "time": "5:00 pm - 8:00 pm",
-            "location": "Red Square",
+            "startTime": "5:00 pm",
+            "endTime": "8:00 pm",
+            "venue": "Red Square",
             "orgID": 333,
-            "image": "../img/event5.jpg"
+            "eventImage": "../img/event5.jpg"
         }
     ]
 }

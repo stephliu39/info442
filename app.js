@@ -22,9 +22,20 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 //debugging attempt (posts to events JSON) - stephanie
+// const dataDir = path.join(__dirname, 'public/data');
+// const eventsFile = path.join(dataDir, 'events.json');
+
+// if (!fs.existsSync(dataDir)) {
+//   fs.mkdirSync(dataDir, { recursive: true });
+// }
+
+// if (!fs.existsSync(eventsFile)) {
+//   fs.writeFileSync(eventsFile, '[]');
+// }
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'public/uploads'));
+    cb(null, path.join(__dirname, 'public/img'));
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -34,6 +45,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 // ^^^^^ debugging attempt (posts to events JSON) - stephanie
+
+// create new event id
+function generateUniqueId() {
+  return Date.now().toString() + Math.random().toString(36).substr(2, 9);
+}
 
 // returns organizations in json format. You can access this using fetch in index.js
 app.get('/api/organizations', async (req, res) => {
@@ -54,7 +70,6 @@ app.get('/api/users', async (req, res) => {
   try {
     let contents = await fs.readFile("public/data/users.json", "utf8");
     contents = JSON.parse(contents);
-
     res.type("json").send(contents);
   } catch (err) {
     console.log(err);
@@ -66,7 +81,6 @@ app.get('/api/events', async (req, res) => {
   try {
     let contents = await fs.readFile("public/data/events.json", "utf8");
     contents = JSON.parse(contents);
-
     res.type("json").send(contents);
   } catch (err) {
     console.log(err);
@@ -106,7 +120,7 @@ app.post('/api/addUser', async(req, res) => {
 // add post/event to JSON file
 app.post('/api/events', upload.single('eventImage'), async (req, res) => {
   const { title, startTime, endTime, date, venue, description } = req.body;
-  const eventImage = req.file ? `/uploads/${req.file.filename}` : null;
+  const eventImage = req.file ? `/img/${req.file.filename}` : null;
 
   if (!title || !startTime || !endTime || !date || !venue || !description || !eventImage) {
     return res.status(400).send('Missing required fields');
@@ -117,6 +131,8 @@ app.post('/api/events', upload.single('eventImage'), async (req, res) => {
     const data = await fs.readFile(filePath, 'utf8');
     const events = JSON.parse(data);
     const newEvent = {
+      eventID: generateUniqueId(),
+      orgID: generateUniqueId(),
       title: title,
       startTime: startTime,
       endTime: endTime,
