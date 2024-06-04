@@ -120,8 +120,9 @@ const orgDetailsPage = document.getElementById("organization-details");
   }
 
 
+  // Creates an event card like the one on the homepage
   function createEventCard(event) {
-    let eventCards = document.getElementById('eventCardsContainer');
+    // let eventCards = document.getElementById('eventCardsContainer');
 
     let div1 = document.createElement('div');
     div1.classList.add('col-md-6', 'col-lg-4', 'mb-4');
@@ -176,7 +177,6 @@ const orgDetailsPage = document.getElementById("organization-details");
       }
     });
 
-
     let followers = document.createElement('p');
     followers.classList.add('followers');
     followers.textContent = currOrg.name + ' • ' + currOrg.followers;
@@ -186,12 +186,15 @@ const orgDetailsPage = document.getElementById("organization-details");
     div3.appendChild(div4);
     div2.appendChild(div3);
     div1.appendChild(div2);
-    eventCards.appendChild(div1);
+    // eventCards.appendChild(div1);
+    
     div2.addEventListener('click', function() {
       window.location.hash = 'eventRegistration';
       // Load event details on the registration page if needed
       loadEventDetails(event.id);
     });
+
+    return(div1);
   }
 
   function createOrgEventCard(event) {
@@ -422,9 +425,21 @@ const orgDetailsPage = document.getElementById("organization-details");
       // allow create event page
     } else {
       document.querySelector('#name-greeting').textContent = "Hello, " + user.name;
-      // should not see the create event
-      // 
+      
+      // should not see the create events
+      fetchUsersEvents(user);
     }
+  }
+
+  async function fetchUserEvents(user) {
+
+  }
+
+  function displayRegisteredEvents(events) {
+    console.log(events);
+
+    // use create event card and add to this div
+    let registeredDiv = document.querySelector("#upcomingEvents");
   }
 
   async function fetchAllEvents() {
@@ -441,9 +456,11 @@ const orgDetailsPage = document.getElementById("organization-details");
   }
 
   function displayEvents(events) {
+    let homeCardsContainer = document.querySelector("#eventCardsContainer");
+    homeCardsContainer.innerHTML = "";
     events.forEach((event) => {
-      // change createEventCard to use the data from the event object passed here
-      createEventCard(event)
+      let newCard = createEventCard(event);
+      homeCardsContainer.appendChild(newCard);
     });
   }
 
