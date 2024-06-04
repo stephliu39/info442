@@ -127,6 +127,7 @@ const orgDetailsPage = document.getElementById("organization-details");
 
     let div2 = document.createElement('div');
     div2.classList.add('event-card', 'h-100', 'position-relative');
+    div2.setAttribute('data-event-id', event.id);
 
     let eventImg = document.createElement('img');
     eventImg.src = '../img/sample.jpeg';
@@ -185,6 +186,11 @@ const orgDetailsPage = document.getElementById("organization-details");
     div2.appendChild(div3);
     div1.appendChild(div2);
     eventCards.appendChild(div1);
+    div2.addEventListener('click', function() {
+      window.location.hash = 'eventRegistration';
+      // Load event details on the registration page if needed
+      loadEventDetails(event.id);
+    });
   }
 
   
