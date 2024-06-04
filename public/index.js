@@ -55,6 +55,7 @@ const orgDetailsPage = document.getElementById("organization-details");
       document.getElementById("login-form").reset();
       document.getElementById("signup-form").reset();
       document.querySelector('nav').classList.add('hidden');
+      document.querySelector('footer').classList.add('hidden');
     });
     
     document.getElementById('create-event-button').addEventListener('click', function() {
@@ -250,6 +251,7 @@ const orgDetailsPage = document.getElementById("organization-details");
           document.getElementById("login").classList.add("hidden");
           showSection('home');
           document.querySelector("nav").classList.remove("hidden");
+          document.querySelector("footer").classList.remove("hidden");
       })
       .catch((error) => {
           showError("login-error-msg", error);
@@ -272,6 +274,7 @@ const orgDetailsPage = document.getElementById("organization-details");
           fetchAllEvents();
           showSection('home');
           document.querySelector("nav").classList.remove("hidden");
+          document.querySelector("footer").classList.remove("hidden");
       })
       .catch((error) => {
         showError("signup-error-msg", error);
