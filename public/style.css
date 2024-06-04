@@ -1,5 +1,10 @@
 body {
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
 h1,
@@ -596,6 +601,8 @@ footer {
     padding: 1px;
     background-color: #4C4B68;
     color: white;
+    flex-shrink: 0; /* Prevents the footer from shrinking */
+    position: relative;
 }
 footer a {
     color: lightgray;
@@ -603,4 +610,7 @@ footer a {
 }
 footer a:not(:last-child)::after {
     content: " | ";
+}
+main {
+    flex: 1; /* This makes the main content take up all available space */
 }

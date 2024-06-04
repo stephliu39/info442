@@ -90,7 +90,6 @@ const orgDetailsPage = document.getElementById("organization-details");
 
   function routeNavBar() {
     const homeNav = document.getElementById('nav-home');
-    const eventsNav = document.getElementById('nav-events');
     const notificationsNav = document.getElementById('nav-notifications');
     const profileNav = document.getElementById('nav-profile');
 
@@ -100,14 +99,6 @@ const orgDetailsPage = document.getElementById("organization-details");
       });
     } else {
       console.error('Navigation element "nav-home" not found');
-    }
-
-    if (eventsNav) {
-      eventsNav.addEventListener('click', () => {
-        window.location.hash = 'events';
-      });
-    } else {
-      console.error('Navigation element "nav-events" not found');
     }
 
     if (notificationsNav) {
@@ -235,6 +226,7 @@ const orgDetailsPage = document.getElementById("organization-details");
     });
   }
 
+  // Logs in the user
   function loginUser() {
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
@@ -247,6 +239,7 @@ const orgDetailsPage = document.getElementById("organization-details");
           // fetches all user data then matches the user from firebase with
           // the one in the users.json and changes the website view based on user
           fetchUsers();
+          fetchAllEvents();
 
           document.getElementById("login").classList.add("hidden");
           showSection('home');
@@ -260,6 +253,7 @@ const orgDetailsPage = document.getElementById("organization-details");
     }
   }
 
+  // Creates an account in firebase and adds the user to the users json file
   function signupUser() {
     const email = document.getElementById('signup-email').value;
     const password = document.getElementById('signup-password').value;
@@ -268,6 +262,8 @@ const orgDetailsPage = document.getElementById("organization-details");
       firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((user) => {
           currentUser = user.user;
+          handleSignUp();
+          fetchAllEvents();
           showSection('home');
           document.querySelector("nav").classList.remove("hidden");
       })
@@ -276,6 +272,39 @@ const orgDetailsPage = document.getElementById("organization-details");
       });
     } else {
       showError("signup-error-msg", "error");
+    }
+  }
+
+  async function handleSignUp() {
+    const name = document.getElementById('signup-name').value;
+    const email = document.getElementById('signup-email').value;
+    const uid = currentUser.uid;
+
+    const data = {
+      name: name,
+      email: email,
+      uid: uid
+    };
+
+    // add the user to the json file here
+    try {
+      const response = await fetch('/api/addUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if(!response.ok) {
+        throw new Error('could not create user');
+      }
+
+      const res = await response.text();
+      console.log(res);
+
+    } catch (err) {
+      console.log(err);
     }
   }
   
@@ -321,8 +350,6 @@ const orgDetailsPage = document.getElementById("organization-details");
       // should not see the create event
       // 
     }
-
-    fetchAllEvents();
   }
 
   async function fetchAllEvents() {

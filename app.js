@@ -58,33 +58,35 @@ app.get('/api/events', async (req, res) => {
   }
 });
 
-// makes a post request to post a new user into the users.json
+// Add user to json file
+app.post('/api/addUser', async(req, res) => {
+  const { name, email, uid } = req.body;
 
-app.post('/api/users', async (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const userId = req.body.uid;  
-
-  if (!name || !email || !userId) {
+  if (!name || !email || !uid) {
     return res.status(400).send('Missing required fields');
   }
-
+  
   try {
-    const filePath = path.join(__dirname, 'users.json');
-    const data = await fs.readFile(filePath, 'utf8');
-    const users = JSON.parse(data);
-    const newUser = {name: name, email: email, registered:[], following: [], uid: userId};
-    users.push(newUser);
-    const updatedData = JSON.stringify(users, null, 2);
-    await fs.writeFile(filePath, updatedData, 'utf8');
+    let contents = await fs.readFile("public/data/users.json", "utf8");
+    contents = JSON.parse(contents);
+    console.log(contents);
 
-    res.status(201).send('User added successfully');
+    contents.users.push({
+      name,
+      email,
+      registered: [],
+      following: [],
+      uid,
+      org: false
+    });
+
+    await fs.writeFile("public/data/users.json", JSON.stringify(contents, null, 2));
+    res.type("text").send("user has been created");
+
   } catch (err) {
     console.log(err);
-    res.status(500).send('Internal server error');
   }
 });
-
 
 // When you run nodemon in the console, you can open the website
 // by visiting localhost:8000
