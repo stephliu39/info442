@@ -403,11 +403,9 @@ const orgDetailsPage = document.getElementById("organization-details");
 
   // finds the logged in user in the json
   function checkUser(allUsers) {
-    console.log(currentUser.uid);
 
     allUsers.forEach((user) => {
       if (user.uid === currentUser.uid) {
-        console.log(user.uid + ", successfully logged in!");
         changeView(user);
       }
     });
