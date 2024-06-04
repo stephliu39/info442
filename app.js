@@ -22,16 +22,16 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 //debugging attempt (posts to events JSON) - stephanie
-const dataDir = path.join(__dirname, 'public/data');
-const eventsFile = path.join(dataDir, 'events.json');
+// const dataDir = path.join(__dirname, 'public/data');
+// const eventsFile = path.join(dataDir, 'events.json');
 
-if (!fsSync.existsSync(dataDir)) {
-  fsSync.mkdirSync(dataDir, { recursive: true });
-}
+// if (!fs.existsSync(dataDir)) {
+//   fs.mkdirSync(dataDir, { recursive: true });
+// }
 
-if (!fsSync.existsSync(eventsFile)) {
-  fsSync.writeFileSync(eventsFile, '[]');
-}
+// if (!fs.existsSync(eventsFile)) {
+//   fs.writeFileSync(eventsFile, '[]');
+// }
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
