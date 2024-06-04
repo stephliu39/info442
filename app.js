@@ -16,9 +16,24 @@ const multer = require('multer');
 const ERR_MSG = "Something went wrong";
 const ERR_CODE = 500;
 
+
 const fs = require("fs").promises;
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+
+//debugging attempt (posts to events JSON) - stephanie
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, 'public/uploads'));
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({storage: storage});
+// ^^^^^ debugging attempt (posts to events JSON) - stephanie
 
 // returns organizations in json format. You can access this using fetch in index.js
 app.get('/api/organizations', async (req, res) => {
