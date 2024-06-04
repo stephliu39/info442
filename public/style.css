@@ -598,11 +598,13 @@ input[type=text]#search {
 /*footer*/
 footer {
     text-align: center;
-    padding: 1px;
+    display: block;
+    padding: 5px;
     background-color: #4C4B68;
     color: white;
     flex-shrink: 0; /* Prevents the footer from shrinking */
     position: relative;
+    margin-top: 10px;
 }
 footer a {
     color: lightgray;
