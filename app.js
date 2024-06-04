@@ -88,6 +88,38 @@ app.post('/api/addUser', async(req, res) => {
   }
 });
 
+// add post/event to JSON file
+app.post('/api/events', upload.single('eventImage'), async (req, res) => {
+  const { title, startTime, endTime, date, venue, description } = req.body;
+  const eventImage = req.file ? `/uploads/${req.file.filename}` : null;
+
+  if (!title || !startTime || !endTime || !date || !venue || !description || !eventImage) {
+    return res.status(400).send('Missing required fields');
+  }
+
+  try {
+    const filePath = path.join(__dirname, 'public/data/events.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const events = JSON.parse(data);
+    const newEvent = {
+      title: title,
+      startTime: startTime,
+      endTime: endTime,
+      date: date,
+      venue: venue,
+      description: description,
+      eventImage: eventImage,
+    };
+    events.push(newEvent);
+    const updatedData = JSON.stringify(events, null, 2);
+    await fs.writeFile(filePath, updatedData, 'utf8');
+    res.status(201).send('Event added successfully');
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('Internal server error');
+  }
+});
+
 // When you run nodemon in the console, you can open the website
 // by visiting localhost:8000
 const portNum = 8000;
