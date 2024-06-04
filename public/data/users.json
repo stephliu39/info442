@@ -1,153 +1,52 @@
-[
-  {
-    "name": "Cammi",
-    "email": "cammip@uw.edu",
-    "registered": [
-      123,
-      456
-    ],
-    "following": [
-      111
-    ],
-    "uid": "kMNdcWuRrKYbrhWFlPgit adRmztM7E7U2",
-    "org": false
-  },
-  {
-    "name": "Roshan",
-    "email": "roshanm@uw.edu",
-    "registered": [
-      456
-    ],
-    "following": [
-      456
-    ],
-    "uid": "zj78Tvo8k0Muf2JIaPGfx72vlfx2",
-    "org": false
-  },
-  {
-    "name": "Stephanie",
-    "email": "sliu39@uw.edu",
-    "registered": [
-      123
-    ],
-    "following": [
-      111
-    ],
-    "uid": "55ZDmG1HCrggIPM9WUZNp5IR1HP2",
-    "org": false
-  },
-  {
-    "name": "Katherine",
-    "email": "jguo25@uw.edu",
-    "registered": [
-      123
-    ],
-    "following": [
-      111,
-      789
-    ],
-    "uid": "o8SjFKyhCXgr6aX9MzrWz4EzQg93",
-    "org": false
-  },
-  {
-    "name": "Ethan",
-    "email": "ethank1121@gmail.com",
-    "registered": [
-      456
-    ],
-    "following": [
-      456
-    ],
-    "uid": "fms6b3HgA6O0SsCDEok3w2dVXWN2",
-    "org": false
-  },
-  {
-    "name": "Winfo",
-    "email": "t@uw.edu",
-    "registered": [],
-    "following": [],
-    "uid": "bzVJiziSwrd9MUVfDx5eNF70Nnw2",
-    "org": true
-  },
-  {
-    "name": "1234",
-    "email": "qwe@gmail.com",
-    "registered": [],
-    "following": [],
-    "uid": "uid-38uvekcynty"
-  }
-]
 {
   "users": [
-    {
-      "name": "Cammi",
-      "email": "cammip@uw.edu",
-      "registered": [
-        123,
-        456
-      ],
-      "following": [
-        111
-      ],
-      "uid": "kMNdcWuRrKYbrhWFlPRmztM7E7U2",
-      "org": false
-    },
-    {
-      "name": "Roshan",
-      "email": "roshanm@uw.edu",
-      "registered": [
-        456
-      ],
-      "following": [
-        456
-      ],
-      "uid": "zj78Tvo8k0Muf2JIaPGfx72vlfx2",
-      "org": false
-    },
-    {
-      "name": "Stephanie",
-      "email": "sliu39@uw.edu",
-      "registered": [
-        123
-      ],
-      "following": [
-        111
-      ],
-      "uid": "55ZDmG1HCrggIPM9WUZNp5IR1HP2",
-      "org": false
-    },
-    {
-      "name": "Katherine",
-      "email": "jguo25@uw.edu",
-      "registered": [
-        123
-      ],
-      "following": [
-        111,
-        789
-      ],
-      "uid": "o8SjFKyhCXgr6aX9MzrWz4EzQg93",
-      "org": false
-    },
-    {
-      "name": "Ethan",
-      "email": "ethank1121@gmail.com",
-      "registered": [
-        456
-      ],
-      "following": [
-        456
-      ],
-      "uid": "fms6b3HgA6O0SsCDEok3w2dVXWN2",
-      "org": false
-    },
-    {
-      "name": "Winfo",
-      "email": "t@uw.edu",
-      "registered": [],
-      "following": [],
-      "uid": "bzVJiziSwrd9MUVfDx5eNF70Nnw2",
-      "org": true
-    }
+      {
+          "name": "Cammi",
+          "email": "cammip@uw.edu",
+          "registered": [123, 456],
+          "following": [111],
+          "uid": "kMNdcWuRrKYbrhWFlPRmztM7E7U2",
+          "org": false
+      },
+      {
+          "name": "Roshan",
+          "email": "roshanm@uw.edu",
+          "registered": [456],
+          "following": [456],
+          "uid": "zj78Tvo8k0Muf2JIaPGfx72vlfx2",
+          "org": false
+      },
+      {
+          "name": "Stephanie",
+          "email": "sliu39@uw.edu",
+          "registered": [123],
+          "following": [111],
+          "uid": "55ZDmG1HCrggIPM9WUZNp5IR1HP2",
+          "org": false
+      },
+      {
+          "name": "Katherine",
+          "email": "jguo25@uw.edu",
+          "registered": [123],
+          "following": [111, 789],
+          "uid": "o8SjFKyhCXgr6aX9MzrWz4EzQg93",
+          "org": false
+      },
+      {
+          "name": "Ethan",
+          "email": "ethank1121@gmail.com",
+          "registered": [456],
+          "following": [456],
+          "uid": "fms6b3HgA6O0SsCDEok3w2dVXWN2",
+          "org": false
+      },
+      {
+          "name": "Winfo",
+          "email": "t@uw.edu",
+          "registered": [],
+          "following": [],
+          "uid": "bzVJiziSwrd9MUVfDx5eNF70Nnw2",
+          "org": true
+      }
   ]
 }

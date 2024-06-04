@@ -70,7 +70,6 @@ app.get('/api/users', async (req, res) => {
   try {
     let contents = await fs.readFile("public/data/users.json", "utf8");
     contents = JSON.parse(contents);
-
     res.type("json").send(contents);
   } catch (err) {
     console.log(err);
