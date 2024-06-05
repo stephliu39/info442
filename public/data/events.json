@@ -117,11 +117,6 @@
       "date": "Saturday, June 29",
       "startTime": "10:00 am",
       "endTime": "4:00 pm",
-<<<<<<< HEAD
-      "venue": "CSE 224",
-      "orgID": 222,
-      "eventImage": "../img/event7.jpg"
-=======
       "venue": "EEB 105",
       "orgID": 999,
       "eventImage": "../img/event14.jpg"
@@ -147,7 +142,6 @@
       "venue": "HUB Lawn",
       "orgID": 1111,
       "eventImage": "../img/event16.jpg"
->>>>>>> e17ff10c487b97f8745b3137c60dca7098e8dd53
     }
   ]
 }

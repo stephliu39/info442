@@ -223,11 +223,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-
   // Create and returns an event card like the one on the homepage
   function createEventCard(event) {
-    // let eventCards = document.getElementById('eventCardsContainer');
-
     let div1 = document.createElement('div');
     div1.classList.add('col-md-6', 'col-lg-4', 'mb-4');
 
@@ -236,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
     div2.setAttribute('data-event-id', event.eventID);
 
     let eventImg = document.createElement('img');
-    eventImg.src = '../img/sample.jpeg';
+    eventImg.src = event.eventImage;
     eventImg.alt = 'an image of an event';
     eventImg.classList.add('img-fluid');
     div2.appendChild(eventImg);
@@ -290,7 +287,6 @@ document.addEventListener('DOMContentLoaded', function() {
     div3.appendChild(div4);
     div2.appendChild(div3);
     div1.appendChild(div2);
-    // eventCards.appendChild(div1);
     
     div2.addEventListener('click', function() {
       window.location.hash = 'eventRegistration';
@@ -367,8 +363,6 @@ document.addEventListener('DOMContentLoaded', function() {
     div1.appendChild(div2);
     orgEventCards.appendChild(div1);
   }
-
-
   
   function showSection(sectionId) {
     document.querySelectorAll('main > section').forEach(section => {
