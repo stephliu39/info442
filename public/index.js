@@ -78,10 +78,6 @@ const orgDetailsPage = document.getElementById("organization-details");
     document.getElementById('add-event-button').addEventListener('click', function() {
       showSection('events');
     });
-    
-    document.getElementById('submit').addEventListener('click', function() {
-      showSection('profile-page');
-    });
 
     document.getElementById('save-profile').addEventListener('click', saveProfile);
 
@@ -571,9 +567,11 @@ document.addEventListener('DOMContentLoaded', function() {
       statusCheck(eventsJson);
       let result = await eventsJson.json();
       result.events.forEach((event) => {
-        if (contains(registeredEventIds, event.eventId)) {
-          matches.push(event);
-        }
+        registeredEventIds.forEach((id) => {
+          if (id === event.eventID) {
+            matches.push(event);
+          }
+        })
       });
       displayRegisteredEvents(matches);  
     } catch (err) {
