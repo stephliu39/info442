@@ -109,7 +109,7 @@ app.post('/api/addUser', async(req, res) => {
       org: false
     });
 
-    await fs.writeFile("public/data/users.json", JSON.stringify(contents, null, 2));
+    await fs.writeFile("public/data/users.json", JSON.stringify(contents));
     res.type("text").send("user has been created");
 
   } catch (err) {

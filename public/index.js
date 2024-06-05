@@ -218,8 +218,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
 
+  // Create and returns an event card like the one on the homepage
   function createEventCard(event) {
-    let eventCards = document.getElementById('eventCardsContainer');
+    // let eventCards = document.getElementById('eventCardsContainer');
 
     let div1 = document.createElement('div');
     div1.classList.add('col-md-6', 'col-lg-4', 'mb-4');
@@ -252,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let title = document.createElement('h5');
     title.classList.add('event-card-title');
-    title.textContent = event.name;
+    title.textContent = event.title;
     div4.appendChild(title);
 
     let div5 = document.createElement('div');
@@ -263,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
     div5.appendChild(desc);
 
     let dateTime = document.createElement('p');
-    dateTime.innerHTML = event.date + ' ' + event.time + '<br>' + event.location;
+    dateTime.innerHTML = event.date + ' ' + event.startTime + '-' + event.endTime + '<br>' + event.venue;
     div5.appendChild(dateTime);
 
     let currOrg;
@@ -274,7 +275,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-
     let followers = document.createElement('p');
     followers.classList.add('followers');
     followers.textContent = currOrg.name + ' • ' + currOrg.followers;
@@ -284,12 +284,15 @@ document.addEventListener('DOMContentLoaded', function() {
     div3.appendChild(div4);
     div2.appendChild(div3);
     div1.appendChild(div2);
-    eventCards.appendChild(div1);
+    // eventCards.appendChild(div1);
+    
     div2.addEventListener('click', function() {
       window.location.hash = 'eventRegistration';
       // Load event details on the registration page if needed
       loadEventDetails(event.id);
     });
+
+    return(div1);
   }
 
   function createOrgEventCard(event) {
@@ -520,9 +523,21 @@ document.addEventListener('DOMContentLoaded', function() {
       // allow create event page
     } else {
       document.querySelector('#name-greeting').textContent = "Hello, " + user.name;
-      // should not see the create event
-      // 
+      
+      // should not see the create events
+      fetchUsersEvents(user);
     }
+  }
+
+  async function fetchUserEvents(user) {
+
+  }
+
+  function displayRegisteredEvents(events) {
+    console.log(events);
+
+    // use create event card and add to this div
+    let registeredDiv = document.querySelector("#upcomingEvents");
   }
 
   async function fetchAllEvents() {
@@ -532,16 +547,18 @@ document.addEventListener('DOMContentLoaded', function() {
       let result = await eventsJson.json();
 
       // changes the website to user view
-      displayEvents(result.events);
+      displayEvents("#eventCardsContainer", result.events);
     } catch (err) {
       console.log(err);
     }
   }
 
-  function displayEvents(events) {
+  function displayEvents(location, events) {
+    let homeCardsContainer = document.querySelector(location);
+    homeCardsContainer.innerHTML = "";
     events.forEach((event) => {
-      // change createEventCard to use the data from the event object passed here
-      createEventCard(event)
+      let newCard = createEventCard(event);
+      homeCardsContainer.appendChild(newCard);
     });
   }
 
