@@ -125,6 +125,35 @@ app.post('/api/addUser', async(req, res) => {
   }
 });
 
+// lets users register for an event. adds the event to a user in users.json
+app.post('/api/register', async(req, res) => {
+  const {uid, newEventId} = req.body;
+
+  if (!uid || !newEventId) {
+    return res.status(400).send('Missing uid field');
+  }
+
+  try {
+    let contents = await fs.readFile("public/data/users.json", "utf8");
+    contents = JSON.parse(contents);
+
+    let user = contents.users.find(user => user.uid === uid);
+    console.log(user);
+
+    // if the user is found, push the new event into the user's registered events
+    if (user) {
+      user.registered.push(newEventId);
+      await fs.writeFile("public/data/users.json", JSON.stringify(contents, null, 2));
+      res.type("text").send("You have registered!");
+    } else {
+      res.status(404).send('User not found');
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('Server error. Please try again');
+  }
+});
+
 app.post('/api/addEvent', async (req, res) => {
   const { eventID, title, description, date, startTime, endTime, venue, orgId, eventImage } = req.body;
 
