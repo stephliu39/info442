@@ -1048,6 +1048,12 @@ document.addEventListener('DOMContentLoaded', function() {
           showSection('login');
         }
       }
+      document.querySelectorAll('.navbar-nav .nav-item').forEach(item => {
+        item.addEventListener('click', function () {
+          const sectionId = this.querySelector('a').id.replace('nav-', '');
+          window.location.hash = sectionId;
+        });
+      });
     
       function loginListeners() {
         document.querySelector("#login-error-msg").textContent = "";
