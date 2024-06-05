@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
 
-  // Creates an event card like the one on the homepage
+  // Create and returns an event card like the one on the homepage
   function createEventCard(event) {
     // let eventCards = document.getElementById('eventCardsContainer');
 
@@ -532,14 +532,14 @@ document.addEventListener('DOMContentLoaded', function() {
       let result = await eventsJson.json();
 
       // changes the website to user view
-      displayEvents(result.events);
+      displayEvents("#eventCardsContainer", result.events);
     } catch (err) {
       console.log(err);
     }
   }
 
-  function displayEvents(events) {
-    let homeCardsContainer = document.querySelector("#eventCardsContainer");
+  function displayEvents(location, events) {
+    let homeCardsContainer = document.querySelector(location);
     homeCardsContainer.innerHTML = "";
     events.forEach((event) => {
       let newCard = createEventCard(event);
