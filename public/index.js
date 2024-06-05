@@ -541,9 +541,11 @@ document.addEventListener('DOMContentLoaded', function() {
       statusCheck(eventsJson);
       let result = await eventsJson.json();
       result.events.forEach((event) => {
-        if (contains(registeredEventIds, event.eventId)) {
-          matches.push(event);
-        }
+        registeredEventIds.forEach((id) => {
+          if (id === event.eventID) {
+            matches.push(event);
+          }
+        })
       });
       displayRegisteredEvents(matches);  
     } catch (err) {
