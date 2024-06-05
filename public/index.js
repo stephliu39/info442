@@ -78,6 +78,9 @@ const orgDetailsPage = document.getElementById("organization-details");
     document.getElementById('add-event-button').addEventListener('click', function() {
       showSection('events');
     });
+    document.getElementById('submit').addEventListener('click', function() {
+      showSection('profile-page');
+    });
 
     document.getElementById('save-profile').addEventListener('click', saveProfile);
 
@@ -89,8 +92,9 @@ const orgDetailsPage = document.getElementById("organization-details");
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         currentUser = user;
+        document.querySelector("nav").classList.remove("hidden");
+        document.querySelector("footer").classList.remove("hidden");
         showSection('home');
-        document.querySelector("header").classList.remove("hidden");
       } else {
         showSection('login');
       }
@@ -117,24 +121,6 @@ function loadEvents() {
       events = data.events;
     })
     .catch(error => console.error('Error loading events:', error));
-}
-
-// Fetch event details by ID from the loaded events
-function getEventDetailsById(eventId) {
-  return events.find(event => event.eventID === eventId) || { eventID: eventId, title: 'Winfo HACKTHON' };
-}
-
-function loadEventDetails(eventId) {
-  currentEventId = eventId;
-  const eventDetails = getEventDetailsById(eventId);
-  document.getElementById('event-title').textContent = eventDetails.title;
-  document.getElementById('event-image').src = eventDetails.image;
-  document.getElementById('event-description').textContent = eventDetails.description;
-  document.getElementById('event-date').textContent = eventDetails.date;
-  document.getElementById('event-time').textContent = eventDetails.startTime;
-  document.getElementById('event-location').textContent = eventDetails.venue;
-
-  console.log(`Loading event details for event ID: ${eventId}`, eventDetails);
 }
 
 
@@ -203,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
   function routeNavBar() {
+    
     const homeNav = document.getElementById('nav-home');
     const notificationsNav = document.getElementById('nav-notifications');
     const profileNav = document.getElementById('nav-profile');
@@ -240,11 +227,20 @@ document.addEventListener('DOMContentLoaded', function() {
       const card = document.createElement('div');
       card.classList.add('event-card');
       card.innerHTML = `
-        <h5>${event.title}</h5>
-        <p>${event.description}</p>
+        <img src="${event.eventImage}" alt="Event Image" class="img-fluid">
+        <button class="bookmark-btn"><i class="bi bi-bookmark"></i></button>
+        <div class="event-card-body">
+          <span class="badge">New</span>
+          <h5 class="event-card-title">${event.title}</h5>
+          <div class="event-card-details">
+            <p>${event.description}</p>
+            <p>${event.date} ${event.startTime}-${event.endTime}<br>${event.venue}</p>
+            <p class="followers">${event.followers}</p>
+          </div>
+        </div>
       `;
       card.addEventListener('click', function() {
-        window.location.hash = `#eventRegistration/${event.eventID}`;
+        window.location.hash = `eventRegistration/${event.eventID}`;
       });
       container.appendChild(card);
     });
@@ -319,7 +315,6 @@ document.addEventListener('DOMContentLoaded', function() {
     div2.addEventListener('click', function() {
       window.location.hash = 'eventRegistration';
       // Load event details on the registration page if needed
-      loadEventDetails(currentEventId);
     });
 
     return(div1);
@@ -394,25 +389,31 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function showSection(sectionId) {
     document.querySelectorAll('main > section').forEach(section => {
-      section.classList.add('hidden');
+        section.classList.add('hidden');
     });
     const section = document.getElementById(sectionId);
     if (section) {
-      section.classList.remove('hidden');
+        section.classList.remove('hidden');
     } else {
-      console.error(`Section with ID '${sectionId}' not found.`);
+        console.error(`Section with ID '${sectionId}' not found.`);
     }
-  }
+}
 
   function route() {
     const hash = window.location.hash.replace('#', '') || 'login';
-    // Only show the section if the user is authenticated or if it's the login/signup page
     if (currentUser || hash === 'login' || hash === 'signup') {
-      showSection(hash);
+      if (hash.startsWith('eventRegistration')) {
+        const eventId = hash.split('/')[1];
+        showSection('eventRegistration');
+        loadEventDetails(eventId);
+      } else {
+        showSection(hash);
+      }
     } else {
       showSection('login');
     }
   }
+
 
   function loginListeners() {
     document.querySelector("#login-error-msg").textContent = "";
@@ -669,16 +670,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentUser = null;
     let allOrgs = [];
     let allEvents = [];
-    const loginPage = document.getElementById("login");
-    const signUpPage = document.getElementById("signup");
-    const homePage = document.getElementById("home");
-    const createEventPage = document.getElementById("create-event");
-    const profilePage = document.getElementById("profile-page");
-    const notifPage = document.getElementById("notifications");
-    const eventsPage = document.getElementById("events");
-    const eventRegistrationPage = document.getElementById("eventRegistration");
-    const orgDetailsPage = document.getElementById("organization-details");
-    
+
     (function(){
       window.addEventListener("load", init);
       window.addEventListener("hashchange", route);
@@ -742,14 +734,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check if the user is already authenticated on page load
         firebase.auth().onAuthStateChanged(user => {
           if (user) {
-            currentUser = user;
-            showSection('home');
-            document.querySelector("header").classList.remove("hidden");
+              currentUser = user;
+              showSection('home');
+              document.querySelector("nav").classList.remove("hidden");
           } else {
-            showSection('login');
+              currentUser = null;
+              showSection('login');
           }
-          route(); // Route on initial load based on the current hash
-        });
+          route();
+      });
         loadEvents();
         const registerButton = document.querySelector('.btn-success');
         if (registerButton) {
@@ -768,7 +761,7 @@ document.addEventListener('DOMContentLoaded', function() {
       fetch('events.json')
         .then(response => response.json())
         .then(data => {
-          events = data.events;
+          renderEventCards(data.events);
         })
         .catch(error => console.error('Error loading events:', error));
     }
@@ -779,17 +772,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function loadEventDetails(eventId) {
-      currentEventId = eventId;
-      const eventDetails = getEventDetailsById(eventId);
-      document.getElementById('event-title').textContent = eventDetails.title;
-      document.getElementById('event-image').src = eventDetails.image;
-      document.getElementById('event-description').textContent = eventDetails.description;
-      document.getElementById('event-date').textContent = eventDetails.date;
-      document.getElementById('event-time').textContent = eventDetails.startTime;
-      document.getElementById('event-location').textContent = eventDetails.venue;
-    
-      console.log(`Loading event details for event ID: ${eventId}`, eventDetails);
+      fetch('/api/events')
+        .then(response => response.json())
+        .then(data => {
+          const event = data.events.find(e => e.eventID == eventId);
+          if (event) {
+            document.getElementById('event-title').textContent = event.title;
+            document.getElementById('event-image').src = event.eventImage;
+            document.getElementById('event-description').textContent = event.description;
+            document.getElementById('event-date').textContent = event.date;
+            document.getElementById('event-time').textContent = event.startTime;
+            document.getElementById('event-location').textContent = event.venue;
+          } else {
+            console.error(`Event with ID '${eventId}' not found.`);
+          }
+        })
+        .catch(error => console.error('Error loading event details:', error));
     }
+    
     
     
     function registerForEvent(eventId) {
@@ -873,8 +873,6 @@ document.addEventListener('DOMContentLoaded', function() {
           notificationsNav.addEventListener('click', () => {
             window.location.hash = 'notifications';
           });
-        } else {
-          console.error('Navigation element "nav-notifications" not found');
         }
     
         if (profileNav) {
@@ -886,79 +884,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
     
-      // Create and returns an event card like the one on the homepage
-      function createEventCard(event) {
-        let div1 = document.createElement('div');
-        div1.classList.add('col-md-6', 'col-lg-4', 'mb-4');
-    
-        let div2 = document.createElement('div');
-        div2.classList.add('event-card', 'h-100', 'position-relative');
-        div2.setAttribute('data-event-id', event.eventID);
-    
-        let eventImg = document.createElement('img');
-        eventImg.src = event.eventImage;
-        eventImg.alt = 'an image of an event';
-        eventImg.classList.add('img-fluid');
-        div2.appendChild(eventImg);
-    
-        let bm = document.createElement('button');
-        bm.classList.add('bookmark-btn');
-        let iElem = document.createElement('i');
-        iElem.classList.add('bi', 'bi-bookmark');
-        bm.appendChild(iElem);
-        div2.appendChild(bm);
-    
-        let div3 = document.createElement('div');
-        div3.classList.add('event-card-body');
-    
-        let div4 = document.createElement('div');
-        let badge = document.createElement('span');
-        badge.textContent = "New";
-        badge.classList.add('badge');
-        div4.appendChild(badge);
-    
-        let title = document.createElement('h5');
-        title.classList.add('event-card-title');
-        title.textContent = event.title;
-        div4.appendChild(title);
-    
-        let div5 = document.createElement('div');
-        div5.classList.add('event-card-details');
-    
-        let desc = document.createElement('p');
-        desc.textContent = event.description;
-        div5.appendChild(desc);
-    
-        let dateTime = document.createElement('p');
-        dateTime.innerHTML = event.date + ' ' + event.startTime + '-' + event.endTime + '<br>' + event.venue;
-        div5.appendChild(dateTime);
-    
-        let currOrg;
-        
-        allOrgs.forEach((org) => {
-          if (org.orgID === event.orgID) {
-            currOrg = org;
-          }
-        });
-    
-        let followers = document.createElement('p');
-        followers.classList.add('followers');
-        followers.textContent = currOrg.name + ' • ' + currOrg.followers;
-        div5.appendChild(followers);
-    
-        div4.appendChild(div5);
-        div3.appendChild(div4);
-        div2.appendChild(div3);
-        div1.appendChild(div2);
-        
-        div2.addEventListener('click', function() {
-          window.location.hash = 'eventRegistration';
-          // Load event details on the registration page if needed
-          loadEventDetails(event.eventID);
-        });
-    
-        return(div1);
-      }
     
       function createOrgEventCard(event) {
         let orgEventCards = document.getElementById('orgEventCardsContainer');
@@ -1039,15 +964,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
     
-      function route() {
-        const hash = window.location.hash.replace('#', '') || 'login';
-        // Only show the section if the user is authenticated or if it's the login/signup page
-        if (currentUser || hash === 'login' || hash === 'signup') {
-          showSection(hash);
-        } else {
-          showSection('login');
-        }
-      }
+  
       document.querySelectorAll('.navbar-nav .nav-item').forEach(item => {
         item.addEventListener('click', function () {
           const sectionId = this.querySelector('a').id.replace('nav-', '');
