@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let title = document.createElement('h5');
     title.classList.add('event-card-title');
-    title.textContent = event.name;
+    title.textContent = event.title;
     div4.appendChild(title);
 
     let div5 = document.createElement('div');
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
     div5.appendChild(desc);
 
     let dateTime = document.createElement('p');
-    dateTime.innerHTML = event.date + ' ' + event.time + '<br>' + event.location;
+    dateTime.innerHTML = event.date + ' ' + event.startTime + '-' + event.endTime + '<br>' + event.venue;
     div5.appendChild(dateTime);
 
     let currOrg;
