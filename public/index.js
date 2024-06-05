@@ -185,6 +185,12 @@ document.addEventListener('DOMContentLoaded', function() {
       window.location.hash = 'home';
     });
   }
+  const saveForLaterButton = document.getElementById('save-later');
+  if (saveForLaterButton) {
+    saveForLaterButton.addEventListener('click', function() {
+      saveEventForLater(currentEventId);
+    });
+  }
 });
 
   function routeNavBar() {

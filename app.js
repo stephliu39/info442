@@ -141,7 +141,7 @@ app.post('/api/events', upload.single('eventImage'), async (req, res) => {
       description: description,
       eventImage: eventImage,
     };
-    events.push(newEvent);
+   // events.push(newEvent);
     const updatedData = JSON.stringify(events, null, 2);
     await fs.writeFile(filePath, updatedData, 'utf8');
     res.status(201).send('Event added successfully');
