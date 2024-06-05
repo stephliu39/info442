@@ -31,7 +31,7 @@ const orgDetailsPage = document.getElementById("organization-details");
 
   function init() {
     fetchAllOrgs();
-    fetchAllEvents();
+    fetchEvents();
 
     routeNavBar();
     loginListeners();
@@ -601,7 +601,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  async function fetchAllEvents() {
+  async function fetchEvents() {
     try {
       let eventsJson = await fetch("api/events");
       statusCheck(eventsJson);
