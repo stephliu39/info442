@@ -155,7 +155,7 @@ function updateNotifications(eventId) {
   <div data-id="${eventId}" class="notification-item">
   <strong>${eventDetails.name}</strong>
   <p>${eventDetails.description}</p>
-</div>
+  </div>
   `;
 
   notificationsList.appendChild(notificationItem);
@@ -555,6 +555,8 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // should not see the create events
       fetchUserEvents(user);
+
+      fetchNotification(user);
     }
   }
 
@@ -580,14 +582,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  function contains(list, target) {
-    for (let i = 0; i < list.size; i++) {
-      if (list[i] === target) {
-        return true;
-      }
-    }
-    return false;
-  }
+
+
 
   function displayRegisteredEvents(events) {
     console.log(events);
@@ -665,6 +661,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!response.ok) {
       throw new Error(await response.text());
     }
+
+
+
+    ////
+
     "use strict";
     
     let currentUser = null;
@@ -770,6 +771,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function getEventDetailsById(eventId) {
       return events.find(event => event.eventID === eventId) || { eventID: eventId, title: 'Winfo HACKTHON' };
     }
+    function showNotificationDetails(eventDetails) {
+      document.getElementById('notification-title').textContent = eventDetails.title;
+      document.getElementById('notification-image').src = eventDetails.eventImage;
+      document.getElementById('notification-description').textContent = eventDetails.description;
+      document.getElementById('notification-date').textContent = `Date: ${eventDetails.date}`;
+      document.getElementById('notification-time').textContent = `Time: ${eventDetails.startTime} - ${eventDetails.endTime}`;
+      document.getElementById('notification-location').textContent = `Location: ${eventDetails.venue}`;
+  }
     
     function loadEventDetails(eventId) {
       fetch('/api/events')
@@ -794,13 +803,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function registerForEvent(eventId) {
       let registeredEvents = JSON.parse(localStorage.getItem('registeredEvents')) || [];
-      registeredEvents.push(eventId);
-      localStorage.setItem('registeredEvents', JSON.stringify(registeredEvents));
-    
-      showConfirmationPopup('You have successfully registered for the event.');
-    
-      updateNotifications(eventId);
-    }
+      if (!registeredEvents.includes(eventId)) {
+          registeredEvents.push(eventId);
+          localStorage.setItem('registeredEvents', JSON.stringify(registeredEvents));
+  
+          showConfirmationPopup('You have successfully registered for the event.');
+          updateNotifications(eventId);
+          saveUserRegistration(currentUser.uid, eventId);
+      }
+  }
+  
     
     function showConfirmationPopup(message) {
       const popup = document.createElement('div');
@@ -814,6 +826,43 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 3000);
     }
     
+    function saveUserRegistration(uid, eventId) {
+      // Fetch the user data and update the registered events array
+      fetch('/api/users')
+          .then(response => response.json())
+          .then(data => {
+              const user = data.users.find(user => user.uid === uid);
+              if (user) {
+                  user.registered.push(eventId);
+                  // Update the user data in the server
+                  fetch('/api/addUser', {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify(user)
+                  }).then(response => {
+                      if (response.ok) {
+                          console.log('User registration updated');
+                      } else {
+                          console.error('Failed to update user registration');
+                      }
+                  });
+              }
+          });
+  }
+
+  function loadUserNotifications() {
+    const registeredEvents = JSON.parse(localStorage.getItem('registeredEvents')) || [];
+    registeredEvents.forEach(eventId => {
+        updateNotifications(eventId);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadUserNotifications();
+});
+//
     function updateNotifications(eventId) {
       const eventDetails = getEventDetailsById(eventId);
       const notificationsList = document.querySelector('.notification-list ul');
