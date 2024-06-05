@@ -117,6 +117,10 @@ app.post('/api/addUser', async(req, res) => {
   }
 });
 
+app.post('/api/addEvent', async (req, res) => {
+  const { eventID, title, description, date, startTime, endTime, venue, orgId, eventImage } = req.body;
+});
+
 // add post/event to JSON file
 app.post('/api/events', upload.single('eventImage'), async (req, res) => {
   const { title, startTime, endTime, date, venue, description } = req.body;

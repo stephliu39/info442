@@ -3,6 +3,7 @@
 
 let currentUser = null;
 let allOrgs = [];
+let allEvents = [];
 const loginPage = document.getElementById("login");
 const signUpPage = document.getElementById("signup");
 const homePage = document.getElementById("home");
@@ -30,6 +31,7 @@ const orgDetailsPage = document.getElementById("organization-details");
 
   function init() {
     fetchAllOrgs();
+    fetchAllEvents();
 
     routeNavBar();
     loginListeners();
@@ -539,25 +541,30 @@ document.addEventListener('DOMContentLoaded', function() {
       statusCheck(eventsJson);
       let result = await eventsJson.json();
       result.events.forEach((event) => {
-        if (registeredEventIds.contains(event.eventId)) {
-          // if an eventId matches with one of the events the user is registered for,
-          // use createEventCard(event) and specify the upcomingEvents div as the location
-          // parameter
+        if (contains(registeredEventIds, event.eventId)) {
           matches.push(event);
         }
-        displayRegisteredEvents(matches);
-      });  
+      });
+      displayRegisteredEvents(matches);  
     } catch (err) {
       console.log(err);
     }
+  }
+
+  function contains(list, target) {
+    for (let i = 0; i < list.size; i++) {
+      if (list[i] === target) {
+        return true;
+      }
+    }
+    return false;
   }
 
   function displayRegisteredEvents(events) {
     console.log(events);
 
     // use create event card and add to this div
-    let registeredDiv = document.querySelector("#upcomingEvents");
-    displayEvents(registeredDiv, events);
+    displayEvents("#upcomingEvents", events);
   }
 
   async function fetchAllEvents() {
@@ -594,16 +601,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  async function fetchAllEvents() {
+    try {
+      let eventsJson = await fetch("api/events");
+      statusCheck(eventsJson);
+      let result = await eventsJson.json();
+
+      pushEvents(result.events);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function pushEvents(events) {
+    events.forEach((event) => {
+      allEvents.push(event);
+    })
+    console.log(allEvents);
+  }
 
   // pushs all organizations into an array allOrgs
   function pushOrgs(orgs) {
     orgs.forEach((org) => {
       allOrgs.push(org);
     });
-
-    console.log(allOrgs);
   }
-
 
   /**
    * Checks if the response is valid
