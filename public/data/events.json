@@ -1,37 +1,92 @@
 {
-    "events": [
-        {
-            "eventID": 123,
-            "title": "Hackathon",
-            "description": "Annual WINFO hackathon.",
-            "date": "Saturday, May 18",
-            "startTime": "9:00 am",
-            "endTime": "5:00 pm",
-            "venue": "HUB 150",
-            "orgID": 111,
-            "eventImage": "../img/event4.jpg"
-        },
-        {
-            "eventID": 456,
-            "title": "Design Workshop",
-            "description": "Gain design skills with DubsTech!",
-            "date": "Wednesday, May 8",
-            "startTime": "5:00 pm",
-            "endTime": "7:00 pm",
-            "venue": "HUB 204",
-            "orgID": 222,
-            "eventImage": "../img/event1.jpg"
-        },
-        {
-            "eventID": 789,
-            "title": "Fashion Show",
-            "description": "Annual MESH fashion show.",
-            "date": "Friday, May 17",
-            "startTime": "5:00 pm",
-            "endTime": "8:00 pm",
-            "venue": "Red Square",
-            "orgID": 333,
-            "eventImage": "../img/event5.jpg"
-        }
-    ]
+  "events": [
+    {
+      "eventID": 123,
+      "title": "Hackathon",
+      "description": "Annual WINFO hackathon.",
+      "date": "Saturday, May 18",
+      "startTime": "9:00 am",
+      "endTime": "5:00 pm",
+      "venue": "HUB 150",
+      "orgID": 111,
+      "eventImage": "../img/event4.jpg"
+    },
+    {
+      "eventID": 456,
+      "title": "Design Workshop",
+      "description": "Gain design skills with DubsTech!",
+      "date": "Wednesday, May 8",
+      "startTime": "5:00 pm",
+      "endTime": "7:00 pm",
+      "venue": "HUB 204",
+      "orgID": 222,
+      "eventImage": "../img/event1.jpg"
+    },
+    {
+      "eventID": 789,
+      "title": "Fashion Show",
+      "description": "Annual MESH fashion show.",
+      "date": "Friday, May 17",
+      "startTime": "5:00 pm",
+      "endTime": "8:00 pm",
+      "venue": "Red Square",
+      "orgID": 333,
+      "eventImage": "../img/event5.jpg"
+    },
+    {
+      "eventID": 101,
+      "title": "Design Senior Show",
+      "description": "Showcase of Design senior student art projects.",
+      "date": "Friday, June 15",
+      "startTime": "12:00 pm",
+      "endTime": "6:00 pm",
+      "venue": "ART 126",
+      "orgID": 333,
+      "eventImage": "/img/event8.jpg"
+    },
+    {
+      "eventID": 202,
+      "title": "Guest Lecture: AI in Healthcare",
+      "description": "Lecture on the impact of AI in the healthcare industry.",
+      "date": "Wednesday, June 20",
+      "startTime": "3:00 pm",
+      "endTime": "5:00 pm",
+      "venue": "KNE 302",
+      "orgID": 444,
+      "eventImage": "/img/event9.jpg"
+    },
+    {
+      "eventID": 303,
+      "title": "Yoga Workshop",
+      "description": "A workshop to learn and practice yoga.",
+      "date": "Saturday, June 22",
+      "startTime": "8:00 am",
+      "endTime": "10:00 am",
+      "venue": "HUB Lawn",
+      "orgID": 555,
+      "eventImage": "/img/event10.jpg"
+    },
+    {
+      "eventID": 404,
+      "title": "Entrepreneurship Panel",
+      "description": "Panel discussion with successful entrepreneurs.",
+      "date": "Tuesday, June 25",
+      "startTime": "5:00 pm",
+      "endTime": "7:00 pm",
+      "venue": "MGH 201",
+      "orgID": 666,
+      "eventImage": "/img/event11.jpg"
+    },
+    {
+      "eventID": 505,
+      "title": "Coding Bootcamp",
+      "description": "Learn the basics of coding in Python.",
+      "date": "Monday, June 10",
+      "startTime": "10:00 am",
+      "endTime": "4:00 pm",
+      "venue": "CSE 224",
+      "orgID": 222,
+      "eventImage": "/img/event7.jpg"
+    }
+  ]
 }
