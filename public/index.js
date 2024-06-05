@@ -531,13 +531,14 @@ document.addEventListener('DOMContentLoaded', function() {
       document.querySelector('#name-greeting').textContent = "Hello, " + user.name;
       
       // should not see the create events
-      fetchUsersEvents(user);
+      fetchUserEvents(user);
     }
   }
 
   async function fetchUserEvents(user) {
     let registeredEventIds = user.registered;
     console.log(registeredEventIds);
+    let matches = [];
 
     try {
       let eventsJson = await fetch("api/events");
@@ -548,7 +549,9 @@ document.addEventListener('DOMContentLoaded', function() {
           // if an eventId matches with one of the events the user is registered for,
           // use createEventCard(event) and specify the upcomingEvents div as the location
           // parameter
+          matches.push(event);
         }
+        displayRegisteredEvents(matches);
       });  
     } catch (err) {
       console.log(err);
@@ -560,6 +563,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // use create event card and add to this div
     let registeredDiv = document.querySelector("#upcomingEvents");
+    displayEvents(registeredDiv, events);
   }
 
   async function fetchAllEvents() {
