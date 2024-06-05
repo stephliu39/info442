@@ -92,15 +92,26 @@ const orgDetailsPage = document.getElementById("organization-details");
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         currentUser = user;
-        document.querySelector("nav").classList.remove("hidden");
-        document.querySelector("footer").classList.remove("hidden");
         showSection('home');
+        document.querySelector("nav").classList.remove("hidden");
+        fetchNotification(user); // Corrected function call to fetch notifications
       } else {
+        currentUser = null;
         showSection('login');
       }
-      route(); // Route on initial load based on the current hash
+      route();
     });
-    loadEvents();
+    
+    async function fetchUserProfile(uid) {
+      try {
+        let contents = await fetch("/api/users");
+        let users = await contents.json();
+        return users.users.find(user => user.uid === uid);
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+      }
+    }
+
     const registerButton = document.querySelector('.btn-success');
     if (registerButton) {
       registerButton.addEventListener('click', function() {
@@ -131,7 +142,6 @@ function registerForEvent(eventId) {
 
   showConfirmationPopup('You have successfully registered for the event.');
 
-  updateNotifications(eventId);
 }
 
 function showConfirmationPopup(message) {
@@ -146,24 +156,6 @@ function showConfirmationPopup(message) {
   }, 3000);
 }
 
-function updateNotifications(eventId) {
-  const eventDetails = getEventDetailsById(eventId);
-  const notificationsList = document.querySelector('.notification-list ul');
-  const notificationItem = document.createElement('li');
-  notificationItem.classList.add('list-group-item');
-  notificationItem.innerHTML = `
-  <div data-id="${eventId}" class="notification-item">
-  <strong>${eventDetails.name}</strong>
-  <p>${eventDetails.description}</p>
-  </div>
-  `;
-
-  notificationsList.appendChild(notificationItem);
-  // Add click event to show detailed notification content
-  notificationItem.addEventListener('click', function() {
-    showNotificationDetails(eventDetails);
-  });
-}
 
 document.addEventListener('DOMContentLoaded', function() {
   loadEvents(); // Load events on page load
@@ -461,60 +453,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Creates an account in firebase and adds the user to the users json file
   function signupUser() {
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
-
-    if (email && password) {
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-          currentUser = user.user;
-          handleSignUp();
-          fetchAllEvents();
-          showSection('home');
-          document.querySelector("nav").classList.remove("hidden");
-          document.querySelector("footer").classList.remove("hidden");
-      })
-      .catch((error) => {
-        showError("signup-error-msg", error);
-      });
-    } else {
-      showError("signup-error-msg", "error");
-    }
-  }
-
-  async function handleSignUp() {
     const name = document.getElementById('signup-name').value;
     const email = document.getElementById('signup-email').value;
-    const uid = currentUser.uid;
-
-    const data = {
-      name: name,
-      email: email,
-      uid: uid
-    };
-
-    // add the user to the json file here
-    try {
-      const response = await fetch('/api/addUser', {
+    const password = document.getElementById('signup-password').value;
+  
+    if (name && email && password) {
+      fetch('/api/signupUser', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'users/json'
         },
-        body: JSON.stringify(data)
-      });
-
-      if(!response.ok) {
-        throw new Error('could not create user');
-      }
-
-      const res = await response.text();
-      console.log(res);
-
-    } catch (err) {
-      console.log(err);
+        body: JSON.stringify({ name, email, password })
+      }).then(response => response.text())
+        .then(result => {
+          console.log(result);
+          firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+              const user = userCredential.user;
+              currentUser = user;
+              fetchUserProfile(user.uid)
+                .then(userProfile => {
+                  currentUserProfile = userProfile;
+                  showSection('home');
+                  document.querySelector("nav").classList.remove("hidden");
+                  fetchNotification(currentUserProfile); // Fetch notifications for the new user
+                })
+                .catch(error => console.error("Error fetching user profile:", error));
+            })
+            .catch(error => showError("signup-error-msg", error.message));
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          showError("signup-error-msg", "Failed to sign up.");
+        });
+    } else {
+      showError("signup-error-msg", "All fields are required.");
     }
   }
-  
+
+
   /**
    * Fetches user data. We can use this data to get data of the currentUser
    */
@@ -582,7 +559,62 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  async function fetchNotification(userProfile) {
+    let notificationEventIds = userProfile.notif;
+    console.log(notificationEventIds);
+    let matches = [];
+  
+    try {
+      let eventsJson = await fetch("/api/events"); // Ensure this endpoint returns the correct events data
+      statusCheck(eventsJson);
+      let result = await eventsJson.json();
+      result.events.forEach((event) => {
+        if (notificationEventIds.includes(event.eventID)) {
+          matches.push(event);
+        }
+      });
+      displayNotificationEvents(matches);  
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
+function displayNotificationEvents(events) {
+  const notificationItems = document.getElementById('notificationItems');
+  notificationItems.innerHTML = ''; // Clear existing notifications
+
+  events.forEach(event => {
+    const card = document.createElement('div');
+    card.classList.add('card', 'mb-3');
+
+    card.innerHTML = `
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="${event.eventImage}" class="card-img" alt="Event Image">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Thank you for registering for ${event.title}</h5>
+            <p class="card-text">${event.description}</p>
+            <p class="card-text">
+              <small class="text-muted">${event.date} ${event.startTime}-${event.endTime}</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    notificationItems.appendChild(card);
+  });
+}
+
+
+function statusCheck(response) {
+  if (!response.ok) {
+    throw new Error('Network response was not ok ' + response.statusText);
+  }
+  return response;
+}
 
 
   function displayRegisteredEvents(events) {
@@ -811,6 +843,22 @@ document.addEventListener('DOMContentLoaded', function() {
           updateNotifications(eventId);
           saveUserRegistration(currentUser.uid, eventId);
       }
+      fetch('/api/registerEvent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ uid: currentUser.uid, eventId: eventId })
+      }).then(response => response.text())
+        .then(result => {
+          console.log(result);
+          showConfirmationPopup('You have successfully registered for the event.');
+          updateNotifications(eventId);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          showError("registration-error-msg", "Failed to register for the event.");
+        });
   }
   
     
@@ -1067,60 +1115,46 @@ document.addEventListener('DOMContentLoaded', function() {
     
       // Creates an account in firebase and adds the user to the users json file
       function signupUser() {
-        const email = document.getElementById('signup-email').value;
-        const password = document.getElementById('signup-password').value;
-    
-        if (email && password) {
-          firebase.auth().createUserWithEmailAndPassword(email, password)
-          .then((user) => {
-              currentUser = user.user;
-              handleSignUp();
-              fetchAllEvents();
-              showSection('home');
-              document.querySelector("nav").classList.remove("hidden");
-              document.querySelector("footer").classList.remove("hidden");
-          })
-          .catch((error) => {
-            showError("signup-error-msg", error);
-          });
-        } else {
-          showError("signup-error-msg", "error");
-        }
-      }
-    
-      async function handleSignUp() {
         const name = document.getElementById('signup-name').value;
         const email = document.getElementById('signup-email').value;
-        const uid = currentUser.uid;
-    
-        const data = {
-          name: name,
-          email: email,
-          uid: uid
-        };
-    
-        // add the user to the json file here
-        try {
-          const response = await fetch('/api/addUser', {
+        const password = document.getElementById('signup-password').value;
+      
+        if (name && email && password) {
+          fetch('/api/signupUser', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
-          });
-    
-          if(!response.ok) {
-            throw new Error('could not create user');
-          }
-    
-          const res = await response.text();
-          console.log(res);
-    
-        } catch (err) {
-          console.log(err);
+            body: JSON.stringify({ name, email, password })
+          }).then(response => response.text())
+            .then(result => {
+              console.log(result);
+              firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                  const user = userCredential.user;
+                  currentUser = user;
+                  fetchUserProfile(user.uid)
+                    .then(userProfile => {
+                      currentUserProfile = userProfile;
+                      showSection('home');
+                      document.querySelector("nav").classList.remove("hidden");
+                      fetchNotification(currentUserProfile); // Fetch notifications for the new user
+                    })
+                    .catch(error => console.error("Error fetching user profile:", error));
+                })
+                .catch(error => showError("signup-error-msg", error.message));
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              showError("signup-error-msg", "Failed to sign up.");
+            });
+        } else {
+          showError("signup-error-msg", "All fields are required.");
         }
       }
       
+    
+    
       /**
        * Fetches user data. We can use this data to get data of the currentUser
        */

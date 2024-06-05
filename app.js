@@ -15,9 +15,9 @@ const app = express();
 const multer = require('multer');
 const ERR_MSG = "Something went wrong";
 const ERR_CODE = 500;
-
-
 const fs = require("fs").promises;
+
+
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
@@ -96,23 +96,32 @@ app.post('/api/addUser', async(req, res) => {
   }
   
   try {
-    let contents = await fs.readFile("public/data/users.json", "utf8");
-    contents = JSON.parse(contents);
-
-    contents.users.push({
-      name,
-      email,
-      registered: [],
-      following: [],
-      uid,
-      org: false
+    const userRecord = await firebase.auth().createUser({
+      email: email,
+      password: password,
+      displayName: name,
     });
 
-    await fs.writeFile("public/data/users.json", JSON.stringify(contents));
-    res.type("text").send("User has been created");
+    let contents = await fs.readFile("public/data/users.json", "utf8");
+    let users = JSON.parse(contents);
 
+    const newUser = {
+      name: name,
+      email: email,
+      registered: [],
+      following: [],
+      uid: userRecord.uid,
+      org: false,
+      notif: [] // Ensure the notif key is added
+    };
+
+    users.users.push(newUser);
+
+    await fs.writeFile("public/data/users.json", JSON.stringify(users, null, 2));
+    res.type("text").send("User registered successfully");
   } catch (err) {
     console.log(err);
+    res.status(500).send("Internal server error");
   }
 });
 
@@ -141,6 +150,34 @@ app.post('/api/addEvent', async (req, res) => {
     console.log(err)
   }
 });
+
+app.post('/api/registerEvent', async (req, res) => {
+  const { uid, eventId } = req.body;
+
+  if (!uid || !eventId) {
+    return res.status(400).send('Missing required fields');
+  }
+
+  try {
+    let contents = await fs.readFile("public/data/users.json", "utf8");
+    let users = JSON.parse(contents);
+
+    let user = users.users.find(user => user.uid === uid);
+    if (user) {
+      addUniqueEvent(user.registered, eventId);
+      addUniqueEvent(user.notif, eventId);
+
+      await fs.writeFile("public/data/users.json", JSON.stringify(users, null, 2));
+      res.type("text").send("Event registered and notification added successfully");
+    } else {
+      res.status(404).send("User not found");
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Internal server error");
+  }
+});
+
 
 // add post/event to JSON file
 app.post('/api/events', upload.single('eventImage'), async (req, res) => {
