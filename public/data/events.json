@@ -34,6 +34,17 @@
       "eventImage": "../img/event5.jpg"
     },
     {
+      "eventID": 890,
+      "title": "Coding Bootcamp",
+      "description": "Learn the basics of coding in Python.",
+      "date": "Monday, June 10",
+      "startTime": "10:00 am",
+      "endTime": "4:00 pm",
+      "venue": "CSE 224",
+      "orgID": 222,
+      "eventImage": "../img/event7.jpg"
+    },
+    {
       "eventID": 101,
       "title": "Design Senior Show",
       "description": "Showcase of Design senior student art projects.",
@@ -42,7 +53,7 @@
       "endTime": "6:00 pm",
       "venue": "ART 126",
       "orgID": 333,
-      "eventImage": "/img/event8.jpg"
+      "eventImage": "../img/event8.jpg"
     },
     {
       "eventID": 202,
@@ -53,7 +64,7 @@
       "endTime": "5:00 pm",
       "venue": "KNE 302",
       "orgID": 444,
-      "eventImage": "/img/event9.jpg"
+      "eventImage": "../img/event9.jpg"
     },
     {
       "eventID": 303,
@@ -64,7 +75,7 @@
       "endTime": "10:00 am",
       "venue": "HUB Lawn",
       "orgID": 555,
-      "eventImage": "/img/event10.jpg"
+      "eventImage": "../img/event10.jpg"
     },
     {
       "eventID": 404,
@@ -75,18 +86,62 @@
       "endTime": "7:00 pm",
       "venue": "MGH 201",
       "orgID": 666,
-      "eventImage": "/img/event11.jpg"
+      "eventImage": "../img/event11.jpg"
     },
     {
       "eventID": 505,
-      "title": "Coding Bootcamp",
-      "description": "Learn the basics of coding in Python.",
-      "date": "Monday, June 10",
+      "title": "Film Screening: Indie Night",
+      "description": "Screening of independent films created by students.",
+      "date": "Thursday, June 27",
+      "startTime": "6:00 pm",
+      "endTime": "9:00 pm",
+      "venue": "CMU 120",
+      "orgID": 777,
+      "eventImage": "../img/event12.jpg"
+    },
+    {
+      "eventID": 606,
+      "title": "Cooking Class: Italian Cuisine",
+      "description": "Learn to cook classic Italian dishes.",
+      "date": "Friday, June 28",
+      "startTime": "4:00 pm",
+      "endTime": "7:00 pm",
+      "venue": "WLO 450",
+      "orgID": 888,
+      "eventImage": "../img/event13.jpg"
+    },
+    {
+      "eventID": 707,
+      "title": "Robotics Competition",
+      "description": "Showcase of student-built robots competing in various challenges.",
+      "date": "Saturday, June 29",
       "startTime": "10:00 am",
       "endTime": "4:00 pm",
-      "venue": "CSE 224",
-      "orgID": 222,
-      "eventImage": "/img/event7.jpg"
+      "venue": "EEB 105",
+      "orgID": 999,
+      "eventImage": "../img/event14.jpg"
+    },
+    {
+      "eventID": 808,
+      "title": "Photography Exhibit",
+      "description": "Exhibition of student photography projects.",
+      "date": "Sunday, June 30",
+      "startTime": "1:00 pm",
+      "endTime": "5:00 pm",
+      "venue": "ART 210",
+      "orgID": 1010,
+      "eventImage": "../img/event15.jpg"
+    },
+    {
+      "eventID": 909,
+      "title": "Music Festival",
+      "description": "A day-long festival featuring various student bands and musicians.",
+      "date": "Saturday, July 1",
+      "startTime": "11:00 am",
+      "endTime": "8:00 pm",
+      "venue": "HUB Lawn",
+      "orgID": 1111,
+      "eventImage": "../img/event16.jpg"
     }
   ]
 }
