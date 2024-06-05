@@ -545,7 +545,7 @@ document.addEventListener('DOMContentLoaded', function() {
       statusCheck(eventsJson);
       let result = await eventsJson.json();
       result.events.forEach((event) => {
-        if (registeredEventIds.contains(event.eventId)) {
+        if (registeredEventIds.includes(event.eventId)) {
           // if an eventId matches with one of the events the user is registered for,
           // use createEventCard(event) and specify the upcomingEvents div as the location
           // parameter
