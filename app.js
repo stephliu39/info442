@@ -98,7 +98,6 @@ app.post('/api/addUser', async(req, res) => {
   try {
     let contents = await fs.readFile("public/data/users.json", "utf8");
     contents = JSON.parse(contents);
-    console.log(contents);
 
     contents.users.push({
       name,
@@ -110,7 +109,7 @@ app.post('/api/addUser', async(req, res) => {
     });
 
     await fs.writeFile("public/data/users.json", JSON.stringify(contents));
-    res.type("text").send("user has been created");
+    res.type("text").send("User has been created");
 
   } catch (err) {
     console.log(err);
@@ -119,6 +118,28 @@ app.post('/api/addUser', async(req, res) => {
 
 app.post('/api/addEvent', async (req, res) => {
   const { eventID, title, description, date, startTime, endTime, venue, orgId, eventImage } = req.body;
+
+  try {
+    let contents = await fs.readFile("public/data/events.json", "utf8");
+    contents = JSON.parse(contents);
+
+    contents.users.push({
+      eventID,
+      title,
+      description,
+      date,
+      startTime,
+      endTime,
+      venue,
+      orgId,
+      eventImage
+    });
+
+    await fs.writeFile("public/data/events.json", JSON.stringify(contents));
+    res.type("text").send("Event has been created");
+  } catch (err) {
+    console.log(err)
+  }
 });
 
 // add post/event to JSON file
