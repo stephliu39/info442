@@ -112,16 +112,22 @@ function loadEvents() {
 
 // Fetch event details by ID from the loaded events
 function getEventDetailsById(eventId) {
-  return events.find(event => event.eventID === eventId) || { eventID: eventId, name: 'Event not found' };
+  return events.find(event => event.eventID === eventId) || { eventID: eventId, name: 'Winfo HACKTHON' };
 }
 
 function loadEventDetails(eventId) {
   currentEventId = eventId;
   const eventDetails = getEventDetailsById(eventId);
+  document.getElementById('event-title').textContent = eventDetails.name;
+  document.getElementById('event-image').src = eventDetails.image;
+  document.getElementById('event-description').textContent = eventDetails.description;
+  document.getElementById('event-date').textContent = eventDetails.date;
+  document.getElementById('event-time').textContent = eventDetails.time;
+  document.getElementById('event-location').textContent = eventDetails.location;
+
   console.log(`Loading event details for event ID: ${eventId}`, eventDetails);
-  // Display event details on the registration page
-  // Here you can update the DOM elements with the event details
 }
+
 
 function registerForEvent(eventId) {
   let registeredEvents = JSON.parse(localStorage.getItem('registeredEvents')) || [];
@@ -150,9 +156,18 @@ function updateNotifications(eventId) {
   const notificationsList = document.querySelector('.notification-list ul');
   const notificationItem = document.createElement('li');
   notificationItem.classList.add('list-group-item');
-  notificationItem.textContent = `You have registered for ${eventDetails.name}`;
+  notificationItem.innerHTML = `
+  <div data-id="${eventId}" class="notification-item">
+  <strong>${eventDetails.name}</strong>
+  <p>${eventDetails.description}</p>
+</div>
+  `;
 
   notificationsList.appendChild(notificationItem);
+  // Add click event to show detailed notification content
+  notificationItem.addEventListener('click', function() {
+    showNotificationDetails(eventDetails);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
