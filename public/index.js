@@ -112,18 +112,18 @@ function loadEvents() {
 
 // Fetch event details by ID from the loaded events
 function getEventDetailsById(eventId) {
-  return events.find(event => event.eventID === eventId) || { eventID: eventId, name: 'Winfo HACKTHON' };
+  return events.find(event => event.eventID === eventId) || { eventID: eventId, title: 'Winfo HACKTHON' };
 }
 
 function loadEventDetails(eventId) {
   currentEventId = eventId;
   const eventDetails = getEventDetailsById(eventId);
-  document.getElementById('event-title').textContent = eventDetails.name;
+  document.getElementById('event-title').textContent = eventDetails.title;
   document.getElementById('event-image').src = eventDetails.image;
   document.getElementById('event-description').textContent = eventDetails.description;
   document.getElementById('event-date').textContent = eventDetails.date;
-  document.getElementById('event-time').textContent = eventDetails.time;
-  document.getElementById('event-location').textContent = eventDetails.location;
+  document.getElementById('event-time').textContent = eventDetails.startTime;
+  document.getElementById('event-location').textContent = eventDetails.venue;
 
   console.log(`Loading event details for event ID: ${eventId}`, eventDetails);
 }
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let div2 = document.createElement('div');
     div2.classList.add('event-card', 'h-100', 'position-relative');
-    div2.setAttribute('data-event-id', event.id);
+    div2.setAttribute('data-event-id', event.eventID);
 
     let eventImg = document.createElement('img');
     eventImg.src = '../img/sample.jpeg';
@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
     div2.addEventListener('click', function() {
       window.location.hash = 'eventRegistration';
       // Load event details on the registration page if needed
-      loadEventDetails(event.id);
+      loadEventDetails(event.eventID);
     });
 
     return(div1);
