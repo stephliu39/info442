@@ -1,25 +1,96 @@
 {
-    "organizations": [
-        {
-            "orgID": 111,
-            "name": "Winfo",
-            "description": "Diversity organization dedicated to empowering women in informatics",
-            "eventID": 123,
-            "followers": 30
-        },
-        {
-            "orgID": 222,
-            "name": "Dubstech",
-            "description": "UW's largest tech community. We host workshops, hackathons, and talks on design, data science, and software engineering.",
-            "eventID": 456,
-            "followers": 50
-        },
-        {
-            "orgID": 333,
-            "name": "Mesh",
-            "description": "A collective of fashion designers and enthusiests based at UW.",
-            "eventID": 789,
-            "followers": 40
-        }
-    ]
+  "organizations": [
+    {
+      "orgID": 111,
+      "name": "Winfo",
+      "description": "Diversity organization dedicated to empowering women in informatics",
+      "followers": 30,
+      "eventID": 123
+    },
+    {
+      "orgID": 222,
+      "name": "Dubstech",
+      "description": "UW's largest tech community. We host workshops, hackathons, and talks on design, data science, and software engineering.",
+      "followers": 50,
+      "eventID": 456
+    },
+    {
+      "orgID": 333,
+      "name": "Mesh",
+      "description": "A collective of fashion designers and enthusiasts based at UW.",
+      "followers": 40,
+      "eventID": 789
+    },
+    {
+      "orgID": 225,
+      "name": "Code Club",
+      "description": "Club focused on teaching coding skills and organizing coding bootcamps.",
+      "followers": 60,
+      "eventID": 890
+    },
+    {
+      "orgID": 335,
+      "name": "Design Society",
+      "description": "A group for design students to showcase their work and collaborate on projects.",
+      "followers": 45,
+      "eventID": 101
+    },
+    {
+      "orgID": 444,
+      "name": "TechTalks",
+      "description": "Group focusing on discussions about the latest in technology and software development.",
+      "followers": 70,
+      "eventID": 202
+    },
+    {
+      "orgID": 555,
+      "name": "Yoga Club",
+      "description": "Community dedicated to practicing and teaching yoga.",
+      "followers": 55,
+      "eventID": 303
+    },
+    {
+      "orgID": 666,
+      "name": "Entrepreneur Society",
+      "description": "Society for aspiring entrepreneurs to learn and network.",
+      "followers": 65,
+      "eventID": 404
+    },
+    {
+      "orgID": 777,
+      "name": "Film Society",
+      "description": "Club for students interested in filmmaking and screening.",
+      "followers": 65,
+      "eventID": 505
+    },
+    {
+      "orgID": 888,
+      "name": "Culinary Arts Club",
+      "description": "Club focused on cooking and culinary arts, organizing cooking classes.",
+      "followers": 40,
+      "eventID": 606
+    },
+    {
+      "orgID": 999,
+      "name": "Robotics Club",
+      "description": "Club for students interested in building and competing with robots.",
+      "followers": 80,
+      "eventID": 707
+    },
+    {
+      "orgID": 1010,
+      "name": "Photography Club",
+      "description": "A collective of photography enthusiasts at UW.",
+      "followers": 55,
+      "eventID": 808
+    },
+    {
+      "orgID": 1111,
+      "name": "Music Society",
+      "description": "Society for student musicians to perform and collaborate.",
+      "followers": 75,
+      "eventID": 909
+    }
+  ]
 }
+ 
