@@ -536,7 +536,23 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   async function fetchUserEvents(user) {
+    let registeredEventIds = user.registered;
+    console.log(registeredEventIds);
 
+    try {
+      let eventsJson = await fetch("api/events");
+      statusCheck(eventsJson);
+      let result = await eventsJson.json();
+      result.events.forEach((event) => {
+        if (registeredEventIds.contains(event.eventId)) {
+          // if an eventId matches with one of the events the user is registered for,
+          // use createEventCard(event) and specify the upcomingEvents div as the location
+          // parameter
+        }
+      });  
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   function displayRegisteredEvents(events) {
