@@ -1114,6 +1114,41 @@ document.addEventListener('DOMContentLoaded', function() {
           fetchUserEvents(user);
         }
       }
+
+
+      //fetch user notifications
+      async function fetchUserNotifs(user) {
+        let notifications = user.notif;
+        console.log(notifications);
+        let matches = [];
+    
+        try {
+          let usersJson = await fetch("api/users");
+          statusCheck(usersJson);
+          let result = await usersJson.json();
+          result.events.forEach((user) => {
+            notifications.forEach((id) => {
+              if (id === user.notif) {
+                matches.push(id);
+              }
+            })
+          });
+          displayNotifs(matches);  
+
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      //display user notifications - notif card needs to be created
+      function displayNotifs(notifs) {
+        let homeCardsContainer = document.querySelector("#notifications");
+        homeCardsContainer.innerHTML = "";
+        events.forEach((event) => {
+          let newCard = createNotifCard(notifs);
+          homeCardsContainer.appendChild(newCard);
+        });
+      }
     
       async function fetchUserEvents(user) {
         let registeredEventIds = user.registered;
