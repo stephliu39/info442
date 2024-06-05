@@ -67,10 +67,6 @@ const orgDetailsPage = document.getElementById("organization-details");
     document.getElementById('add-event-button').addEventListener('click', function() {
       showSection('events');
     });
-    
-    document.getElementById('submit').addEventListener('click', function() {
-      showSection('profile-page');
-    });
 
     document.getElementById('save-profile').addEventListener('click', saveProfile);
 
