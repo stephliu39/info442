@@ -5,3 +5,7 @@ View the project by:
 1) cloning the repository
 2) in the repository, run the command "nodemon".
 3) if needed, download the packages by running "npm install express", "npm install multer", and "npm install -g nodemon"
+
+Sample login account:
+cammip@uw.edu
+Test123
