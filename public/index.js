@@ -303,8 +303,9 @@ document.addEventListener('DOMContentLoaded', function() {
     div1.appendChild(div2);
     
     div2.addEventListener('click', function() {
-      window.location.hash = 'eventRegistration';
+      //window.location.hash = 'eventRegistration';
       // Load event details on the registration page if needed
+      window.location.hash = `eventRegistration/${event.eventID}`;
     });
 
     return(div1);
@@ -667,6 +668,73 @@ function displayNotificationEvents(events) {
     notificationItems.appendChild(card);
   });
 }
+
+function displayEventDetails(events) {
+  const eventItems = document.getElementById('eventDetails');
+  eventItems.innerHTML = '';
+
+  const div = document.createElement('div');
+  div.classList.add("container", "my-5");
+
+  events.forEach((event) => {
+    div.innerHTML = `
+    <button id="back-button" class="btn btn-secondary mb-3">Back</button>
+    <h3>${event.title}</h3>
+    <hr>
+    <div class="row">
+      <div class="col-md-8">
+        <img src="${event.eventImage}" alt="Event Banner" class="img-fluid mb-4">
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">About this event</h5>
+            <p class="card-text">${event.description}</p>
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Event Details</h5>
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <h6 class="mb-0 card-text">Location</h6>
+                <span class="badge bg-primary">${event.venue}</span>
+                <br>
+                <h6 class="mb-0 card-text">Date</h6>
+                <span class="badge bg-primary">${event.date}</span>
+                <br>
+                <h6 class="mb-0 card-text">Time</h6>
+                <span class="badge bg-primary">${event.startTime} - ${event.endTime}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-success btn-md">Register Now</button>
+        <button id="save-later" class="btn btn-primary btn-md">Save for later</button>
+      </div>
+    </div>
+  `;
+
+  eventItems.appendChild(div)
+  });
+
+  document.getElementById('back-button').addEventListener('click', function() {
+    window.history.back();
+  });
+}
+
+// Add a hashchange event listener
+window.addEventListener('hashchange', function() {
+  const hash = window.location.hash;
+  if (hash.startsWith('#eventRegistration/')) {
+    const eventID = hash.split('/')[1];
+    const event = events.find(event => event.eventID == eventID);
+    if (event) {
+      displayEventDetails(event);
+    }
+  }
+});
+
 
 
 function statusCheck(response) {
