@@ -536,9 +536,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+
+
+
+
+
+
   // change view based on user
   function changeView(user) {
-
     let isOrg = user.org;
 
     if (isOrg) {
@@ -548,10 +553,9 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       document.querySelector('#name-greeting').textContent = "Hello, " + user.name;
       
-      // should not see the create events
       fetchUserEvents(user);
-
       fetchNotification(user);
+      fetchUserOrganizations(user); // Fetch and display user organizations
     }
   }
 
@@ -575,6 +579,44 @@ document.addEventListener('DOMContentLoaded', function() {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  // getting user's organizations
+  async function fetchUserOrganizations(user) {
+    let followingOrgIds = user.following;
+    console.log(followingOrgIds);
+    let matches = [];
+
+
+    try {
+      let orgsJson = await fetch("api/organizations");
+      statusCheck(orgsJson);
+      let result = await orgsJson.json();
+      result.organizations.forEach((org) => {
+        if (followingOrgIds.includes(org.orgID)) {
+          matches.push(org);
+        }
+      });
+      displayUserOrganizations(matches);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  // showing user's organizations
+  function displayUserOrganizations(orgs) {
+    const container = document.getElementById('organization-cards-container');
+    container.innerHTML = '';
+  
+    orgs.forEach(org => {
+      const card = document.createElement('div');
+      card.classList.add('organization-card', 'card', 'text-center');
+      card.innerHTML = `
+        <div class="card-body">
+          <p class="card-text">${org.name}</p>
+        </div>
+      `;
+      container.appendChild(card);
+    });
   }
 
   async function fetchNotification(userProfile) {
