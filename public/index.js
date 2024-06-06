@@ -87,14 +87,18 @@ const orgDetailsPage = document.getElementById("organization-details");
     document.getElementById('create-event-btn').addEventListener('click', function() {
       showSection('profile-page');
     });
-
-    // Check if the user is already authenticated on page load
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         currentUser = user;
-        showSection('home');
-        document.querySelector("nav").classList.remove("hidden");
-        fetchNotification(user); // Corrected function call to fetch notifications
+        fetchUserProfile(user.uid).then(profile => {
+          displayUserProfile(profile);
+          fetchAllEvents().then(events => {
+            renderEventCards(events);
+            showSection('home');
+            document.querySelector("nav").classList.remove("hidden");
+            document.querySelector("footer").classList.remove("hidden");
+          });
+        }).catch(error => console.error("Error fetching user profile:", error));
       } else {
         currentUser = null;
         showSection('login');
@@ -102,15 +106,6 @@ const orgDetailsPage = document.getElementById("organization-details");
       route();
     });
     
-    async function fetchUserProfile(uid) {
-      try {
-        let contents = await fetch("/api/users");
-        let users = await contents.json();
-        return users.users.find(user => user.uid === uid);
-      } catch (error) {
-        console.error("Error fetching user profile:", error);
-      }
-    }
 
     const registerButton = document.querySelector('.btn-success');
     if (registerButton) {
@@ -122,16 +117,21 @@ const orgDetailsPage = document.getElementById("organization-details");
 
 
 let currentEventId = null;
-let events = [];
 
-// Load events from the JSON file
-function loadEvents() {
-  fetch('events.json')
+
+
+function fetchUserProfile(uid) {
+  return fetch('/api/users')
     .then(response => response.json())
-    .then(data => {
-      events = data.events;
-    })
-    .catch(error => console.error('Error loading events:', error));
+    .then(data => data.users.find(user => user.uid === uid))
+    .catch(error => console.error('Error fetching user profile:', error));
+}
+
+function displayUserProfile(profile) {
+  if (profile) {
+    document.getElementById('profile-name').value = profile.name || '';
+    document.getElementById('profile-email').value = profile.email || '';
+  }
 }
 
 
@@ -158,8 +158,6 @@ function showConfirmationPopup(message) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  loadEvents(); // Load events on page load
-
   const registerButton = document.querySelector('.btn-success');
   if (registerButton) {
     registerButton.addEventListener('click', function() {
@@ -312,6 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
     return(div1);
   }
 
+  
   function createOrgEventCard(event) {
     let orgEventCards = document.getElementById('orgEventCardsContainer');
 
@@ -430,11 +429,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (email && password) {
       firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((user) => {
-          currentUser = user.user;
-
+      .then((userCredential) => {
+          const user = userCredential.user;
+          currentUser = user;
           // fetches all user data then matches the user from firebase with
           // the one in the users.json and changes the website view based on user
+          fetchUserProfile(user.uid).then(profile => {
+            displayUserProfile(profile);
+          });
           fetchUsers();
           fetchAllEvents();
 
@@ -453,41 +455,57 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Creates an account in firebase and adds the user to the users json file
   function signupUser() {
-    const name = document.getElementById('signup-name').value;
     const email = document.getElementById('signup-email').value;
     const password = document.getElementById('signup-password').value;
-  
-    if (name && email && password) {
-      fetch('/api/signupUser', {
+
+    if (email && password) {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+          currentUser = user.user;
+          handleSignUp();
+          fetchAllEvents();
+          showSection('home');
+          document.querySelector("nav").classList.remove("hidden");
+          document.querySelector("footer").classList.remove("hidden");
+      })
+      .catch((error) => {
+        showError("signup-error-msg", error);
+      });
+    } else {
+      showError("signup-error-msg", "error");
+    }
+  }
+
+  async function handleSignUp() {
+    const name = document.getElementById('signup-name').value;
+    const email = document.getElementById('signup-email').value;
+    const uid = currentUser.uid;
+
+    const data = {
+      name: name,
+      email: email,
+      uid: uid
+    };
+
+    // add the user to the json file here
+    try {
+      const response = await fetch('/api/addUser', {
         method: 'POST',
         headers: {
-          'Content-Type': 'users/json'
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, email, password })
-      }).then(response => response.text())
-        .then(result => {
-          console.log(result);
-          firebase.auth().signInWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-              const user = userCredential.user;
-              currentUser = user;
-              fetchUserProfile(user.uid)
-                .then(userProfile => {
-                  currentUserProfile = userProfile;
-                  showSection('home');
-                  document.querySelector("nav").classList.remove("hidden");
-                  fetchNotification(currentUserProfile); // Fetch notifications for the new user
-                })
-                .catch(error => console.error("Error fetching user profile:", error));
-            })
-            .catch(error => showError("signup-error-msg", error.message));
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          showError("signup-error-msg", "Failed to sign up.");
-        });
-    } else {
-      showError("signup-error-msg", "All fields are required.");
+        body: JSON.stringify(data)
+      });
+
+      if(!response.ok) {
+        throw new Error('could not create user');
+      }
+
+      const res = await response.text();
+      console.log(res);
+
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -1089,30 +1107,32 @@ document.addEventListener('DOMContentLoaded', function() {
       function loginUser() {
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
-    
+      
         if (email && password) {
           firebase.auth().signInWithEmailAndPassword(email, password)
-          .then((user) => {
-              currentUser = user.user;
-    
-              // fetches all user data then matches the user from firebase with
-              // the one in the users.json and changes the website view based on user
-              fetchUsers();
-              fetchAllEvents();
-    
-              document.getElementById("login").classList.add("hidden");
-              showSection('home');
-              document.querySelector("nav").classList.remove("hidden");
-              document.querySelector("footer").classList.remove("hidden");
+          .then((userCredential) => {
+              const user = userCredential.user;
+              currentUser = user;
+      
+              // Fetch user profile and events after login
+              fetchUserProfile(user.uid).then(profile => {
+                displayUserProfile(profile);
+                fetchAllEvents().then(events => {
+                  renderEventCards(events);
+                });
+      
+                showSection('home');
+                document.querySelector("nav").classList.remove("hidden");
+                document.querySelector("footer").classList.remove("hidden");
+              }).catch(error => console.error("Error fetching user profile:", error));
           })
           .catch((error) => {
-              showError("login-error-msg", error);
+              showError("login-error-msg", error.message);
           });
         } else {
-          showError("login-error-msg", "error");
+          showError("login-error-msg", "Please enter both email and password.");
         }
       }
-    
       // Creates an account in firebase and adds the user to the users json file
       function signupUser() {
         const name = document.getElementById('signup-name').value;
@@ -1272,17 +1292,16 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     
       async function fetchAllEvents() {
-        try {
-          let eventsJson = await fetch("api/events");
-          statusCheck(eventsJson);
-          let result = await eventsJson.json();
-    
-          // changes the website to user view
-          displayEvents("#eventCardsContainer", result.events);
-        } catch (err) {
-          console.log(err);
-        }
-      }
+  try {
+    let response = await fetch("/api/events");
+    let data = await response.json();
+    return data.events;
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    return [];
+  }
+}
+
     
       function displayEvents(location, events) {
         let homeCardsContainer = document.querySelector(location);
